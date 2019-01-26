@@ -1,4 +1,5 @@
 <!-- START /asuthemes/4.7/headers/default.shtml -->
+<div class="container">
 <div id="main-search" class="main-search closed">
     <form target="_top" action="https://search.asu.edu/search" method="get" name="gs" role="search">
         <label for="asu_search_box">Search</label><input name="site" type="hidden" value="default_collection">
@@ -138,4 +139,5 @@ if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
 ASUHeader.generateSiteTitle();
 </script>
 <div style="clear:both;"></div>
+</div>
 <!-- END /asuthemes/4.7/headers/default.shtml -->
