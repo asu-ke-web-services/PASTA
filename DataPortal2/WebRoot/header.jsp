@@ -3,7 +3,6 @@
 
 <!-- Header -->
 <%
-
 	HttpSession httpSession = request.getSession();
 	String uid = (String) httpSession.getAttribute("uid");
 	String identity = null;
@@ -76,145 +75,52 @@
     loginClass = currentClass;
   }
 %>
+
 <header role="banner">
-<div class="row-fluid ">
-	<div class="span12 page_top_header base_color_background">
-	</div>
-</div>
-<div class="container">
-	<div class="row-fluid header_container">
-		<div class="span6">
-            <div class="display-table">
-                <div class="table-row">
-                    <div class="table-cell">
-                        <a href="home.jsp"><img alt="LTER Network Data Portal logo" src="images/nis_logo.png" title="LTER : Network"></a>
-                        <br/>
-                    </div>
-                    <div class="table-cell">
-                        <span><big><strong><%= tierHTML %></strong></big></span>
-                    </div>
-                </div>
-            </div>
-	    </div>
-
-
-			<div class="span6 menu">
-			<nav role="navigation">
-			<ul id="menu-nav" class="menu">
-				<li<%= homeClass %>><a href="home.jsp">Home</a></li>
-				<li<%= dataClass %>><a href="#">Data</a>
-				<ul class="sub-menu">
-					<p class="smallmenu pull-left nis-navigation-submenu">
-					<img class="mini-arrow-margin" alt="" src="images/mini_arrow.png" title="LTER : Network">
-					Browse Data By:</p>
-					<li><a href="browse.jsp">Keyword or LTER Site</a> </li>
-					<li><a href="scopebrowse">Package Identifier</a> </li>
-					<p class="smallmenu pull-left nis-navigation-submenu">
-					  <img class="mini-arrow-margin" alt="" src="images/mini_arrow.png" title="LTER : Network">
-					Search Data:</p>
-					<li><a href="advancedSearch.jsp">Advanced Search</a> </li>
-					<p class="smallmenu pull-left nis-navigation-submenu">
-					  <img class="mini-arrow-margin" alt="" src="images/mini_arrow.png" title="LTER : Network">
-					View Your Data:</p>
-					<li><a href="savedDataServlet">Your Data Shelf</a> </li>
-				</ul>
-				</li>
-				<li<%= toolsClass %>><a href="#">Tools</a>
-				<ul class="sub-menu">
-					<p class="smallmenu pull-left nis-navigation-submenu">
-					<img alt="" src="images/mini_arrow.png" class="mini-arrow-margin" title="LTER : Network">
-					Data Packages:</p>
-					<li><a href="metadataPreviewer.jsp">Preview Your Metadata</a> </li>
-					<!-- <li><a href="dataPackageEvaluate.jsp">Evaluate Data Packages</a></li> -->
-					<li><a href="harvester.jsp">Evaluate/Upload Data Packages</a></li>
-					<li><a href="harvestReport.jsp">View Evaluate/Upload Results</a></li>
-					<!--  <li><a href="dataPackageDelete.jsp">Delete Data Packages</a></li> -->
-					<p class="smallmenu pull-left nis-navigation-submenu">
-					<img alt="" src="images/mini_arrow.png" class="mini-arrow-margin" title="LTER : Network">
-					Events:</p>
-					<li><a href="eventSubscribe.jsp">Event Subscriptions</a></li>
-					<p class="smallmenu pull-left nis-navigation-submenu">
-					<img alt="" src="images/mini_arrow.png" class="mini-arrow-margin" title="LTER : Network">
-					Provenance:</p>
-					<li><a href="provenanceGenerator.jsp">Provenance Generator</a></li>
-					<p class="smallmenu pull-left nis-navigation-submenu">
-					<img alt="" src="images/mini_arrow.png" class="mini-arrow-margin" title="LTER : Network">
-					Reports:</p>
-					<li><a href="auditReport.jsp">Audit Reports</a></li>
-					<li><a href="dataPackageAudit.jsp">Data Package Access Reports</a></li>
-				</ul>
-				</li>
-				<li<%= helpClass %>><a href="#">Help</a>
-				<ul class="sub-menu">
-					<p class="smallmenu pull-left nis-navigation-submenu">
-					<img alt="" src="images/mini_arrow.png" class="mini-arrow-margin" title="LTER : Network">
-					Support:</p>
-				  <!-- <li><a href="help.jsp">How Do I...</a></li> -->
-				  <li><a href="contact.jsp">Contact Us</a></li>
-					<p class="smallmenu pull-left nis-navigation-submenu">
-					<img alt="" src="images/mini_arrow.png" class="mini-arrow-margin" title="LTER : Network">
-					Resources:</p>
-				  <li><a href="resources.jsp">LTER Resources</a></li>
-					<p class="smallmenu pull-left nis-navigation-submenu">
-					<img alt="" src="images/mini_arrow.png" class="mini-arrow-margin" title="LTER : Network">
-					About:</p>
-				  <li><a href="about.jsp">About the LTER Network Data Portal</a></li>
-				</ul>
-				</li>
-				<li<%= loginClass %>><%= identity %></li>
-			</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<!-- /Header -->
-
-<!-- Divider -->
-<div class="row-fluid ">
-	<div class="span12 page_top_header line-divider">
-	</div>
-</div>
-<!-- /Divider -->
-
-<!-- Search Section -->
-<div class="row-fluid page_title">
+	<!-- Bootstrap NavBar -->
+	<div class="container-fluid bg-dark">
 	<div class="container">
-		<div class="span8">
-			<h2 class="title_size"><%= welcomeBack %></h2>
-			<h2 class="title_desc loggedin"><%= uname %></h2>
-		</div>
-		<div class="span4">
-			<div class="pull-right">
-				<div id="search-3" class="widget title_widget widget_search">
-				  <form id="searchform" action="./simpleSearch" class="form-inline" method="post" >
-				    <!-- <label class="nis-search-label">Search Terms</label> -->
-					<!-- <span name='<%= Tooltip.SEARCH_TERMS %>'
-						  class="tooltip"> -->
-						<input type="search"
-							name="terms"
-							id="lterterms"
-							class="span11 search-query"
-							placeholder="enter search terms"
-							size="25" required="required">
-					<!-- </span> -->
-						<button class="search_icon" type="submit"></button>
-						<label id="advanced-search-label" class="nis-search-label">
-						  <img id="advanced-search-arrow" alt="" src="images/mini_arrow.png" title="Advanced Search">
-						  <a href="advancedSearch.jsp">ADVANCED SEARCH</a>
-						</label>
-					</form>
-					<span class="seperator extralight-border"></span></div>
-			</div>
-		</div>
-	</div>
-	<div class="row-fluid divider base_color_background">
-		<div class="container">
-			<span class="bottom_arrow"></span></div>
-	</div>
-</div>
-<!-- /Search Section -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="home.jsp"><span class="fas fa-home"></span></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-<div class="container shadow">
-	<span class="bottom_shadow_full"></span>
-</div>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Browse
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="browse.jsp">Keyword or LTER Site</a>
+						<a class="dropdown-item" href="scopebrowse">Package Identifier</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="savedDataServlet">Your Data Shelf</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Help
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="contact.jsp">Contact Us</a>
+						<a class="dropdown-item" href="resources.jsp">Resources</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="about.jsp">About Us</a>
+					</div>
+				</li>
+
+			</ul>
+			<!--
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+			-->
+		</div>
+		</div>
+		</div>
+	</nav>
+	<!-- end Bootstrap NavBar -->
 </header>
