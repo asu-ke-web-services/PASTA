@@ -17,7 +17,7 @@
 
   if (termsListHTML == null)
     termsListHTML = "";
-    
+
   if (mapSearchResults == null)
     mapSearchResults = "";
 
@@ -27,31 +27,9 @@
 <html lang="en">
 
 <head>
-	<title><%= titleText %></title>
+	<!-- common <head> tag elements -->
+	<%@ include file="common-head.jsp" %>
 
-	<meta charset="UTF-8" />
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-
-	<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
-
-	<!-- Google Fonts CSS -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,300italic" rel="stylesheet" type="text/css">
-
-	<!-- Page Layout CSS MUST LOAD BEFORE bootstap.css -->
-	<link href="css/style_slate.css" media="all" rel="stylesheet" type="text/css">
-
-	<!-- JS -->
-	<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
-	<script src="js/data-shelf-ajax.js" type="text/javascript"></script>
-
-	<!-- Mobile Device CSS -->
-	<link href="bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css">
-	<link href="bootstrap/css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css">
-
-	<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" >
-	<script src="https://maps.googleapis.com/maps/api/js?key=<%= googleMapsKey %>" type="text/javascript"></script>
-	<script type="text/javascript" src="js/markerclusterer.js"></script>
-    <script src="js/oms.min.js"></script>
 
 <script>
 
@@ -68,9 +46,9 @@ function initialize() {
          zoomControl: true, scaleControl: true, streetViewControl: false, overviewMapControl: false
      };
      map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-     
+
      var oms = new OverlappingMarkerSpiderfier(map, {keepSpiderfied: true});
-     
+
      var infoWindow = new google.maps.InfoWindow();
 
      oms.addListener('click', function(marker, event) {
@@ -80,12 +58,12 @@ function initialize() {
      oms.addListener('spiderfy', function(markers) {
         infoWindow.close();
      });
-     
+
      var markers = createMarkers(oms);
      var mcOptions = {gridSize: 10, maxZoom: 15};
      markerclusterer = new MarkerClusterer(map, markers, mcOptions);
-     
-	// Enable, and adjust, the following lines to change gridSize according to zoom level     
+
+	// Enable, and adjust, the following lines to change gridSize according to zoom level
      google.maps.event.addListener(map, 'zoom_changed', function() {
                                                         var gridSize = 10;
                                                         if (map.getZoom() > 4) gridSize = 20;
@@ -102,29 +80,29 @@ function createMarkers(oms) {
     var i;
       for (i = 0; i < documents.length; i++) {
          var position = new google.maps.LatLng(documents[i].location.latitude, documents[i].location.longitude);
- 
+
          var info = '<b>' + documents[i].packageId + '</b>';
-            
+
          info += ', ' + documents[i].titleLink;
-         
+
          if (documents[i].pubDate) {
           	info += ', (' + documents[i].pubDate + ')';
          }
-         
+
          var marker = new google.maps.Marker(
-         { 
+         {
             title:    documents[i].title,
-            position: position, 
+            position: position,
             objInfo:  info
          });
-          
+
          /*google.maps.event.addListener(marker, 'click', function() {
           													showInfoWindow(this);
           													});*/
          data.push(marker);
          oms.addMarker(marker);
       }
-      
+
       return data;
 }
 
@@ -133,10 +111,10 @@ function showInfoWindow(m) {
        var info = new google.maps.InfoWindow(
        	{
        		content: '<div style="width: 300px; height: 100px; border:2px solid; padding: 2px;"><span style="font-family: Trebuchet MS; font-size:10pt; color: maroon">' + m.objInfo + '</span></div>'
-       	}); 
-       	
+       	});
+
        if (currentWindow != null) {currentWindow.close();}
-       
+
        info.open(map, m);
        currentWindow=info;
 }
@@ -147,6 +125,7 @@ var documents = <%=mapSearchResults%>
 </head>
 
 <body onload="initialize();">
+<jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
 
   <div class="row-fluid ">
@@ -160,7 +139,7 @@ var documents = <%=mapSearchResults%>
 							</div>
 							<span class="row-fluid separator_border"></span>
 						</div>
-						
+
 						<div class="row-fluid">
 							<div class="span12">
 								<!-- Content -->
@@ -168,17 +147,20 @@ var documents = <%=mapSearchResults%>
    								<div>
          							<div id="map_canvas" style="height: 600px; width: 940px;"></div>
      							</div>
-			          			
+
 						  </div>
 		 		    </div>
 				  </div>
 			  </div>
 		  </div>
 	  </div>
-	  
-	  <jsp:include page="footer.jsp" />
-  </div>
 
+    <div class="footer-container pt-5">
+	<jsp:include page="asu-footer.jsp" />
+</div>
+
+  </div>
+<%@ include file="bootstrap-javascript.jsp" %>
 </body>
 
 </html>

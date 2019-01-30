@@ -44,7 +44,7 @@
             StringBuilder sb = new StringBuilder();
             sb.append(String.format("The Data Portal and PASTA+ services will be unavailable on %s evening from 7-9 pm Mountain Time for scheduled weekly maintenance.",
                                     downtime));
-            downtimeHTML = String.format("<em>Please Note: </em>%s",
+            downtimeHTML = String.format("<div class=\"alert alert-warning mt-4\" role=\"alert\"<em>Please Note: </em>%s</div>",
                                          sb.toString());
         }
     }
@@ -52,112 +52,85 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<title><%= titleText %></title>
-
-<meta charset="UTF-8" />
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-
-<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
-
-<!-- Google Fonts CSS -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,300italic" rel="stylesheet" type="text/css">
-
-<!-- Page Layout CSS MUST LOAD BEFORE bootstap.css -->
-<link href="css/style_slate.css" media="all" rel="stylesheet" type="text/css">
-
-<!-- JS -->
-<script src="js/jqueryba3a.js?ver=1.7.2" type="text/javascript"></script>
-<script src="bootstrap/js/bootstrap68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.easing.1.368b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.flexslider-min68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/themeple68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.pixel68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.mobilemenu68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/isotope68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/mediaelement-and-player.min68b368b3.js?ver=1" type="text/javascript"></script>
-
-<!-- Mobile Device CSS -->
-<link href="bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css">
-<link href="bootstrap/css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css">
-
-<!-- Google Chart for NIS Data Package and Site Growth -->
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<!-- common <head> tag elements -->
+	<%@ include file="common-head.jsp" %>
 </head>
 
 <body>
 
+<jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
-<div class="row-fluid">
-	<div class="span12">
-		<div class="container">
-			<div class="row-fluid distance_1">
-				<div class="span8 box_shadow box_layout">
-					<div class="row-fluid">
-						<div class="span12">
-                            <p class="nis-warn"><%= downtimeHTML %></p>
-							<div class="recent_title">
-								<h2>Welcome to the LTER Network Data Portal</h2>
-							</div>
-							<span class="row-fluid separator_border"></span>
-						</div>
-						<div class="row-fluid">
-							<p>Data are one of the most valuable products of the
-							Long Term Ecological Research (LTER) Network. Data and
-							metadata derived from publicly funded research in the
-							U.S. LTER Network are made available online with as
-							few restrictions as possible, on a non-discriminatory
-							basis. In return, the LTER Network expects data users
-							to <em>act ethically</em> by contacting the
-							investigator prior to the use of data for publication.
-							</p>
-							<p>The LTER Network Information System Data Portal contains
-							ecological data packages contributed by past and present
-							LTER sites. Please review the
-							<a class="searchsubcat" href="https://lternet.edu/data-access-policy/" target="_blank">
-							LTER Network Data Access Policy</a> before downloading any data product.
-							We request that you cite data sources in your published
-							and unpublished works whenever possible. Digital object
-							identifiers (DOI) are provided for each dataset to facilitate
-							citation. </p>
-							<!--
-							<p>Voluntary registration on this site will allow us
-							to notify you of updates to data and metadata of interest
-							and of corrections made to data. In addition, your validated
-							login will gain you access to even more data where contributors
-							have asked for additional information on use.
-							<span name="New user registration for non-LTER members coming soon!"
-							class="tooltip">Register now</span>!
-							</p>
-							-->
-							<p>LTER Network scientists make every effort to release
-							data in a timely fashion and with attention to accurate,
-							well-designed and well-documented data. To understand
-							data fully, please read the associated metadata and
-							contact data providers if you have any questions. The
-							LTER Network is not responsible for misinterpretation
-							of data resulting from failure to consult metadata or
-							data providers.</p>
-						</div>
-					</div>
-				</div>
-				<div class="span4 box_shadow box_layout">
-					<div class="row-fluid">
-						<div class="row-fluid">
-								    <em>Charts were here.</em>
-								    <p><em>Stats were here.</em></p>
-						</div>
-					</div>
-				</div>
-			</div>
+
+<div class="container">
+	<div class="row mt-3">
+		<div class="col-sm">
+
+			<%= downtimeHTML %>
+			<h2>Welcome to the GIOS Data Portal</h2>
+
+			<p>Data are one of the most valuable products of the
+			Long Term Ecological Research (LTER) Network. Data and
+			metadata derived from publicly funded research in the
+			U.S. LTER Network are made available online with as
+			few restrictions as possible, on a non-discriminatory
+			basis. In return, the LTER Network expects data users
+			to <em>act ethically</em> by contacting the
+			investigator prior to the use of data for publication.
+			</p>
+
+			<p>The LTER Network Information System Data Portal contains
+			ecological data packages contributed by past and present
+			LTER sites. Please review the
+			<a class="searchsubcat" href="https://lternet.edu/data-access-policy/" target="_blank">
+			LTER Network Data Access Policy</a> before downloading any data product.
+			We request that you cite data sources in your published
+			and unpublished works whenever possible. Digital object
+			identifiers (DOI) are provided for each dataset to facilitate
+			citation. </p>
+			<!--
+			<p>Voluntary registration on this site will allow us
+			to notify you of updates to data and metadata of interest
+			and of corrections made to data. In addition, your validated
+			login will gain you access to even more data where contributors
+			have asked for additional information on use.
+			<span name="New user registration for non-LTER members coming soon!"
+			class="tooltip">Register now</span>!
+			</p>
+			-->
+			<p>LTER Network scientists make every effort to release
+			data in a timely fashion and with attention to accurate,
+			well-designed and well-documented data. To understand
+			data fully, please read the associated metadata and
+			contact data providers if you have any questions. The
+			LTER Network is not responsible for misinterpretation
+			of data resulting from failure to consult metadata or
+			data providers.</p>
 		</div>
 	</div>
 
-		<jsp:include page="footer.jsp" />
+	<div class="jumbotron">
+		<h1 class="display-4">Search GIOS Data</h1>
+		<p class="lead">Search through our vast reserve of high-quality, royalty-free data!</p>
+		<hr />
+		<form class="form-inline" id="searchform" action="./simpleSearch" method="post">
+			<label class="sr-only" for="lterterms">Search For: </label>
+			<input type="text" name="terms" class="form-control mb-2 mr-sm-2" id="lterterms" placeholder="Search Term(s)">
+			<button type="submit" class="btn btn-primary mb-2">Submit</button>
+		</form>
+		<hr />
+		<p>Looking for something more specific? Try the <a href="advancedSearch.jsp">Advanced Search</a></p>
+	</div>
 
 </div>
 
+<div class="footer-container pt-5">
+	<jsp:include page="asu-footer.jsp" />
+</div>
+
+
+</div>
+<%@ include file="bootstrap-javascript.jsp" %>
 </body>
 
 </html>

@@ -13,7 +13,7 @@
   final String indent = "              ";
   boolean includeNIN = true;      // include North Inlet in the options list
   String siteOptions = LTERSite.composeHTMLOptions(indent, includeNIN, null);
-  
+
   AuthorSearch.updateAuthorsAndOrganizations();
   String creatorOptions = AuthorSearch.composeAuthorNameOptions();
   String organizationOptions = AuthorSearch.composeAuthorOrganizationOptions();
@@ -23,36 +23,9 @@
 <html lang="en">
 
 <head>
-<title><%= titleText %></title>
+	<!-- common <head> tag elements -->
+	<%@ include file="common-head.jsp" %>
 
-<meta charset="UTF-8" />
-
-<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
-
-<!--  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" > -->
-<!-- Google Fonts CSS -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,300italic" rel="stylesheet" type="text/css">
-
-<!-- Page Layout CSS MUST LOAD BEFORE bootstap.css -->
-<link href="css/style_slate.css" media="all" rel="stylesheet" type="text/css">
-
-<!-- JS -->
-<script src="js/jqueryba3a.js?ver=1.7.2" type="text/javascript"></script>
-<script src="bootstrap/js/bootstrap68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.easing.1.368b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.flexslider-min68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/themeple68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.pixel68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.mobilemenu68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/isotope68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/mediaelement-and-player.min68b368b3.js?ver=1" type="text/javascript"></script>
-
-<!-- Mobile Device CSS -->
-<link href="bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css">
-<link href="bootstrap/css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css">
-
-<!-- For Custom Checkboxes -->
-<script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -61,19 +34,19 @@
 				event.preventDefault();
 				$(this).parent().addClass("selected");
 				$(this).parent().find(":checkbox").attr("checked","checked");
-				
+
 			}
 		);
-		
+
 		$(".checklist .checkbox-deselect").click(
 			function(event) {
 				event.preventDefault();
 				$(this).parent().removeClass("selected");
 				$(this).parent().find(":checkbox").removeAttr("checked");
-				
+
 			}
 		);
-		
+
 	});
 
 </script>
@@ -86,19 +59,19 @@
 				event.preventDefault();
 				$(this).parent().addClass("selected");
 				$(this).parent().find(":checkbox").attr("checked","checked");
-				
+
 			}
 		);
-		
+
 		$(".checklistLG .checkboxLG-deselect").click(
 			function(event) {
 				event.preventDefault();
 				$(this).parent().removeClass("selected");
 				$(this).parent().find(":checkbox").removeAttr("checked");
-				
+
 			}
 		);
-		
+
 	});
 
 </script>
@@ -107,7 +80,7 @@
   <script type="text/javascript" src="./js/utilities.js"></script>
   <script type="text/javascript" src="./js/validation.js"></script>
   <script type="text/javascript">
-  
+
       var boundsChangedCount = 0;
 
       function boundsChanged() {
@@ -130,12 +103,12 @@
             trim(form.endDate.value) == "" &&
             trim(form.namedTimescale.value) ==""
            )
-        {              
+        {
           alert("Please enter a value to search.");
           canSearch = false;
         }
 
-        if (canSearch) {        
+        if (canSearch) {
           return(validateAdvancedSearchForm(form));
         }
         else {
@@ -143,11 +116,12 @@
         }
       }
   </script>
-  
+
 </head>
 
 <body>
 
+<jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
 
 <div class="row-fluid ">
@@ -170,7 +144,7 @@
 								<div class="tabbable">
 									<ul class="nav nav-tabs">
 										<li class="active">
-										  <a data-toggle="tab" href="#tab3">Spatial / Place Name</a> 
+										  <a data-toggle="tab" href="#tab3">Spatial / Place Name</a>
 										</li>
 										<li>
 										  <a data-toggle="tab" href="#tab1">LTER Sites</a>
@@ -182,18 +156,18 @@
 										  <a data-toggle="tab" href="#tab6">Creator / Organization</a>
 										</li>
 										<li>
-										  <a data-toggle="tab" href="#tab4">Temporal</a> 
+										  <a data-toggle="tab" href="#tab4">Temporal</a>
 										</li>
 										<li>
-										  <a data-toggle="tab" href="#tab7">Taxonomic</a> 
+										  <a data-toggle="tab" href="#tab7">Taxonomic</a>
 										</li>
 										<li>
-										  <a data-toggle="tab" href="#tab5">Identifier</a> 
+										  <a data-toggle="tab" href="#tab5">Identifier</a>
 										</li>
 									</ul>
 								  <form id="advancedSearchForm" action="./advancedSearch" method="post" name="advancedSearchForm" onsubmit="return submitRequest(this)">
 									  <div class="tab-content">
-									  
+
 										  <div id="tab3" class="tab-pane active">
 											  <div class="row-fluid text_bar_pattern themeple_sc">
 												  <div>
@@ -203,10 +177,10 @@
 													  <script src="./js/map_functions.js" type="text/javascript"></script>
 													  <script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/keydragzoom/src/keydragzoom.js" type="text/javascript"></script>
 													  <script type="text/javascript">google.maps.event.addDomListener(window, 'load', initialize);</script>
-														<table>														
-													  	<tr>										
+														<table>
+													  	<tr>
 														    <td>
-														      <label>Zoom in to the region you&#39;d like to search:</label>											
+														      <label>Zoom in to the region you&#39;d like to search:</label>
                                   <div id="map-canvas"></div>
 													      </td>
 													      <td>
@@ -215,7 +189,7 @@
 															        <td></td>
 															        <td>
 															          <label>North:</label>
-															            <input name="northBound" onchange="boundsChanged()" 
+															            <input name="northBound" onchange="boundsChanged()"
 															                  size="8" type="text" value="90.0" />
 															        </td>
 															        <td></td>
@@ -223,27 +197,27 @@
 			  											      <tr>
 				  											      <td>
 					  										        <label>West:</label>
-						  									          <input name="westBound" onchange="boundsChanged()" 
-							  								                 size="8" type="text" value="-180.0" />						  							        
+						  									          <input name="westBound" onchange="boundsChanged()"
+							  								                 size="8" type="text" value="-180.0" />
 									  						      </td>
 										  					      <td></td>
 											  				      <td>
 												  			        <label>East:</label>
-													  		          <input name="eastBound" onchange="boundsChanged()" 
-														  	                 size="8" type="text" value="180.0" />									          
+													  		          <input name="eastBound" onchange="boundsChanged()"
+														  	                 size="8" type="text" value="180.0" />
 															        </td>
 						  								      </tr>
 							  							      <tr>
 								  							      <td></td>
 									  						      <td>
 										  					        <label>South:</label>
-											  				          <input name="southBound" onchange="boundsChanged()" 
+											  				          <input name="southBound" onchange="boundsChanged()"
 												  			                 size="8" type="text" value="-90.0" />
 														  	      </td>
 															        <td></td>
 	  													      </tr>
 		  												    </table>
-			  											  </td>														
+			  											  </td>
 													      <td></td>
 														    <td>
 															    <ul class="checklistLG">
@@ -254,10 +228,10 @@
 																      <a class="checkboxLG-deselect" href="#">Cancel</a>
 																    </li>
 															    </ul>
-													      </td>								
+													      </td>
 				  										</tr>
 														</table>
-														
+
 														<table>
 														  <tr>
 															  <td class="spacersmh"></td>
@@ -269,20 +243,20 @@
 															  </td>
 														  </tr>
 														<tr>
-														<td>													  
+														<td>
 															    <input name="locationName" size="40" type="text" />
 													  </td>
 													  </tr>
 													  </table>
-													  
+
 												  </div>
-												  
+
 												  <div class="row-fluid text_bar_pattern themeple_sc">
 												    <div class="span12">
 													    <span class="row-fluid separator_border"></span>
 												    </div>
 											    </div>
-											    
+
 										      <table>
 											      <tr>
 												      <td align="left">
@@ -294,8 +268,8 @@
 											  </div>
 										  </div>
 										  <!-- /#tab3 -->
-										
-																  
+
+
 										  <div id="tab1" class="tab-pane  ">
 												<table>
 												  <!--
@@ -339,22 +313,22 @@
 													  <table>
 														  <tr>
 															  <td>
-															    <input checked="checked" name="subjectField" type="radio" value="ALL" /> 
+															    <input checked="checked" name="subjectField" type="radio" value="ALL" />
 															    Subject
 															  </td>
 															  <td class="spacerwd"></td>
 															  <td>
-															    <input name="subjectField" type="radio" value="TITLE" /> 
+															    <input name="subjectField" type="radio" value="TITLE" />
 															    Title only
 															  </td>
 															  <td class="spacerwd"></td>
 															  <td>
-															    <input name="subjectField" type="radio" value="ABSTRACT" /> 
+															    <input name="subjectField" type="radio" value="ABSTRACT" />
 															    Abstract only
-															  </td>															  
+															  </td>
 															  <td class="spacerwd"></td>
 															  <td>
-															    <input name="subjectField" type="radio" value="KEYWORDS" /> 
+															    <input name="subjectField" type="radio" value="KEYWORDS" />
 															    Keywords only
 															  </td>
 														  </tr>
@@ -371,7 +345,7 @@
 																	<td class="spacerwd"></td>
 																	<td>
 																		<span name='<%=Tooltip.SEARCH_TERMS%>'
-																			class="tooltip"> 
+																			class="tooltip">
 																			<img src="images/hand.png" />
 																			<dfn>Search tip</dfn>
 																		</span>
@@ -400,20 +374,20 @@
 																		<ul class="checklistLG">
 																			<li>
 																				<input name="specific" type="checkbox" value="value1">
-																					<p>More Specific Terms</p> 
-																					<a class="checkboxLG-select" href="#">Select</a> 
+																					<p>More Specific Terms</p>
+																					<a class="checkboxLG-select" href="#">Select</a>
 																					<a class="checkboxLG-deselect" href="#">Cancel</a>
 																			</li>
 																			<li>
 																				<input name="related" type="checkbox" value="value1">
-																				<p>Related Terms</p> 
-																				<a class="checkboxLG-select" href="#">Select</a> 
+																				<p>Related Terms</p>
+																				<a class="checkboxLG-select" href="#">Select</a>
 																				<a class="checkboxLG-deselect" href="#">Cancel</a>
 																			</li>
 																			<li>
 																				<input name="relatedSpecific" type="checkbox" value="value1">
-																				<p>Related / More Specific Terms</p> 
-																				<a class="checkboxLG-select" href="#">Select</a> 
+																				<p>Related / More Specific Terms</p>
+																				<a class="checkboxLG-select" href="#">Select</a>
 																				<a class="checkboxLG-deselect" href="#">Cancel</a>
 																			</li>
 																		</ul>
@@ -423,14 +397,14 @@
 																		<ul class="checklistLG">
 																			<li>
 																				<input name="ecotrends" type="checkbox" value="value1">
-																				<p>EcoTrends Data Packages</p> 
-																				<a class="checkboxLG-select" href="#">Select</a> 
+																				<p>EcoTrends Data Packages</p>
+																				<a class="checkboxLG-select" href="#">Select</a>
 																				<a class="checkboxLG-deselect" href="#">Cancel</a>
 																			</li>
 																			<li>
 																				<input name="landsat5" type="checkbox" value="value1">
-																				<p>Landsat5 Data Packages</p> 
-																				<a class="checkboxLG-select" href="#">Select</a> 
+																				<p>Landsat5 Data Packages</p>
+																				<a class="checkboxLG-select" href="#">Select</a>
 																				<a class="checkboxLG-deselect" href="#">Cancel</a>
 																			</li>
 																		</ul>
@@ -448,7 +422,7 @@
 																<td align="left">
 																	<input
 																	class="btn btn-large btn-info btn-default"
-																	name="submit" type="submit" value="Submit" /> 
+																	name="submit" type="submit" value="Submit" />
 																	<input
 																	class="btn btn-large btn-info btn-default" name="reset"
 																	type="reset" value="Clear All" />
@@ -488,7 +462,7 @@
 															</tr>
 													  </table>
 												  </div>
-												  <div class="row-fluid text_bar_pattern themeple_sc">												
+												  <div class="row-fluid text_bar_pattern themeple_sc">
 												    <div class="span12">
 													    <span class="row-fluid separator_border"></span>
 												    </div>
@@ -504,25 +478,25 @@
 											  </div>
 										  </div>
 										  <!-- /#tab6 -->
-										
-										
+
+
 										  <div id="tab4" class="tab-pane  ">
 											  <div class="row-fluid text_bar_pattern themeple_sc">
 												  <div>
 													  <table>
 														  <tr>
 															  <td>
-															    <input checked="checked" name="dateField" type="radio" value="COLLECTION" /> 
+															    <input checked="checked" name="dateField" type="radio" value="COLLECTION" />
 															    Collection Date
 															  </td>
 															  <td class="spacerwd"></td>
 															  <td>
-															    <input name="dateField" type="radio" value="PUBLICATION" /> 
+															    <input name="dateField" type="radio" value="PUBLICATION" />
 															    Publication Date
 															  </td>
 															  <td class="spacerwd"></td>
 															  <td>
-															    <input name="dateField" type="radio" value="ALL" /> 
+															    <input name="dateField" type="radio" value="ALL" />
 															    Either
 															  </td>
 														  </tr>
@@ -583,8 +557,8 @@
 											  </div>
 										  </div>
 										  <!-- /#tab4 -->
-										
-										
+
+
 										  <div id="tab7" class="tab-pane  ">
 											  <div class="row-fluid text_bar_pattern themeple_sc">
 												  <div>
@@ -613,7 +587,7 @@
 											  </div>
 										  </div>
 										  <!-- /#tab7 -->
-										
+
 										  <div id="tab5" class="tab-pane  ">
 											  <div class="row-fluid text_bar_pattern themeple_sc">
 
@@ -626,9 +600,9 @@
 												    <li><strong>knb-lter-jrn.210001001</strong></li>
 												  </ul>
 												  </p>
-												  <p><em>Please note: Only the most current revision of the data package 
+												  <p><em>Please note: Only the most current revision of the data package
 												  will appear in the search results.</em></p>
-												  <!-- 
+												  <!--
 												  <ul>
 												  	<li>Digital Object Identifier (DOI), e.g., <strong>doi:10.6073/pasta/397e0bba0f8aeac013d01fc982a74ea8</strong></li>
 												  	<li>Package Identifier, e.g., <strong>knb-lter-and.2719.6</strong></li>
@@ -637,9 +611,9 @@
 												  </ul>
 												   -->
 												  </div>
-												  
+
 												  <br/>
-												  
+
 												  <div>
 														<table>
 															<tr>
@@ -650,7 +624,7 @@
 															</tr>
 														</table>
 												  </div>
-												  
+
 												  <div class="row-fluid text_bar_pattern themeple_sc">
 												    <div class="span12">
 													    <span class="row-fluid separator_border"></span>
@@ -667,9 +641,9 @@
 											  </div>
 										  </div>
 										  <!-- /#tab5 -->
-										  
+
 										<!-- /#tab8 -->
-										<!--  
+										<!--
 										  <div id="tab8" class="tab-pane  ">
 											  <div class="row-fluid text_bar_pattern themeple_sc">
 												  <div class="row-fluid text_bar_pattern themeple_sc">
@@ -701,17 +675,17 @@
 														  </tr>
 														  <tr>
 														    <td valign="top">
-															    <input checked="checked" name="formAllAny" type="radio" value="0" /> 
+															    <input checked="checked" name="formAllAny" type="radio" value="0" />
 															    Match <b>ALL</b> search criteria
 														    </td>
 														  </tr>
 														  <tr>
 														    <td valign="top">
-															    <input name="formAllAny" type="radio" value="1" /> 
+															    <input name="formAllAny" type="radio" value="1" />
 															    Match <b>ANY</b> search criteria
 														    </td>
 													    </tr>
-												    </table>												
+												    </table>
 												    <div class="span12">
 													    <span class="row-fluid separator_border"></span>
 												    </div>
@@ -727,7 +701,7 @@
 											  </div>
 										  </div>
 										  /#tab8 -->
-							
+
 									  </div>
 							    </form>
 								</div>
@@ -740,46 +714,50 @@
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp" />
-		
+<div class="footer-container pt-5">
+	<jsp:include page="asu-footer.jsp" />
 </div>
 
-  <script type="text/javascript"> 
+
+</div>
+
+  <script type="text/javascript">
 
     <!-- // JavaScript input validation checking code for advanced search form
-    var bCancel = false; 
+    var bCancel = false;
 
-    function validateAdvancedSearchForm(form) {                                                                   
-        if (bCancel) 
-            return true; 
-        else 
+    function validateAdvancedSearchForm(form) {
+        if (bCancel)
+            return true;
+        else
             var formValidationResult;
-            formValidationResult = validateFloat(form) && 
+            formValidationResult = validateFloat(form) &&
                                    validateFloatRange(form) &&
                                    validateDate(form);
             return (formValidationResult == 1);
-    } 
+    }
 
-    function advancedSearchForm_FloatValidations () { 
+    function advancedSearchForm_FloatValidations () {
       this.a0 = new Array("westBound", "West Boundary must be a number.", new Function ("varName", "this.min='-180.0'; this.max='180.0';  return this[varName];"));
       this.a1 = new Array("eastBound", "East Boundary must be a number.", new Function ("varName", "this.min='-180.0'; this.max='180.0';  return this[varName];"));
       this.a2 = new Array("northBound", "North Boundary must be a number.", new Function ("varName", "this.min='-90.0'; this.max='90.0';  return this[varName];"));
       this.a3 = new Array("southBound", "South Boundary must be a number.", new Function ("varName", "this.min='-90.0'; this.max='90.0';  return this[varName];"));
-    } 
+    }
 
-    function advancedSearchForm_DateValidations () { 
+    function advancedSearchForm_DateValidations () {
       this.a0 = new Array("startDate", "Start Date must be a date (YYYY-MM-DD).", new Function ("varName", "this.datePattern='yyyy-MM-dd';  return this[varName];"));
       this.a1 = new Array("endDate", "End Date must be a date (YYYY-MM-DD).", new Function ("varName", "this.datePattern='yyyy-MM-dd';  return this[varName];"));
-    } 
+    }
 
-    function advancedSearchForm_floatRange () { 
+    function advancedSearchForm_floatRange () {
       this.a0 = new Array("westBound", "West Boundary must be in the range -180.0 through 180.0.", new Function ("varName", "this.min='-180.0'; this.max='180.0';  return this[varName];"));
       this.a1 = new Array("eastBound", "East Boundary must be in the range -180.0 through 180.0.", new Function ("varName", "this.min='-180.0'; this.max='180.0';  return this[varName];"));
       this.a2 = new Array("northBound", "North Boundary must be in the range -90.0 through 90.0.", new Function ("varName", "this.min='-90.0'; this.max='90.0';  return this[varName];"));
       this.a3 = new Array("southBound", "South Boundary must be in the range -90.0 through 90.0.", new Function ("varName", "this.min='-90.0'; this.max='90.0';  return this[varName];"));
-    } 
+    }
   </script>
-  <!-- End  JavaScript input validation checking code. --> 
+  <!-- End  JavaScript input validation checking code. -->
+<%@ include file="bootstrap-javascript.jsp" %>
 
 </body>
 
