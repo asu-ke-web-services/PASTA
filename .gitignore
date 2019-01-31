@@ -36,3 +36,4 @@ common/test/edu/lternet/pasta/common/security/auth/UserCreds.properties
 /shell/env.sh
 /documentation/_build/*
 /documentation/deprecated
+.vscode/*

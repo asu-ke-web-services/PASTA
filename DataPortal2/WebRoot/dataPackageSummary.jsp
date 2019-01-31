@@ -8,7 +8,7 @@
   final String googleMapsKey = (String) ConfigurationListener.getOptions().getProperty("maps.google.key");
   final String pageTitle = "Data Package Summary";
   final String titleText = DataPortalServlet.getTitleText(pageTitle);
- 
+
   String wasDeletedHTML = (String) request.getAttribute("wasDeletedHTML");
   String titleHTML = (String) request.getAttribute("dataPackageTitleHTML");
   String viewFullMetadataHTML = (String) request.getAttribute("viewFullMetadataHTML");
@@ -42,18 +42,18 @@
   boolean showCodeGeneration = !(codeGenerationHTML == null || codeGenerationHTML.isEmpty());
   boolean showSavedData = !(savedDataHTML == null || savedDataHTML.isEmpty());
   String showCoordinates = "true";
-  if ((expandCoordinates != null) && !expandCoordinates) { 
+  if ((expandCoordinates != null) && !expandCoordinates) {
   	showCoordinates = "false";
   }
   String showWasDeleted = "true";
-  if ((wasDeletedHTML == null) || (wasDeletedHTML.equals(""))) { 
+  if ((wasDeletedHTML == null) || (wasDeletedHTML.equals(""))) {
     showWasDeleted = "false";
   }
 
     HttpSession httpSession = request.getSession();
     if ((uid == null) || (uid.equals(""))) {
         uid = "public";
-    } 
+    }
     String tier = null;
     String testHTML = "";
     String watermarkClass = "";
@@ -63,7 +63,7 @@
     DataPackageManagerClient dpmc = new DataPackageManagerClient(uid);
     String pastaHost = dpmc.getPastaHost();
 
-    if (pastaHost.startsWith("pasta-d") || 
+    if (pastaHost.startsWith("pasta-d") ||
         pastaHost.startsWith("localhost")
        ) {
        tier = "development";
@@ -71,14 +71,14 @@
     else if (pastaHost.startsWith("pasta-s")) {
        tier = "staging";
     }
-    
+
     if (tier != null) {
         showTestHTML = "true";
         watermarkClass = "watermarked";
         watermarkId = "watermarked-background-text";
         watermarkText = "Test Data Package";
         String fontColor = "darkorange";
-        testHTML = String.format("<font color='%s'>This test data package was submitted to a %s environment. It is not considered production ready.</font>", 
+        testHTML = String.format("<font color='%s'>This test data package was submitted to a %s environment. It is not considered production ready.</font>",
                                  fontColor, tier);
     }
 
@@ -88,40 +88,8 @@
 <html lang="en">
 
 <head>
-<title><%= titleText %></title>
-
-<meta charset="UTF-8" />
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-
-<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
-
-<!-- Google Fonts CSS -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,300italic" rel="stylesheet" type="text/css">
-
-<!-- jqWidgets CSS for jqxTree widget -->
-<link rel="stylesheet" href="./js/jqwidgets/styles/jqx.base.css"  type="text/css" />
-<link rel="stylesheet" href="./js/jqwidgets/styles/jqx.bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="./js/jqwidgets/styles/jqx.energyblue.css" type="text/css" />
-
-<!-- Page Layout CSS MUST LOAD BEFORE bootstap.css -->
-<link href="css/style_slate.css" media="all" rel="stylesheet" type="text/css">
-
-<!-- Mobile Device CSS -->
-<link href="bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css">
-<link href="bootstrap/css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css">
-
-<!-- JS 
-<script src="js/jqueryba3a.js?ver=1.7.2" type="text/javascript"></script>
-<script src="bootstrap/js/bootstrap68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.easing.1.368b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.flexslider-min68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/themeple68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.pixel68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.mobilemenu68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/isotope68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/mediaelement-and-player.min68b368b3.js?ver=1" type="text/javascript"></script>-->
-<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
-<script src="js/data-shelf-ajax.js" type="text/javascript"></script>
+	<!-- common <head> tag elements -->
+	<%@ include file="common-head.jsp" %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= googleMapsKey %>" type="text/javascript"></script>
 <script src="./js/map_functions.js" type="text/javascript"></script>
@@ -147,6 +115,7 @@
 
 <body>
 
+<jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
 
 <div id="<%= watermarkId %>" class="<%= watermarkClass %>"><%= watermarkText %></div>
@@ -179,17 +148,17 @@
 
                             <div class="recent_title">
                                 <h2>Data Package Summary&nbsp;&nbsp;&nbsp;<small><small><%= viewFullMetadataHTML %></small></small></h2>
-                            </div>      
-                                
+                            </div>
+
 
                             <span class="row-fluid separator_border"></span>
- 
+
 						</div>
 						<div class="row-fluid">
 							<div class="span12">
 								<div class="display-table">
 
-									<div class="table-row">										
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold">Title:</label>
 										</div>
@@ -197,43 +166,43 @@
 											<%= titleHTML %>
 										</div>
 									</div>
-											
-									<div class="table-row">										
+
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold">Creators:</label>
 										</div>
 										<div class="table-cell">
 											<%= creatorsHTML %>
-										</div>											
+										</div>
 									</div>
 
 							<c:set var="showDate" value="<%= showPubDate %>"/>
 							<c:choose>
 								<c:when test="${showDate}">
-									<div class="table-row">										
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold">Publication Date:</label>
 										</div>
 										<div class="table-cell">
 											<%= publicationDateHTML %>
-										</div>											
+										</div>
 									</div>
 								</c:when>
 							</c:choose>
 
-                                    <div class="table-row">                                     
+                                    <div class="table-row">
                                         <div class="table-cell text-align-right">
                                             <label class="labelBold">Citation:</label>
                                         </div>
                                         <div class="table-cell">
                                             <%= citationHTML %>
-                                        </div>                                          
+                                        </div>
                                     </div>
 
 							<c:set var="showAbstract" value="<%= showAbstract %>"/>
 							<c:choose>
 								<c:when test="${showAbstract}">
-									<div class="table-row">										
+									<div class="table-row">
 										<div class="table-cell text-align-right nis-summary-label">
 											<label class="labelBold">Abstract:</label>
 										</div>
@@ -250,25 +219,25 @@
 
 							<c:choose>
 								<c:when test="${showSpatial}">
-								
+
 									<div class="table-row">
-																	
+
 										<div class="table-cell text-align-right nis-summary-label">
 											<label class="labelBold">Spatial Coverage:</label>
 										</div>
-																				
+
 										<div class="table-cell">
 											<%= googleMapHTML %>
-										</div>			
-																		
+										</div>
+
 									</div>
 
-									<div class="table-row">	
-																		
+									<div class="table-row">
+
 										<div class="table-cell text-align-right">
 											<label class="labelBold"></label>
 										</div>
-										
+
 										<div class="table-cell">
 											<ul class="no-list-style" style="margin-top:2px">
 												<li>
@@ -276,20 +245,20 @@
 												</li>
 											</ul>
 										</div>
-										
+
 									</div>
-																		
-									<div class="table-row">									
+
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold"></label>
 										</div>
-										<div class="table-cell"></div>								
+										<div class="table-cell"></div>
 									</div>
-																		
+
 								</c:when>
 							</c:choose>
 
-									<div class="table-row">										
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold">Package ID:</label>
 										</div>
@@ -297,24 +266,24 @@
 											<%= packageIdHTML %>
   <c:set var="showSavedData" value="<%= showSavedData %>"/>
   <c:if test="${showSavedData}">
-    <%= savedDataHTML %> 
+    <%= savedDataHTML %>
   </c:if>
-										</div>											
+										</div>
 									</div>
 
-									<div class="table-row">										
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold">Resources:</label>
 										</div>
 										<div class="table-cell">
 											<%= resourcesHTML %>
-										</div>											
+										</div>
 									</div>
 
                             <c:set var="showIntellectualRights" value="<%= showIntellectualRights %>"/>
                             <c:choose>
                                 <c:when test="${showIntellectualRights}">
-                                    <div class="table-row">                                     
+                                    <div class="table-row">
                                         <div class="table-cell text-align-right nis-summary-label">
                                             <label class="labelBold">Intellectual Rights:</label>
                                         </div>
@@ -329,7 +298,7 @@
                                 </c:when>
                             </c:choose>
 
-									<div class="table-row">										
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold">Digital Object Identifier:</label>
 										</div>
@@ -337,10 +306,10 @@
 											<ul class="no-list-style">
 												<li><%= digitalObjectIdentifier %></li>
 											</ul>
-										</div>											
+										</div>
 									</div>
 
-									<div class="table-row">										
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold">PASTA Identifier:</label>
 										</div>
@@ -348,11 +317,11 @@
 											<ul class="no-list-style">
 												<li><%= pastaDataObjectIdentifier %></li>
 											</ul>
-										</div>											
+										</div>
 									</div>
 
-<!-- 
-									<div class="table-row">										
+<!--
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold">Citation:</label>
 										</div>
@@ -360,11 +329,11 @@
 											<ul class="no-list-style">
 												<li><%= citationLinkHTML %></li>
 											</ul>
-										</div>											
+										</div>
 									</div>
 -->
 
-									<div class="table-row">										
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold">Provenance:</label>
 										</div>
@@ -372,12 +341,12 @@
 											<ul class="no-list-style">
 												<li><%= provenanceHTML %></li>
 											</ul>
-										</div>											
+										</div>
 									</div>
 
 							<c:set var="showCodeGeneration" value="<%= showCodeGeneration %>"/>
 							<c:if test="${showCodeGeneration}">
-									<div class="table-row">										
+									<div class="table-row">
 										<div class="table-cell text-align-right">
 											<label class="labelBold">Code Generation:</label>
 										</div>
@@ -385,10 +354,10 @@
 											<ul class="no-list-style">
 												<li><%= codeGenerationHTML %></li>
 											</ul>
-										</div>											
+										</div>
 									</div>
 							</c:if>
-									
+
 								</div> <!-- end display table -->
 							</div>
 						</div>
@@ -398,17 +367,20 @@
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp" />
-		
+<div class="footer-container pt-5">
+	<jsp:include page="asu-footer.jsp" />
+</div>
+
+
   </div>
-  
+
 <!-- jqWidgets JavaScript for jqxTree widget -->
 <script type="text/javascript" src="./js/jqwidgets-ver3.2.1/jqxcore.js"></script>
 <script type="text/javascript" src="./js/jqwidgets-ver3.2.1/jqxexpander.js"></script>
 <script>
 	// Create jqxExpander
 	$("#jqxExpander").jqxExpander(
-    					{ width: '454px', 
+    					{ width: '454px',
     					  theme: 'bootstrap',
     					  expanded: <%= showCoordinates %>
             	        }
@@ -417,7 +389,7 @@
 <!-- End jqWidgets JavaScript for jqxTree widget -->
 
 <script src="./js/more_less.js" type="text/javascript"></script>
-
+<%@ include file="bootstrap-javascript.jsp" %>
 </body>
 
 </html>
