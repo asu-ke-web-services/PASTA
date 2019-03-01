@@ -17,55 +17,19 @@
 
 <jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<!-- Content -->
+			<h1>Contact Us</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed felis sed libero blandit venenatis. Duis sit amet libero sit amet elit dictum posuere. Praesent tristique pretium massa a commodo. Sed nec magna ut enim gravida ultrices. In elementum laoreet cursus. Cras hendrerit dui at facilisis elementum. Sed et justo tristique, sodales orci a, pellentesque diam. Phasellus sed dolor vitae sapien varius blandit. Donec felis ligula, tempor sed leo id, faucibus sodales nisl.</p>
 
-<div class="row-fluid ">
-	<div>
-		<div class="container">
-			<div class="row-fluid distance_1">
-				<div class="box_shadow box_layout">
-					<div class="row-fluid">
-						<div class="span12">
-							<div class="recent_title">
-								<h2>Contact Us</h2>
-							</div>
-						</div>
-					</div>
-						<div class="row-fluid">
-							<div class="span12">
-								<!-- Content -->
-								<h3>People</h3>
-								<ul>
-									<li><a class="searchsubcat" href="https://environmentaldatainitiative.org/team/corinna-gries/">Corinna Gries</a>,
-										Principal Investigator, University of Wisconsin
-									</li>
-									<li><a class="searchsubcat" href="https://environmentaldatainitiative.org/team/mark-servilla-pi/">Mark Servilla</a>,
-										Principal Investigator, University of New Mexico
-									</li>
-								</ul>
-								<h3>E-Mail Address</h3>
-								<ul class="no-list-style">
-									<li><a href="mailto:support@environmentaldatainitiative.org">support@environmentaldatainitiative.org</a></li>
-								</ul>
-								<h3>Mailing Address</h3>
-								<ul class="no-list-style">
-									<li>Environmental Data Initiative<br />
-									Center for Limnology<br />
-									University of Wisconsin<br />
-									Madison, WI 53706</li>
-								</ul>
-								<!-- /Content --></div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<p><a href="mailto:lorem.ipsum@asu.edu">Lorem.Ipsum@asu.edu</a></p>
 		</div>
 	</div>
-
-		<div class="footer-container pt-5">
-	<jsp:include page="asu-footer.jsp" />
 </div>
 
-</div>
+<jsp:include page="asu-footer.jsp" />
 	<%@ include file="bootstrap-javascript.jsp" %>
 </body>
 
