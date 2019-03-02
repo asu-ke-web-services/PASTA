@@ -6,89 +6,73 @@
 <%@ page import="edu.lternet.pasta.portal.search.BrowseGroup" %>
 
 <%
-  final String pageTitle = "Browse Data Packages";
-  final String titleText = DataPortalServlet.getTitleText(pageTitle);
-  String attributeName = "browseKeywordHTML";
-  String browseHTML = (String) application.getAttribute(attributeName);
+	final String pageTitle = "Browse Data Packages";
+	final String titleText = DataPortalServlet.getTitleText(pageTitle);
+	String attributeName = "browseKeywordHTML";
+	String messageAttribute = "myMessage";
+	String browseHTML = (String) application.getAttribute(attributeName);
+	String myMessage = (String) application.getAttribute(messageAttribute);
 %>
 
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<!-- common <head> tag elements -->
+		<%@ include file="common-head.jsp" %>
+	</head>
 
-<head>
-	<!-- common <head> tag elements -->
-	<%@ include file="common-head.jsp" %>
+	<jsp:include page="asu-header.jsp" />
+	<jsp:include page="header.jsp" />
 
-	<script type="text/javascript">
-        $(document).ready(function () {
-            // Create jqxTree
-            $('#jqxTree').jqxTree(
-            { height: '600px',
-              theme: 'energyblue',
-              toggleMode: 'click'
-            });
-
-            $('#jqxTree').bind('select', function (event) {
-                var htmlElement = event.args.element;
-                var item = $('#jqxTree').jqxTree('getItem', htmlElement);
-             });
-        });
-    </script>
-</head>
-
-
-<body>
-
-<jsp:include page="asu-header.jsp" />
-<jsp:include page="header.jsp" />
-
-
-<div class="row-fluid ">
-	<div>
+	<body>
 		<div class="container">
-			<div class="row-fluid distance_1">
-				<div class="box_shadow box_layout">
-					<div class="row-fluid">
-						<div class="span12">
-							<div class="recent_title">
-								<h2>Browse Data by Keyword or LTER Site</h2>
-							</div>
-							<span class="row-fluid separator_border"></span>
-						</div>
-						<div class="row-fluid">
-							<div class="content span12 box_layout">
-								<p>
-									Browse data packages by keyword or LTER site using the links
-									below. The number of matching data packages is shown in
-									parentheses.<sup>*</sup> <sup>**</sup>
-								</p>
+			<div class="row">
+				<div class="col">
+					<h2>Browse Data by Keyword or LTER Site</h2>
 
-								<div id='jqxTree'>
-									<%=browseHTML%>
-								</div>
-								<p>
-									<sup>*</sup>
-									<small><em>Only public documents are accessible from this page.</em></small>
-								</p>
-								<p>
-									<sup>**</sup>
-									<small><em>Search results are refreshed nightly.</em></small>
-								</p>
-							</div>
+					<p>Browse data packages by keyword or LTER site using the links
+					below. The number of matching data packages is shown in
+					parentheses.<sup>*</sup> <sup>**</sup></p>
+
+					<p class="alert alert-danger"><%= myMessage %></p>
+
+					<div class="jumbotron">
+						<div id='jqxTree'>
+							<%=browseHTML%>
 						</div>
 					</div>
+
+					<p><sup>*</sup><small><em>Only public documents are accessible from this page.</em></small></p>
+					<p><sup>**</sup><small><em>Search results are refreshed nightly.</em></small></p>
+
+					<%@ include file="bootstrap-javascript.jsp" %>
+					<script type="text/javascript" src="./js/jqwidgets-ver3.2.1/jqxcore.js"></script>
+					<script type="text/javascript" src="./js/jqwidgets-ver3.2.1/jqxbuttons.js"></script>
+					<script type="text/javascript" src="./js/jqwidgets-ver3.2.1/jqxscrollbar.js"></script>
+					<script type="text/javascript" src="./js/jqwidgets-ver3.2.1/jqxpanel.js"></script>
+					<script type="text/javascript" src="./js/jqwidgets-ver3.2.1/jqxtree.js"></script>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="footer-container pt-5">
-	<jsp:include page="asu-footer.jsp" />
-</div>
+		<div class="footer-container mt-5">
+			<jsp:include page="asu-footer.jsp" />
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				// Create jqxTree
+				$('#jqxTree').jqxTree(
+				{
+					height: '600px',
+					theme: 'energyblue',
+					toggleMode: 'click'
+				});
 
-
-</div>
-<%@ include file="bootstrap-javascript.jsp" %>
-</body>
-
+				$('#jqxTree').bind('select', function (event) {
+					var htmlElement = event.args.element;
+					var item = $('#jqxTree').jqxTree('getItem', htmlElement);
+				});
+			});
+		</script>
+	</body>
 </html>
