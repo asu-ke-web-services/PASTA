@@ -15,8 +15,8 @@
 
   String queryText = (String) session.getAttribute("queryText");
   String queryURL = "";
-  int textBoxSize = 100;
-  String textBoxSizeStr = "100";
+  int textBoxSize = 80;
+  String textBoxSizeStr = "80";
   if (!queryText.isEmpty()) {
     queryURL = String.format("%ssimpleSearch?%s", basePath, queryText);
     textBoxSize = Math.min(textBoxSize, queryURL.length());
@@ -41,90 +41,78 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<!-- common <head> tag elements -->
-	<%@ include file="common-head.jsp" %>
-</head>
-
-<body>
-
-
-<jsp:include page="asu-header.jsp" />
-<jsp:include page="header.jsp" />
-
+  <head>
+    <!-- common <head> tag elements -->
+    <%@ include file="common-head.jsp" %>
+    <script src="js/clipboard.min.js"></script>
+  </head>
+  <body>
+    <jsp:include page="asu-header.jsp" />
+    <jsp:include page="header.jsp" />
     <script>
-    var clipboard = new Clipboard('.btn');
+      var clipboard = new Clipboard('.btn');
 
-    clipboard.on('success', function(e) {
-        console.log(e);
-    });
+      clipboard.on('success', function(e) {
+          console.log(e);
+      });
 
-    clipboard.on('error', function(e) {
-        console.log(e);
-    });
+      clipboard.on('error', function(e) {
+          console.log(e);
+      });
     </script>
-
-  <div class="row-fluid ">
-		<div class="container">
-			<div class="row-fluid distance_1">
-				<div class="box_shadow box_layout">
-					<div class="row-fluid">
-						<div class="span12">
-							<div class="recent_title">
-								<h2>Search Results (searchResult.jsp)</h2>
-							</div>
-							<span class="row-fluid separator_border"></span>
-						</div>
-
-						<div class="row-fluid">
-							<div class="span12">
-								<!-- Content -->
-	<table>
-   		<tr>
-			<td>
-				<%=mapButtonHTML%>
-			</td>
-			<td>
-				<%=relevanceHTML%>
-			</td>
-  		</tr>
-	</table>
-    <table>
-        <tr>
-            <td>
-              <table>
-                <tr>
-                  <td><button class="btn btn-info btn-default" data-clipboard-action="copy" data-clipboard-target="#queryURL">Copy Query URL</button></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                </tr>
-              </table>
-            </td>
-            <td>&nbsp;</td>
-            <td>
-              <input id="queryURL" type="url" value="<%=queryURL%>" size="<%=textBoxSizeStr%>">
-            </td>
-        </tr>
-    </table>
-
-
-                <%=termsListHTML%>
-				<%=searchResult%>
-
-						  </div>
-		 		    </div>
-				  </div>
-			  </div>
-		  </div>
-	  </div>
-		<div class="footer-container pt-5">
-	<jsp:include page="asu-footer.jsp" />
-</div>
-
-  </div>
-<%@ include file="bootstrap-javascript.jsp" %>
-</body>
-
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>Search Results</h1>
+        </div>
+        <div class="col-2">
+          <form id="mapsearch" class="form-inline" action="./mapSearchServlet" method="post" name="mapsearch">
+            <button type="submit" class="btn btn-primary"><span class="fas fa-map-marker-alt"></span> View as Map</button>
+          </form>
+        </div>
+        <div class="col-2">
+          <a class="btn btn-secondary" href="#searchDetails" data-toggle="collapse"><span class="fas fa-info-circle"></span> Search Details</a>
+        </div>
+      </div>
+      <div class="collapse" id="searchDetails">
+          <div class="card mb-5 bg-light">
+            <h5 class="card-header">Search Details</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <%=termsListHTML%>
+                  <%=relevanceHTML%>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p>You can use the URL shown below to run this search again:</p>
+                  <div class="input-group">
+                    <input id="queryURL" type="text" value="<%=queryURL%>" class="form-control" placeholder="query-URL" aria-label="query-URL" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                      <a href="#" data-clipboard-target="#queryURL" class="btn btn-primary">Copy URL</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col">
+          <%=searchResult%>
+        </div>
+      </div>
+    </div>
+    <div class="footer-container pt-5">
+      <jsp:include page="asu-footer.jsp" />
+    </div>
+    <%@ include file="bootstrap-javascript.jsp" %>
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
+  </body>
 </html>
