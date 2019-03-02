@@ -29,41 +29,41 @@ import java.util.TreeSet;
 
 /**
  * Generates HTML for displaying a list of terms used in a search.
- * 
+ *
  * @author dcosta
  *
  */
 public class TermsList {
-  
+
   /*
    * Class variables
    */
-  
-  
+
+
   /*
    * Instance variables
    */
-  
+
   private TreeSet<String> terms;
-  
+
   /*
    * Constructors
    */
-  
+
   public TermsList() {
     terms = new TreeSet<String>();
   }
-  
-  
+
+
   /*
    * Class methods
    */
-  
-  
+
+
   /*
    * Instance methods
    */
-  
+
   /**
    * Adds a term to the terms list.
    */
@@ -72,11 +72,11 @@ public class TermsList {
       terms.add(term);
     }
   }
-  
-  
+
+
   /**
    * Returns the size of the terms list
-   * 
+   *
    * @return  the size value
    */
   public int size() {
@@ -92,15 +92,15 @@ public class TermsList {
     StringBuilder stringBuilder = new StringBuilder("");
     stringBuilder.append("<p>Terms used in this search: ");
     for (String term : terms) {
-      stringBuilder.append("<b>" + term + "</b>, ");
+      stringBuilder.append("<span class='badge badge-info'>" + term + "</span> ");
     }
     termsListHTML = stringBuilder.toString();
     if (termsListHTML.length() > 2) {
-      termsListHTML = termsListHTML.substring(0, termsListHTML.length() - 2);
+      termsListHTML = termsListHTML.substring(0, termsListHTML.length() - 1);
     }
-    termsListHTML += "</p>";   
-    
+    termsListHTML += "</p>";
+
     return termsListHTML;
   }
-  
+
 }
