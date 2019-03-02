@@ -45,47 +45,47 @@ import org.w3c.dom.Text;
 /**
  * A BrowseGroup holds a set of browse terms, or, a set of other BrowseGroup
  * objects. (Thus, this class has a recursive aspect to it.)
- * 
+ *
  */
 public class BrowseGroup {
-  
+
   /*
    * Class fields
    */
 
 	  private static final Logger logger = Logger.getLogger(BrowseGroup.class);
-	  
-  
+
+
   /*
    * Instance fields
    */
-  
+
   //List of browse groups
-  protected ArrayList<BrowseGroup> browseGroups = null;   
-  
-  //List of browse terms                                        
-  protected ArrayList<BrowseTerm> browseTerms = null;    
-       
+  protected ArrayList<BrowseGroup> browseGroups = null;
+
+  //List of browse terms
+  protected ArrayList<BrowseTerm> browseTerms = null;
+
   //The name of this browse group, e.g. "Habitat"
-  private final String value; 
-  
+  private final String value;
+
   // The term ID in the LTER Controlled Vocabulary
   private String termId = null;
-  
+
   protected int level = 0;
-  
+
   private String hasMoreDown = null;
-                                           
+
   protected String ITEM_EXPANDED = "false";
 
 
   /*
    * Constructors
    */
-  
+
   	/**
   	 * This constructor is needed for the subclass to compile.
-  	 * Without it the subclass has an error, "Implicit super constructor BrowseGroup() 
+  	 * Without it the subclass has an error, "Implicit super constructor BrowseGroup()
   	 * is undefined for default constructor. Must define an explicit constructor."
   	 */
 	public BrowseGroup() {
@@ -103,7 +103,7 @@ public class BrowseGroup {
   /*
    * Class methods
    */
-  
+
 	public static BrowseGroup generateKeywordCache() {
 		BrowseGroup controlledVocabulary = new BrowseGroup("Controlled Vocabulary");
 		BrowseGroup lterSiteCache = generateLterSiteCache();
@@ -161,8 +161,8 @@ public class BrowseGroup {
 
 		return controlledVocabulary;
 	}
-    
-    
+
+
 	private void addFetchDownElements() {
 		String fetchDownXML = ControlledVocabularyClient
 				.webServiceFetchDown(this.termId);
@@ -211,7 +211,7 @@ public class BrowseGroup {
 				  downTerm.setTermId(termId);
 				  downTerm.setHasMoreDown(hasMoreDown);
 				  downTerm.addFetchDownElements();
-				  
+
 				}
 				else {
 					BrowseTerm downTerm = new BrowseTerm(value);
@@ -224,16 +224,16 @@ public class BrowseGroup {
 			logger.error("Exception:\n" + e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 		if (!isBlacklistedTerm(this.value)) {
 			BrowseTerm browseTerm = new BrowseTerm(this.value);
 			browseTerm.setLevel(level + 1);
 			this.addBrowseTerm(browseTerm);
 		}
-      
+
   }
-  
-  
+
+
 	public static BrowseGroup generateLterSiteCache() {
 		BrowseGroup topGroup = new LTERSiteBrowseGroup("LTER Sites");
 		topGroup.setLevel(1);
@@ -248,8 +248,8 @@ public class BrowseGroup {
 
 		return topGroup;
 	}
-    
-    
+
+
 	public static void main(String[] args) {
 		String browseDir = "/home/pasta/local/browse";
 		BrowseGroup controlledVocabulary = null;
@@ -258,7 +258,7 @@ public class BrowseGroup {
 		File browseCacheFile = null;
 
 		controlledVocabulary = generateKeywordCache();
-		
+
 		if (controlledVocabulary != null) {
 			xmlString = controlledVocabulary.toXML();
 			htmlString = controlledVocabulary.toHTML();
@@ -288,11 +288,11 @@ public class BrowseGroup {
   /*
    * Instance methods
    */
-  
- 
+
+
   /**
    * Adds a browse group to this browse group's list of browse groups.
-   * 
+   *
    * @param browseGroup   the BrowseGroup object to be added
    */
   public void addBrowseGroup(BrowseGroup browseGroup) {
@@ -300,21 +300,21 @@ public class BrowseGroup {
     browseGroups.add(browseGroup);
   }
 
-  
+
   /**
    * Adds a browse term to this browse group's list of browse terms.
-   * 
+   *
    * @param browseTerm    the BrowseTerm object to be added
    */
   public void addBrowseTerm(BrowseTerm browseTerm) {
     browseTerm.setLevel(this.level + 1);
     browseTerms.add(browseTerm);
   }
-  
-  
+
+
   /**
    * Get all browse terms that are descendants of this browse group.
-   * 
+   *
    * @return   A list of all BrowseTerm objects that are descendants of this
    *           browse group.
    */
@@ -330,7 +330,7 @@ public class BrowseGroup {
 
 	/**
 	 * Get local browse terms, i.e. at the same level of this browse group.
-	 * 
+	 *
 	 * @return A list of all BrowseTerm objects that are descendants of this
 	 *         browse group.
 	 */
@@ -349,7 +349,7 @@ public class BrowseGroup {
 
   /**
    * Getter method for 'hasMoreDown'.
-   * 
+   *
    * @return  hasMoreDown, "1" indicates that
    *          more terms are below this one, "0"
    *          indicates that this is a leaf node term
@@ -363,14 +363,14 @@ public class BrowseGroup {
       }
   }
 
-  
+
   /**
    * Checks all the browse terms that are descendants of this browse group. If
    * one of them matches the browse value, returns the XML that is
    * stored in the browse cache for that browse value. Note that this method
    * will only be called on the top-most browse group, since it is guaranteed
    * to contain all the browse terms in the cache.
-   * 
+   *
    * @param browseValue  The browse value, e.g. "bird".
    * @return resultSet   An XML string representing the search results for this browse value
    */
@@ -378,7 +378,7 @@ public class BrowseGroup {
     ArrayList<BrowseTerm> arrayList = new ArrayList<BrowseTerm>();
     getBrowseTerms(arrayList);
     String resultSet = "<?xml version=\'1.0\'?><resultset></resultset>\n";
-    
+
     for (int i = 0; i < arrayList.size(); i++) {
       BrowseTerm browseTerm = arrayList.get(i);
       String browseTermValue = browseTerm.getValue();
@@ -387,25 +387,25 @@ public class BrowseGroup {
         break;
       }
     }
-    
+
     return resultSet;
   }
 
-  
+
   /**
    * Getter method for 'value'.
-   * 
+   *
    * @return   value
    */
   public String getValue() {
     return value;
   }
 
-  
+
   /**
    * Boolean to determine whether this browse group contains browse term
    * children.
-   * 
+   *
    * @return  true if there are immediate browse terms, false if this browse
    *          group is a container for other browse groups
    */
@@ -413,34 +413,34 @@ public class BrowseGroup {
     return (browseGroups.size() > 0);
   }
 
-  
+
   /**
    * Boolean to determine whether this browse group contains browse term
    * children.
-   * 
+   *
    * @return  true if there are immediate browse terms, false if this browse
    *          group is a container for other browse groups
    */
   public boolean hasTerms() {
     return (browseTerms.size() > 0);
   }
-  
-  
+
+
   private boolean isBlacklistedTerm(String value) {
 	  if (value.equals("LTER Sites")) return true;
 	  return false;
   }
 
-  
+
   /**
    * Counts the number of datasets matching the browse terms contained
    * within this browse group (whether directly or indirectly).
-   * 
+   *
    * @return  matchCount, an int indicating the total number of dataset matches.
    */
   public int matchCount() {
     int matchCount = 0;
-    
+
     if (hasTerms()) {
       for (int i = 0; i < browseTerms.size(); i++) {
         BrowseTerm browseTerm = browseTerms.get(i);
@@ -453,88 +453,88 @@ public class BrowseGroup {
         matchCount += browseGroup.matchCount();
       }
     }
-    
+
     return matchCount;
   }
-  
-  
+
+
   protected void setHasMoreDown(String s) {
 	  this.hasMoreDown = s;
   }
-  
- 
+
+
   protected void setLevel(int n) {
 	  this.level = n;
   }
-  
- 
+
+
   protected void setTermId(String id) {
 	  this.termId = id;
   }
-  
- 
+
+
   /**
    * Convert this browse group into a HTML <table> used for displaying the name
    * of this browse group, e.g. "Habitat".
-   * 
+   *
    * @return     a HTML string holding a <table> element
    */
 	public String toHTML() {
 		StringBuffer sb = new StringBuffer("");
         sb.append("<ul id='browseSearch'>\n");
-		
+
 		for (BrowseGroup browseGroup : browseGroups) {
 			sb.append(browseGroup.outerHTML());
 		}
-		
+
 		sb.append("</ul>\n");
 		String htmlString = sb.toString();
-		return htmlString;	
+		return htmlString;
 	}
-	
-	
+
+
 	protected String outerHTML() {
 		StringBuffer sb = new StringBuffer("");
-		
+
 		String innerHTML = innerHTML();
-		
+
 		sb.append(String.format("  <li class='browsegroup' item-expanded='%s'>%s\n", ITEM_EXPANDED, getValue()));
 		sb.append("    <ul>\n");
-        sb.append(String.format("%s\n", innerHTML));		
+        sb.append(String.format("%s\n", innerHTML));
 		sb.append("    </ul>\n");
 		sb.append("  </li>\n");
-		
+
 		String htmlLevel1 = sb.toString();
 	    return htmlLevel1;
 	}
 
-	
+
 	private String innerHTML() {
 		StringBuffer sb = new StringBuffer("");
-		
+
 		sb.append(termsHTML());
 
 		for (BrowseGroup browseGroup : browseGroups) {
 			sb.append(browseGroup.outerHTML());
 		}
-	    
+
 		String innerHTML = sb.toString();
 	    return innerHTML;
 	}
-	
-	
+
+
 	/**
 	 * Create the HTML to display this browse term on the browse page. If this
 	 * browse term matches at least one document, then display it as a link;
 	 * otherwise, just display it as a text value.
-	 * 
+	 *
 	 * @return htmlString, the HTML string to be displayed on the browse page.
 	 */
 	protected String browseTermHTML(BrowseTerm browseTerm) {
 		return browseTerm.toHTML();
 	}
 
-	
+
 	private String termsHTML() {
 		StringBuffer sb = new StringBuffer("");
 
@@ -552,14 +552,14 @@ public class BrowseGroup {
 	private String indentXML() {
 		int indent = level * 4;
 		StringBuffer sb = new StringBuffer("");
-		
+
 		for (int i = 0; i < indent; i++) {
 			sb.append(" ");
 		}
-		
+
 		return sb.toString();
 	}
- 
+
 
 	  /**
 	   * Converts this browse group to a string. Used in writing out the browse
@@ -568,10 +568,10 @@ public class BrowseGroup {
 	  public String toString() {
 	    String browseTermString;
 	    String cacheString;
-	    StringBuffer stringBuffer = new StringBuffer("");    
+	    StringBuffer stringBuffer = new StringBuffer("");
 	    String xmlIndent = indentXML();
-	    
-	    stringBuffer.append(String.format("%s<group level='%d' hasMoreDown='%s'>\n", 
+
+	    stringBuffer.append(String.format("%s<group level='%d' hasMoreDown='%s'>\n",
 	    		                          xmlIndent, level, getHasMoreDown()));
 
 	    stringBuffer.append(String.format("%s    <value>" + value + "</value>\n", xmlIndent));
@@ -579,7 +579,7 @@ public class BrowseGroup {
 	        BrowseGroup browseGroup = browseGroups.get(i);
 	        stringBuffer.append(browseGroup.toString());
 	    }
-	    
+
 	    if (hasTerms()) {
 	      stringBuffer.append(String.format("%s    <terms>\n", xmlIndent));
 
@@ -597,8 +597,8 @@ public class BrowseGroup {
 	    cacheString = stringBuffer.toString();
 	    return cacheString;
 	  }
-	  
-	  
+
+
 	  /**
 	   * Converts this browse group to an XML string. Used in writing out the browse
 	   * cache to disk.
@@ -610,8 +610,8 @@ public class BrowseGroup {
 		    stringBuffer.append(this.toString());
 		    stringBuffer.append("</browseCache>\n");
 		    String xmlString = stringBuffer.toString();
-		    
+
 		    return xmlString;
 	  }
-	  
+
 }
