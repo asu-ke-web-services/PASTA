@@ -10,7 +10,8 @@ function initialize_bing() {
         zoom: 2,
         showMapTypeSelector: false,
         showLocateMeButton: false,
-        navigationBarMode: navBarMode.compact
+		navigationBarMode: navBarMode.compact,
+		disableScrollWheelZoom: true
     });
 
     // binding our events
@@ -40,7 +41,8 @@ function initialize_summary_map_bing(coordinatesArray, north, south, east, west)
 		zoom: 9,
 		showMapTypeSelector: false,
 		showLocateMeButton: false,
-		navigationBarMode: navBarMode.compact
+		navigationBarMode: navBarMode.compact,
+		disableScrollWheelZoom: true
 	});
 
 	var maxNorth = -999;
