@@ -153,53 +153,53 @@ public class ResultSetUtility {
   	}
 
 
-  	private void parseResultSet(String xml) {
-  		if (xml != null) {
-  			InputStream inputStream = null;
-  			try {
-  				inputStream = IOUtils.toInputStream(xml, "UTF-8");
-  				DocumentBuilder documentBuilder =
-  	              DocumentBuilderFactory.newInstance().newDocumentBuilder();
-  				CachedXPathAPI xpathapi = new CachedXPathAPI();
+	private void parseResultSet(String xml) {
+		if (xml != null) {
+			InputStream inputStream = null;
+			try {
+				inputStream = IOUtils.toInputStream(xml, "UTF-8");
+				DocumentBuilder documentBuilder =
+					DocumentBuilderFactory.newInstance().newDocumentBuilder();
+				CachedXPathAPI xpathapi = new CachedXPathAPI();
 
-  				Document document = null;
-  				document = documentBuilder.parse(inputStream);
+				Document document = null;
+				document = documentBuilder.parse(inputStream);
 
-  				if (document != null) {
+				if (document != null) {
 
-  					Node numFoundNode = null;
-  					numFoundNode = xpathapi.selectSingleNode(document, "//resultset/@numFound");
+					Node numFoundNode = null;
+					numFoundNode = xpathapi.selectSingleNode(document, "//resultset/@numFound");
 
-  					if (numFoundNode != null) {
-  						String numFoundStr = numFoundNode.getNodeValue();
-  						this.numFound = new Integer(numFoundStr);
-  					}
+					if (numFoundNode != null) {
+						String numFoundStr = numFoundNode.getNodeValue();
+						this.numFound = new Integer(numFoundStr);
+					}
 
-  					Node startNode = null;
-  					startNode = xpathapi.selectSingleNode(document, "//resultset/@start");
+					Node startNode = null;
+					startNode = xpathapi.selectSingleNode(document, "//resultset/@start");
 
-  					if (startNode != null) {
-  						String startStr = startNode.getNodeValue();
-  						this.start = new Integer(startStr);
-  					}
+					if (startNode != null) {
+						String startStr = startNode.getNodeValue();
+						this.start = new Integer(startStr);
+					}
 
-  				}
-  			}
-  			catch (Exception e) {
-  		        logger.error("Error parsing search result set: " + e.getMessage());
-  			}
-  			finally {
-  				if (inputStream != null) {
-  					try {
-  						inputStream.close();
-  					}
-  					catch (IOException e) {
-  						;
-  					}
-  				}
-  			}
-  		}
-  	}
+				}
+			}
+			catch (Exception e) {
+				logger.error("Error parsing search result set: " + e.getMessage());
+			}
+			finally {
+				if (inputStream != null) {
+					try {
+						inputStream.close();
+					}
+					catch (IOException e) {
+						;
+					}
+				}
+			}
+		}
+	}
 
 
   	/**
@@ -304,7 +304,7 @@ public class ResultSetUtility {
 
 	private String composeTableHeaderHTML(boolean showSavedData) {
 		StringBuilder html = new StringBuilder("\n");
-		html.append("<table class=\"table\">\n");
+		html.append("<table class=\"table table-bordered\">\n");
 		html.append("    <thead class=\"thead-light\">\n");
 		html.append("        <tr>\n");
 
@@ -331,13 +331,13 @@ public class ResultSetUtility {
 		if (numFound > 1) {
 			html.append(String.format("            <th width=\"%s\"><a class='searchsubcat' href='%s?start=0&rows=10&sort=%s'>Title</a>%s</th>\n", titleWidth, servlet, titleSort, titleDirection));
 			html.append(String.format("            <th width=\"%s\"><a class='searchsubcat' href='%s?start=0&rows=10&sort=%s'>Creators</a>%s</th>\n", creatorsWidth, servlet, creatorsSort, creatorsDirection));
-			html.append(String.format("            <th width=\"%s\"><a class='searchsubcat' href='%s?start=0&rows=10&sort=%s'>Publication Date</a>%s</th>\n", pubDateWidth, servlet, pubDateSort, pubDateDirection));
+			html.append(String.format("            <th width=\"%s\"><a class='searchsubcat' href='%s?start=0&rows=10&sort=%s'>Published</a>%s</th>\n", pubDateWidth, servlet, pubDateSort, pubDateDirection));
 			html.append(String.format("            <th width=\"%s\"><a class='searchsubcat' href='%s?start=0&rows=10&sort=%s'>Package Id</a>%s</th>\n", packageIdWidth, servlet, packageIdSort, packageIdDirection));
 		}
 		else {
 			html.append(String.format("            <th width=\"%s\">Title</th>\n", titleWidth));
 			html.append(String.format("            <th width=\"%s\">Creators</th>\n", creatorsWidth));
-			html.append(String.format("            <th width=\"%s\">Publication Date</th>\n", pubDateWidth));
+			html.append(String.format("            <th width=\"%s\">Published</th>\n", pubDateWidth));
 			html.append(String.format("            <th width=\"%s\">Package Id</th>\n", packageIdWidth));
 		}
 
