@@ -67,7 +67,7 @@
         </div>
         <div class="col-2">
           <form id="mapsearch" class="form-inline" action="./mapSearchServlet" method="post" name="mapsearch">
-            <button type="submit" class="btn btn-primary"><span class="fas fa-map-marker-alt"></span> View as Map</button>
+            <button type="submit" class="btn btn-secondary"><span class="fas fa-map-marker-alt"></span>View as Map</button>
           </form>
         </div>
         <div class="col-2">
@@ -90,7 +90,7 @@
                   <div class="input-group">
                     <input id="queryURL" type="text" value="<%=queryURL%>" class="form-control" placeholder="query-URL" aria-label="query-URL" aria-describedby="basic-addon1">
                     <div class="input-group-append">
-                      <a href="#" data-clipboard-target="#queryURL" class="btn btn-primary">Copy URL</a>
+                      <a href="#" data-clipboard-target="#queryURL" class="btn btn-secondary">Copy URL</a>
                     </div>
                   </div>
                 </div>
