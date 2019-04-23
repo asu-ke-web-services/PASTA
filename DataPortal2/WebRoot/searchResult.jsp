@@ -64,26 +64,24 @@
       <div class="row">
         <div class="col">
           <h1>Search Results</h1>
+          <%=termsListHTML%>
         </div>
         <div class="col-2">
           <form id="mapsearch" class="form-inline" action="./mapSearchServlet" method="post" name="mapsearch">
-            <button type="submit" class="btn btn-secondary"><span class="fas fa-map-marker-alt"></span>View as Map</button>
+            <button type="submit" class="btn btn-secondary"><span class="fas fa-map-marker-alt"></span> View as Map</button>
           </form>
         </div>
         <div class="col-2">
-          <a class="btn btn-secondary" href="#searchDetails" data-toggle="collapse"><span class="fas fa-info-circle"></span> Search Details</a>
+          <a class="btn btn-secondary" href="#searchDetails" data-toggle="collapse"><span class="fas fa-link"></span> Search URL</a>
+        </div>
+        <div class="col-2">
+          <%=relevanceHTML%>
         </div>
       </div>
       <div class="collapse" id="searchDetails">
           <div class="card mb-5 bg-light">
-            <h5 class="card-header">Search Details</h5>
+            <h5 class="card-header">Search URL</h5>
             <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <%=termsListHTML%>
-                  <%=relevanceHTML%>
-                </div>
-              </div>
               <div class="row">
                 <div class="col">
                   <p>You can use the URL shown below to run this search again:</p>
