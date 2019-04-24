@@ -30,35 +30,15 @@
 
 <jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
-
-<div class="row-fluid ">
-	<div>
-		<div class="container">
-			<div class="row-fluid distance_1">
-				<div class="box_shadow box_layout">
-					<div class="row-fluid">
-						<div class="span12">
-							<div class="recent_title">
-								<h2>Browse Data by Package Identifier</h2>
-							</div>
-							<span class="row-fluid separator_border"></span>
-						</div>
-						<div class="row-fluid">
-							<div class="content span12 box_layout">
-								<p><%=browseMessage%></p>
-							<span class="row-fluid separator_border"></span>
-						</div>
-						<div class="row-fluid">
-							<div class="span12">
-				        		<%=html%>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h2>Browse Data by Package Identifier</h2>
+			<p><%=browseMessage%></p>
+			<%=html%>
 		</div>
 	</div>
-  </div>
+</div>
 
 <div class="footer-container pt-5">
 	<jsp:include page="asu-footer.jsp" />

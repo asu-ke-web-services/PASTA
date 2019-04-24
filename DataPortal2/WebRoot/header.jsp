@@ -78,7 +78,7 @@
 
 <header role="banner">
 	<!-- Bootstrap NavBar -->
-	<div class="container-fluid bg-dark">
+	<div class="container-fluid bg-dark mb-4">
 	<div class="container">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="home.jsp"><span class="fas fa-home"></span></a>
@@ -88,6 +88,9 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="advancedSearch.jsp">Advanced Search</a>
+				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Browse
@@ -110,14 +113,13 @@
 						<a class="dropdown-item" href="about.jsp">About Us</a>
 					</div>
 				</li>
-
 			</ul>
-			<!--
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+			<form class="form-inline my-2 my-lg-0" action="./simpleSearch" method="post" _lpchecked="1">
+				<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search GIOS Data" aria-label="Search">
+				<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
 			</form>
-			-->
+
 		</div>
 		</div>
 		</div>

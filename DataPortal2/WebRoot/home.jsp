@@ -44,8 +44,7 @@
             StringBuilder sb = new StringBuilder();
             sb.append(String.format("The Data Portal and PASTA+ services will be unavailable on %s evening from 7-9 pm Mountain Time for scheduled weekly maintenance.",
                                     downtime));
-            downtimeHTML = String.format("<div class=\"alert alert-warning mt-4\" role=\"alert\"<em>Please Note: </em>%s</div>",
-                                         sb.toString());
+            downtimeHTML = String.format("<div class=\"alert alert-warning mt-4\" role=\"alert\"<em>Please Note: </em>%s</div>", sb.toString());
         }
     }
 %>
@@ -65,7 +64,7 @@
 <div class="container">
 	<div class="row mt-3">
 		<div class="col-sm">
-
+			<!--
 			<%= downtimeHTML %>
 			<h2>Welcome to the GIOS Data Portal</h2>
 
@@ -88,7 +87,7 @@
 			and unpublished works whenever possible. Digital object
 			identifiers (DOI) are provided for each dataset to facilitate
 			citation. </p>
-			<!--
+
 			<p>Voluntary registration on this site will allow us
 			to notify you of updates to data and metadata of interest
 			and of corrections made to data. In addition, your validated
@@ -97,7 +96,7 @@
 			<span name="New user registration for non-LTER members coming soon!"
 			class="tooltip">Register now</span>!
 			</p>
-			-->
+
 			<p>LTER Network scientists make every effort to release
 			data in a timely fashion and with attention to accurate,
 			well-designed and well-documented data. To understand
@@ -106,20 +105,21 @@
 			LTER Network is not responsible for misinterpretation
 			of data resulting from failure to consult metadata or
 			data providers.</p>
+			-->
 		</div>
 	</div>
 
 	<div class="jumbotron">
-		<h1 class="display-4">Search GIOS Data</h1>
-		<p class="lead">Search through our vast reserve of high-quality, royalty-free data!</p>
-		<hr />
-		<form class="form-inline" id="searchform" action="./simpleSearch" method="post">
-			<label class="sr-only" for="lterterms">Search For: </label>
-			<input type="text" name="terms" class="form-control mb-2 mr-sm-2" id="lterterms" placeholder="Search Term(s)">
+		<h1 class="display-4">GIOS Data Portal</h1>
+		<p class="lead">Search through the library of GIOS datasets</p>
+		<form id="searchform" action="./simpleSearch" method="post">
+			<div class="form-group">
+				<label class="sr-only" for="lterterms">Search For: </label>
+				<input type="text" name="terms" class="form-control mb-2 mr-sm-2" id="lterterms" placeholder="Search Term(s)">
+				<small id="advanced-text" class="form-text text-muted">Looking for something more specific? Try the <a href="advancedSearch.jsp">Advanced Search</a></small>
+			</div>
 			<button type="submit" class="btn btn-primary mb-2">Submit</button>
 		</form>
-		<hr />
-		<p>Looking for something more specific? Try the <a href="advancedSearch.jsp">Advanced Search</a></p>
 	</div>
 
 </div>
@@ -130,7 +130,7 @@
 
 
 </div>
-<%@ include file="bootstrap-javascript.jsp" %>
+	<%@ include file="bootstrap-javascript.jsp" %>
 </body>
 
 </html>

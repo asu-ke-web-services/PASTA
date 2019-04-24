@@ -58,30 +58,30 @@ public class BrowseServlet extends DataPortalServlet {
 
   private static String cwd = null;
   private static String xslpath = null;
-  
-  
+
+
   /*
    * Instance variables
    */
-  
+
 
   /*
    * Constructors
    */
-  
+
   /**
    * Constructor of the object.
    */
   public BrowseServlet() {
     super();
   }
-  
+
 
   /*
    * Class methods
    */
 
-  
+
   /*
    * Instance methods
    */
@@ -94,12 +94,12 @@ public class BrowseServlet extends DataPortalServlet {
     // Put your code here
   }
 
-  
+
   /**
    * The doGet method of the servlet. <br>
-   * 
+   *
    * This method is called when a form has its tag value method equals to get.
-   * 
+   *
    * @param request
    *          the request send by the client to the server
    * @param response
@@ -111,17 +111,15 @@ public class BrowseServlet extends DataPortalServlet {
    */
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
     doPost(request, response);
-
   }
 
-  
+
   /**
    * The doPost method of the servlet. <br>
-   * 
+   *
    * This method is called when a form has its tag value method equals to post.
-   * 
+   *
    * @param request
    *          the request send by the client to the server
    * @param response
@@ -132,7 +130,7 @@ public class BrowseServlet extends DataPortalServlet {
    *           if an error occurred
    */
   public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {   
+      throws ServletException, IOException {
     String forward = "./searchResult.jsp";
     String html = null;
     TermsList termsList = null;
@@ -140,57 +138,57 @@ public class BrowseServlet extends DataPortalServlet {
     String xml = null;
 
     HttpSession httpSession = request.getSession();
-    
-    String uid = (String) httpSession.getAttribute("uid");   
+
+    String uid = (String) httpSession.getAttribute("uid");
     if (uid == null || uid.isEmpty()) { uid = "public"; }
-    
-    String searchValue = request.getParameter("searchValue");      
+
+    String searchValue = request.getParameter("searchValue");
     BrowseTerm browseTerm = new BrowseTerm(searchValue);
-    
+
     // Tell the web server that the response is HTML
     response.setContentType("text/html");
-    
+
     try {
       xml = browseTerm.runQuery();
-      
+
       termsList = browseTerm.getTermsList();
       if (termsList != null) {
         termsListHTML = termsList.toHTML();
       }
-      
+
       String queryText = browseTerm.getQueryString();
       httpSession.setAttribute("queryText", queryText);
       httpSession.setAttribute("termsListHTML", termsListHTML);
 
-	  ResultSetUtility resultSetUtility = null;
-	  if (uid.equals("public")) {
-		resultSetUtility = new ResultSetUtility(xml, Search.DEFAULT_SORT);
-	  }
-	  else {
-		boolean isSavedDataPage = false;
-		SavedData savedData = new SavedData(uid);
-		resultSetUtility = new ResultSetUtility(xml, Search.DEFAULT_SORT, savedData, isSavedDataPage);
-	  }
-	  
-	  String mapButtonHTML = resultSetUtility.getMapButtonHTML();
-	  request.setAttribute("mapButtonHTML", mapButtonHTML);
-	  //String relevanceHTML = resultSetUtility.getRelevanceHTML();
-	  //request.setAttribute("relevanceHTML", relevanceHTML);
+      ResultSetUtility resultSetUtility = null;
+      if (uid.equals("public")) {
+        resultSetUtility = new ResultSetUtility(xml, Search.DEFAULT_SORT);
+      }
+	    else {
+		    boolean isSavedDataPage = false;
+		    SavedData savedData = new SavedData(uid);
+		    resultSetUtility = new ResultSetUtility(xml, Search.DEFAULT_SORT, savedData, isSavedDataPage);
+	    }
+
+      String mapButtonHTML = resultSetUtility.getMapButtonHTML();
+      request.setAttribute("mapButtonHTML", mapButtonHTML);
+      //String relevanceHTML = resultSetUtility.getRelevanceHTML();
+      //request.setAttribute("relevanceHTML", relevanceHTML);
       html = resultSetUtility.xmlToHtmlTable(cwd + xslpath);
       request.setAttribute("searchresult", html);
       RequestDispatcher requestDispatcher = request.getRequestDispatcher(forward);
       requestDispatcher.forward(request, response);
-    } 
+    }
 	catch (Exception e) {
 		handleDataPortalError(logger, e);
-	}   
+	  }
 
   }
 
-  
+
   /**
    * Initialization of the servlet. <br>
-   * 
+   *
    * @throws ServletException
    *           if an error occurs
    */
@@ -208,17 +206,18 @@ public class BrowseServlet extends DataPortalServlet {
     if (browseKeywordFile.exists()) {
       browseSearch = new BrowseSearch();
       browseGroup = browseSearch.readBrowseCache(browseKeywordFile);
-      
+
       /* Lock the servlet context object to guarantee that only one thread at a
-       * time can be getting or setting the context attribute. 
+       * time can be getting or setting the context attribute.
        */
       synchronized(servletContext) {
         servletContext.setAttribute("browseKeywordHTML", browseGroup.toHTML());
       }
     }
     else {
+      servletContext.setAttribute("myMessage", "Missing browse keyword file: " + BrowseSearch.browseKeywordPath);
       logger.warn("Missing browse keyword file at location: " + BrowseSearch.browseKeywordPath);
     }
   }
-  
+
 }

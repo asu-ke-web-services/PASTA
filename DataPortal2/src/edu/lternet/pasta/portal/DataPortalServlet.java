@@ -34,15 +34,15 @@ import edu.lternet.pasta.common.EmlPackageIdFormat;
 
 
 public class DataPortalServlet extends HttpServlet {
-  
+
   /*
    * Class variables
    */
-  
+
   protected static final String LOGIN_WARNING = "You must login before using this tool.";
   private static final long serialVersionUID = 1L;
-  
-  protected static final String CSS_LINK_ELEMENTS = 
+
+  protected static final String CSS_LINK_ELEMENTS =
     String.format(
 //		  "%s\n%s\n%s\n%s\n",
 		  "%s\n",
@@ -50,23 +50,23 @@ public class DataPortalServlet extends HttpServlet {
 		  //"    <link href=\"bootstrap/css/bootstrap.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">",
 		  //"    <link href=\"bootstrap/css/bootstrap-responsive.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\">",
     );
-		  
-  
+
+
 
   /*
    * Instance variables
    */
-  
-  
+
+
   /*
    * Constructors
    */
-  
-  
+
+
   /*
    * Class methods
    */
-  
+
   /**
    * Accesses the login warning string. Used by JSP pages that do not
    * inherit from DataPortalServlet.
@@ -74,12 +74,12 @@ public class DataPortalServlet extends HttpServlet {
   public static String getLoginWarning() {
     return LOGIN_WARNING;
   }
-  
-  
+
+
   /**
    * Composes the title text appropriate for a given page in the
    * Data Portal web application.
-   * 
+   *
    * @param pageTitle   A short page title, e.g. "About", "Home".
    *           Best practice is for title length to be
    *           70 characters or less but oftentimes it's not possible
@@ -89,16 +89,16 @@ public class DataPortalServlet extends HttpServlet {
    */
   public static String getTitleText(String pageTitle) {
 	  return String.format(
-			  "Data Portal - %s | Long Term Ecological Research Network (LTER)",
+			  "GIOS Data Portal - %s",
 			  pageTitle);
   }
 
-  
+
   /*
    * Instance methods
    */
-  
-  
+
+
   /*
    * Generalized error handler for Data Portal servlets
    */
@@ -112,7 +112,7 @@ public class DataPortalServlet extends HttpServlet {
 			  eMessage = t.getMessage();
 		  }
 	  }
-	  
+
 	  if (className.equals("javax.servlet.ServletException")) {
 	      errorMessage = String.format("%s: %s", this.getClass().getName(), eMessage);
 	  }
@@ -121,19 +121,19 @@ public class DataPortalServlet extends HttpServlet {
 	  }
       logger.error(errorMessage);
       e.printStackTrace();
-      
+
       // If user not logged in, add suggestion for user to log in
       if (errorMessage.contains("User public does not have permission")) {
-    	  String suggestion = 
+    	  String suggestion =
     			  String.format(
                       " <a href='./login.jsp'>Logging into the LTER Data Portal</a> <em>may</em> let you read this resource.");
     	  errorMessage = errorMessage + suggestion;
       }
-    	  
+
       throw new ServletException(errorMessage);
   }
-  
-  
+
+
   /*
    * Composes a data package resource identifier based on the PASTA URI
    * head value and a specific packageId value.
@@ -141,30 +141,30 @@ public class DataPortalServlet extends HttpServlet {
   protected String packageIdToResourceId(String pastaUriHead, String packageId) {
     String resourceId = null;
     final String SLASH = "/";
-    
+
     if (pastaUriHead != null) {
       EmlPackageIdFormat emlPackageIdFormat = new EmlPackageIdFormat();
-      
+
       try {
         EmlPackageId emlPackageId = emlPackageIdFormat.parse(packageId);
         String scope = emlPackageId.getScope();
         Integer identifier = emlPackageId.getIdentifier();
         Integer revision = emlPackageId.getRevision();
-      
-        if (scope != null && identifier != null && revision != null) {        
-          resourceId = pastaUriHead + "eml" + SLASH + 
+
+        if (scope != null && identifier != null && revision != null) {
+          resourceId = pastaUriHead + "eml" + SLASH +
                        scope + SLASH + identifier + SLASH + revision;
-        } 
+        }
       }
       catch (IllegalArgumentException e) {
-        
+
       }
     }
-    
+
     return resourceId;
   }
 
-  
+
   /**
    * Destruction of the servlet. <br>
    */

@@ -25,60 +25,9 @@
 <head>
 	<!-- common <head> tag elements -->
 	<%@ include file="common-head.jsp" %>
-
-<script type="text/javascript">
-
-	$(document).ready(function() {
-		$(".checklist .checkbox-select").click(
-			function(event) {
-				event.preventDefault();
-				$(this).parent().addClass("selected");
-				$(this).parent().find(":checkbox").attr("checked","checked");
-
-			}
-		);
-
-		$(".checklist .checkbox-deselect").click(
-			function(event) {
-				event.preventDefault();
-				$(this).parent().removeClass("selected");
-				$(this).parent().find(":checkbox").removeAttr("checked");
-
-			}
-		);
-
-	});
-
-</script>
-
-<script type="text/javascript">
-
-	$(document).ready(function() {
-		$(".checklistLG .checkboxLG-select").click(
-			function(event) {
-				event.preventDefault();
-				$(this).parent().addClass("selected");
-				$(this).parent().find(":checkbox").attr("checked","checked");
-
-			}
-		);
-
-		$(".checklistLG .checkboxLG-deselect").click(
-			function(event) {
-				event.preventDefault();
-				$(this).parent().removeClass("selected");
-				$(this).parent().find(":checkbox").removeAttr("checked");
-
-			}
-		);
-
-	});
-
-</script>
-<!-- /For Custom Checkboxes -->
-
   <script type="text/javascript" src="./js/utilities.js"></script>
   <script type="text/javascript" src="./js/validation.js"></script>
+  <script type="text/javascript" src="./js/map_functions_bing.js"></script>
   <script type="text/javascript">
 
       var boundsChangedCount = 0;
@@ -116,610 +65,306 @@
         }
       }
   </script>
-
+  <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=initialize_bing' async defer></script>
 </head>
 
 <body>
+  <jsp:include page="asu-header.jsp" />
+  <jsp:include page="header.jsp" />
+	<div class="container">
+    <h3>Advanced Search</h3>
+    <p>We have a fantastic little sky! You want your tree to have some character. Make it special. It's beautiful - and we haven't even done anything to it yet. Let all these things just sort of happen. Everyone needs a friend. Friends are the most valuable things in the world.</p>
+    <hr />
+    <form id="advancedSearchForm" action="./advancedSearch" method="post" name="advancedSearchForm" onsubmit="return submitRequest(this)">
 
-<jsp:include page="asu-header.jsp" />
-<jsp:include page="header.jsp" />
+      <div class="row">
+          <div class="col-3" style="border-right: 1px solid #eee;">
+            <h4>Subject</h4>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <label for="subjectValue" class="col-form-label col-sm-2" for="subjectValue">Search For:</label>
+              <div class="col-sm-10">
+                <input name="subjectValue" id="subjectValue" type="text" class="form-control" placeholder="enter search term(s)" />
+                <small id="emailHelp" class="form-text text-muted">Tip: enclose multi-word terms in quotes, e.g. 'Puerto Rico'</small>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-form-label col-sm-2">Search In:</label>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input checked="checked" name="subjectField" id="subjectField1" class="form-check-input" type="radio" value="ALL" />
+                  <label class="form-check-label" for="subjectField1">Subject</label>
+                </div>
+                <div class="form-check">
+                  <input name="subjectField" id="subjectField2" class="form-check-input" type="radio" value="TITLE" />
+                    <label class="form-check-label" for="subjectField2">Title only</label>
+                </div>
+                <div class="form-check">
+                  <input name="subjectField" id="subjectField3" class="form-check-input" type="radio" value="ABSTRACT" />
+                  <label class="form-check-label" for="subjectField3">Abstract only</label>
+                </div>
+                <div class="form-check">
+                  <input name="subjectField" id="subjectField4" class="form-check-input" type="radio" value="KEYWORDS" />
+                  <label class="form-check-label" for="subjectField4">Keywords only</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-for-label col-sm-2">Automatically Add:</label>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input name="specific" id="specific-terms" type="checkbox" class="form-check-input" value="value1">
+                  <label for="specific-terms" class="form-check-label">More Specific Terms</label>
+                </div>
+                <div class="form-check">
+                  <input name="related" id="related-terms" type="checkbox" class="form-check-input" value="value1">
+                  <label for="related-terms" class="form-check-label">Related Terms</label>
+                </div>
+              </div>
+            </div>
+            <!--
+            <div class="form-check form-check-inline">
+            <input name="relatedSpecific" id="relatedSpecific" type="checkbox" class="for-check-input" value="value1">
+            <label for="related-specific" class="form-check-label">Related/More Specific Terms</label>
+            </div>
+            -->
+            <div class="form-group row">
+              <label class="col-for-label col-sm-2">Also Search:</label>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input name="ecotrends" id="ecotrends" type="checkbox" class="form-check-input" value="value1">
+                  <label for="ecotrends" class="form-check-label">EcoTrends Data Packages</label>
+                </div>
+                <div class="form-check">
+                  <input name="landsat5" id="landsat5" type="checkbox" class="form-check-input" value="value1">
+                  <label for="landsat5" class="form-check-label">Landsat5 Data Packages</label>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
 
-<div class="row-fluid ">
-	<div>
-		<div class="container">
-			<div class="row-fluid distance_1">
-				<div class="box_shadow box_layout">
-					<div class="row-fluid">
-						<div class="span12">
-							<div class="recent_title">
-								<h2>Advanced Search</h2>
-							</div>
-							<span class="row-fluid separator_border"></span>
-						</div>
-						<div class="row-fluid">
-							<div class="content span12 box_layout">
-								<!-- Content -->
-								<div class="spacer">
-								</div>
-								<div class="tabbable">
-									<ul class="nav nav-tabs">
-										<li class="active">
-										  <a data-toggle="tab" href="#tab3">Spatial / Place Name</a>
-										</li>
-										<li>
-										  <a data-toggle="tab" href="#tab1">LTER Sites</a>
-										</li>
-										<li>
-										  <a data-toggle="tab" href="#tab2">Subject</a>
-										</li>
-										<li>
-										  <a data-toggle="tab" href="#tab6">Creator / Organization</a>
-										</li>
-										<li>
-										  <a data-toggle="tab" href="#tab4">Temporal</a>
-										</li>
-										<li>
-										  <a data-toggle="tab" href="#tab7">Taxonomic</a>
-										</li>
-										<li>
-										  <a data-toggle="tab" href="#tab5">Identifier</a>
-										</li>
-									</ul>
-								  <form id="advancedSearchForm" action="./advancedSearch" method="post" name="advancedSearchForm" onsubmit="return submitRequest(this)">
-									  <div class="tab-content">
+      <hr />
 
-										  <div id="tab3" class="tab-pane active">
-											  <div class="row-fluid text_bar_pattern themeple_sc">
-												  <div>
-													  <!-- <h3 class="separator_border labelBolder span12">Spatial Criteria</h3> -->
-													  <input name="boundsChangedCount" type="hidden" value="0" />
-													  <script src="https://maps.googleapis.com/maps/api/js?key=<%= googleMapsKey %>" type="text/javascript"></script>
-													  <script src="./js/map_functions.js" type="text/javascript"></script>
-													  <script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/keydragzoom/src/keydragzoom.js" type="text/javascript"></script>
-													  <script type="text/javascript">google.maps.event.addDomListener(window, 'load', initialize);</script>
-														<table>
-													  	<tr>
-														    <td>
-														      <label>Zoom in to the region you&#39;d like to search:</label>
-                                  <div id="map-canvas"></div>
-													      </td>
-													      <td>
-													        <table id="nis-coordinates">
-														        <tr>
-															        <td></td>
-															        <td>
-															          <label>North:</label>
-															            <input name="northBound" onchange="boundsChanged()"
-															                  size="8" type="text" value="90.0" />
-															        </td>
-															        <td></td>
-		  												      </tr>
-			  											      <tr>
-				  											      <td>
-					  										        <label>West:</label>
-						  									          <input name="westBound" onchange="boundsChanged()"
-							  								                 size="8" type="text" value="-180.0" />
-									  						      </td>
-										  					      <td></td>
-											  				      <td>
-												  			        <label>East:</label>
-													  		          <input name="eastBound" onchange="boundsChanged()"
-														  	                 size="8" type="text" value="180.0" />
-															        </td>
-						  								      </tr>
-							  							      <tr>
-								  							      <td></td>
-									  						      <td>
-										  					        <label>South:</label>
-											  				          <input name="southBound" onchange="boundsChanged()"
-												  			                 size="8" type="text" value="-90.0" />
-														  	      </td>
-															        <td></td>
-	  													      </tr>
-		  												    </table>
-			  											  </td>
-													      <td></td>
-														    <td>
-															    <ul class="checklistLG">
-																    <li>
-																      <input name="boundaryContained" type="checkbox" value="value1">
-																      <p>Dataset is Contained within Boundaries</p>
-																      <a class="checkboxLG-select" href="#">Select</a>
-																      <a class="checkboxLG-deselect" href="#">Cancel</a>
-																    </li>
-															    </ul>
-													      </td>
-				  										</tr>
-														</table>
+      <div class="row">
+        <div class="col-3" style="border-right: 1px solid #eee;">
+          <h4>Sites</h4>
+        </div>
+        <div class="col">
+          <select class="select-width-auto form-control" name="siteValues" multiple="multiple" size="10">
+            <%= siteOptions %>
+          </select>
+        </div>
+      </div>
 
-														<table>
-														  <tr>
-															  <td class="spacersmh"></td>
-														  </tr>
-														  <tr>
-															  <td>
-															    <!-- <h3 class="separator_border labelBold span1" for="advancedsearch">Geographic Place Name</h3> -->
-															    <label class="labelBold">Geographic Place Name:</label>
-															  </td>
-														  </tr>
-														<tr>
-														<td>
-															    <input name="locationName" size="40" type="text" />
-													  </td>
-													  </tr>
-													  </table>
+      <hr />
 
-												  </div>
+      <div class="row">
+        <div class="col-3" style="border-right: 1px solid #eee;">
+          <h4>Creator</h4>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="creatorName">Creator's Name</lable>
+            <select class="form-control" name="creatorName" id="creatorName"><%= creatorOptions %></select>
+          </div>
+          <div class="form-group">
+            <label for="creatorOrganization">Creator's Organization</label>
+            <select class="form-control" name="creatorOrganization"><%= organizationOptions %></select>
+          </div>
+        </div>
+      </div>
 
-												  <div class="row-fluid text_bar_pattern themeple_sc">
-												    <div class="span12">
-													    <span class="row-fluid separator_border"></span>
-												    </div>
-											    </div>
+      <hr />
 
-										      <table>
-											      <tr>
-												      <td align="left">
-												        <input class="btn btn-large btn-info btn-default" name="submit" type="submit" value="Submit" />
-												        <input class="btn btn-large btn-info btn-default" name="reset" type="reset" value="Clear All" />
-												      </td>
-											      </tr>
-										      </table>
-											  </div>
-										  </div>
-										  <!-- /#tab3 -->
+      <div class="row">
+        <div class="col-3" style="border-right: 1px solid #eee;">
+          <h4>Temporal</h4>
+        </div>
+        <div class="col">
+          <div class="form-group row">
+            <label class="col-form-label col-sm-2">Search:</label>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input checked="checked" name="dateField" id="collection" class="form-check-input" type="radio" value="COLLECTION" />
+                <label for="collection" class="form-check-label">Collection Date</label>
+              </div>
+              <div class="form-check">
+                <input name="dateField" id="publication" type="radio" class="form-check-input" value="PUBLICATION"/>
+                <label for="publication" class="form-check-label">Publication Date</label>
+              </div>
+              <div class="form-check">
+                <input name="dateField" id="either" class="form-check-input" type="radio" value="ALL" />
+                <label for="either" class="form-check-label">Either</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-for-label col-sm-2">Start Date:</label>
+            <div class="col-sm-10">
+              <input name="startDate" id="startDate" class="form-control" placeholder="YYYY-MM-DD" type="date" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-for-label col-sm-2">End Date:</label>
+            <div class="col-sm-10">
+              <input name="endDate" id="endDate" class="form-control" placeholder="YYYY-MM-DD" type="date" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-for-label col-sm-2">Named Time Scale:</label>
+            <div class="col-sm-10">
+              <input name="namedTimescale" id="namedTimedScale" class="form-control" type="text" >
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <hr />
 
-										  <div id="tab1" class="tab-pane  ">
-												<table>
-												  <!--
-													<tr>
-														<td valign="top">
-														  <h3 class="separator_border labelBolder span4" for="advancedsearch">LTER Sites</h3>
-														</td>
-													</tr>
-													<tr>
-														<td class="spacersmh"></td>
-													</tr>
-													-->
-													<tr>
-														<td valign="top">
-                              <select class="select-width-auto" name="siteValues" multiple="multiple" size="10">
-                                <%= siteOptions %>
-                              </select>
-                            </td>
-													</tr>
-												</table>
-											  <div class="row-fluid text_bar_pattern themeple_sc">
-												  <div class="span12">
-													  <span class="row-fluid separator_border"></span>
-												  </div>
-										      <table>
-											      <tr>
-												      <td align="left">
-												        <input class="btn btn-large btn-info btn-default" name="submit" type="submit" value="Submit" />
-												        <input class="btn btn-large btn-info btn-default" name="reset" type="reset" value="Clear All" />
-												      </td>
-											      </tr>
-										      </table>
-											  </div>
-										  </div>
-										  <!-- /#tab1 -->
+      <div class="row">
+        <div class="col-3" style="border-right: 1px solid #eee;">
+          <h4>Taxonomic</h4>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="taxon" class="col-for-label">Taxon:</label>
+            <input name="taxon" id="taxon" class="form-control" type="text" />
+          </div>
+        </div>
+      </div>
 
+      <hr />
 
-												<div id="tab2" class="tab-pane  ">
-													<div class="row-fluid text_bar_pattern themeple_sc">
-														<div>
-													  <table>
-														  <tr>
-															  <td>
-															    <input checked="checked" name="subjectField" type="radio" value="ALL" />
-															    Subject
-															  </td>
-															  <td class="spacerwd"></td>
-															  <td>
-															    <input name="subjectField" type="radio" value="TITLE" />
-															    Title only
-															  </td>
-															  <td class="spacerwd"></td>
-															  <td>
-															    <input name="subjectField" type="radio" value="ABSTRACT" />
-															    Abstract only
-															  </td>
-															  <td class="spacerwd"></td>
-															  <td>
-															    <input name="subjectField" type="radio" value="KEYWORDS" />
-															    Keywords only
-															  </td>
-														  </tr>
-														  <tr>
-															  <td class="spacersmh"></td>
-														  </tr>
-													  </table>
-															<table>
-																<tr>
-																	<td>
-																		<input name="subjectValue" type="search"
-																			placeholder="enter search terms" />
-																	</td>
-																	<td class="spacerwd"></td>
-																	<td>
-																		<span name='<%=Tooltip.SEARCH_TERMS%>'
-																			class="tooltip">
-																			<img src="images/hand.png" />
-																			<dfn>Search tip</dfn>
-																		</span>
-																	</td>
-																</tr>
-																<tr>
-																</tr>
-																<tr>
-																</tr>
-																<tr>
-																	<td class="spacersmh"></td>
-																</tr>
-															</table>
-															<table>
-																<tr>
-																	<td>
-																		<label class="labelBold">Expand Search By Adding:</label>
-																	</td>
-																	<td class="spacerwd"></td>
-																	<td>
-																		<label class="labelBold">Optional Content:</label>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<ul class="checklistLG">
-																			<li>
-																				<input name="specific" type="checkbox" value="value1">
-																					<p>More Specific Terms</p>
-																					<a class="checkboxLG-select" href="#">Select</a>
-																					<a class="checkboxLG-deselect" href="#">Cancel</a>
-																			</li>
-																			<li>
-																				<input name="related" type="checkbox" value="value1">
-																				<p>Related Terms</p>
-																				<a class="checkboxLG-select" href="#">Select</a>
-																				<a class="checkboxLG-deselect" href="#">Cancel</a>
-																			</li>
-																			<li>
-																				<input name="relatedSpecific" type="checkbox" value="value1">
-																				<p>Related / More Specific Terms</p>
-																				<a class="checkboxLG-select" href="#">Select</a>
-																				<a class="checkboxLG-deselect" href="#">Cancel</a>
-																			</li>
-																		</ul>
-																	</td>
-																	<td class="spacerwd"></td>
-																	<td>
-																		<ul class="checklistLG">
-																			<li>
-																				<input name="ecotrends" type="checkbox" value="value1">
-																				<p>EcoTrends Data Packages</p>
-																				<a class="checkboxLG-select" href="#">Select</a>
-																				<a class="checkboxLG-deselect" href="#">Cancel</a>
-																			</li>
-																			<li>
-																				<input name="landsat5" type="checkbox" value="value1">
-																				<p>Landsat5 Data Packages</p>
-																				<a class="checkboxLG-select" href="#">Select</a>
-																				<a class="checkboxLG-deselect" href="#">Cancel</a>
-																			</li>
-																		</ul>
-																	</td>
-																</tr>
-															</table>
-														</div>
-														<div class="row-fluid text_bar_pattern themeple_sc">
-															<div class="span12">
-																<span class="row-fluid separator_border"></span>
-															</div>
-														</div>
-														<table>
-															<tr>
-																<td align="left">
-																	<input
-																	class="btn btn-large btn-info btn-default"
-																	name="submit" type="submit" value="Submit" />
-																	<input
-																	class="btn btn-large btn-info btn-default" name="reset"
-																	type="reset" value="Clear All" />
-																</td>
-															</tr>
-														</table>
-													</div>
-												</div>
-												<!-- /#tab2 -->
+      <div class="row">
+        <div class="col-3" style="border-right: 1px solid #eee;">
+          <h4>Identifier</h4>
+          <p><small class="text-muted">Enter a data package identifier <b>excluding its revision number</b>. Examples:</p>
+            <ul>
+              <li>edi.1</li>
+              <li>knb-lter-and.2719</li>
+              <li>knb-lter-jrn.210001001</li>
+            </ul>
+          </small></p>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label class="labelBold" for="identifier">Identifier:</label>
+                <input name="identifier" id="identifier" class="form-control" type="text" />
+                <small class="form-text text-muted">Please note: Only the most current revision of the data package
+              will appear in the search results.</small>
+              </div>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+          <!--
+          <ul>
+          <li>Digital Object Identifier (DOI), e.g., <strong>doi:10.6073/pasta/397e0bba0f8aeac013d01fc982a74ea8</strong></li>
+          <li>Package Identifier, e.g., <strong>knb-lter-and.2719.6</strong></li>
+          <li>Package Identifier, excluding its revision value, e.g., <strong>knb-lter-and.2719</strong></li>
+          <li>PASTA Identifier, e.g., <strong>https://pasta.lternet.edu/package/eml/knb-lter-and/2719/6</strong></li>
+          </ul>
+          -->
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-3" style="border-right: 1px solid #eee;">
+          <h4>Geographic</h4>
+          <p><small class="text-muted">Use the map, or the input fields, to set a geogrpahical boundary for your search.</small></p>
+        </div>
+        <div class="col">
+          <!-- map grid top row -->
+          <div class="row">
+            <div class="col"><!--upper left --></div>
+            <div class="col text-center">
+              <div class="form-group align-content-end">
+                <input name="northBound" onchange="boundsChanged()" size="8" type="text" value="90.0" />
+                <!-- <small class="form-text text-muted">N</small> -->
+              </div>
+            </div>
+            <div class="col"><!-- upper-right --></div>
+          </div>
+          <!-- map grid center row -->
+          <div class="row align-items-center">
+              <div class="col-2 mr-3">
+                <div class="row justify-content-end">
+                  <div class="form-group form-inline">
+                    <input name="westBound" onchange="boundsChanged()" size="8" type="text" value="-180.0" />
+                  <!-- <small class="form-text text-muted">&nbsp;W</small> -->
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3" id="map-canvas" style="height: 300px;"><!-- map here --></div>
+            <div class="col-2">
+              <div class="form-group form-inline">
+                <!-- <small class="form-text text-muted">E&nbsp;</small> -->
+                <input name="eastBound" onchange="boundsChanged()" size="8" type="text" value="180.0" />
+              </div>
+            </div>
+          </div>
+          <!-- map grid bottom row -->
+          <div class="row">
+            <div class="col"><!-- lower-left --></div>
+            <div class="col text-center">
+              <div class="form-group">
+                <!-- <small class="form-text text-muted">S</small> -->
+                <input name="southBound" onchange="boundsChanged()" size="8" type="text" value="-90.0" />
+              </div>
+            </div>
+            <div class="col"><!-- lower-right --></div>
+          </div>
+
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col">
+              <div class="form-group text-center">
+                <input name="boundsChangedCount" type="hidden" value="0" />
+                <div class="form-check">
+                  <input name="boundaryContained" id="boundaryContained" class="form-check-input" type="checkbox" value="value1">
+                  <label for="boundaryContained" class="form-check-label">Show Only Datasets Within These Boundaries</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-3" style="border-right: 1px solid #eee;">
+          <h4>Place Name</h4>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="locationName">Geographic Place Name:</label>
+            <input name="locationName" id="locationName" class="form-control" type="text" />
+          </div>
+        </div>
+      </div>
+
+      <hr />
 
 
-											<div id="tab6" class="tab-pane  ">
-											  <div class="row-fluid text_bar_pattern themeple_sc">
-												  <div>
-													  <table>
-															<tr>
-																<td><label class="labelBold">Creator&#39;s Name:</label></td>
-											                    <td class="spacerwd"></td>
-																<td><label class="labelBold">Creator&#39;s Organization:</label></td>
-															</tr>
-															<tr>
-																<td>
-                              <select class="select-width-fixed" name="creatorName">
-                                <%= creatorOptions %>
-                              </select>
-																</td>
-											                    <td class="spacerwd"></td>
-																<td>
-                              <select class="select-width-fixed" name="creatorOrganization">
-                                <%= organizationOptions %>
-                              </select>
-																</td>
-															</tr>
-															<tr>
-															</tr>
-															<tr>
-															</tr>
-													  </table>
-												  </div>
-												  <div class="row-fluid text_bar_pattern themeple_sc">
-												    <div class="span12">
-													    <span class="row-fluid separator_border"></span>
-												    </div>
-											    </div>
-										      <table>
-											      <tr>
-												      <td align="left">
-												        <input class="btn btn-large btn-info btn-default" name="submit" type="submit" value="Submit" />
-												        <input class="btn btn-large btn-info btn-default" name="reset" type="reset" value="Clear All" />
-												      </td>
-											      </tr>
-										      </table>
-											  </div>
-										  </div>
-										  <!-- /#tab6 -->
+      <!-- submit/clear buttons -->
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col">
+          <input class="btn btn-danger" name="reset" type="reset" value="Clear All" />
+          <input class="btn btn-primary" name="submit" type="submit" value="Submit" />
+        </div>
+      </div>
+    </form>
 
-
-										  <div id="tab4" class="tab-pane  ">
-											  <div class="row-fluid text_bar_pattern themeple_sc">
-												  <div>
-													  <table>
-														  <tr>
-															  <td>
-															    <input checked="checked" name="dateField" type="radio" value="COLLECTION" />
-															    Collection Date
-															  </td>
-															  <td class="spacerwd"></td>
-															  <td>
-															    <input name="dateField" type="radio" value="PUBLICATION" />
-															    Publication Date
-															  </td>
-															  <td class="spacerwd"></td>
-															  <td>
-															    <input name="dateField" type="radio" value="ALL" />
-															    Either
-															  </td>
-														  </tr>
-														  <tr>
-															  <td class="spacersmh"></td>
-														  </tr>
-													  </table>
-													  <table>
-														  <tr>
-															  <td>
-															    <label class="labelBold" for="userId">Start Date:</label>
-															    <input name="startDate" placeholder="YYYY-MM-DD" type="date" />
-															  </td>
-															  <td class="spacerwd"></td>
-															  <td>
-															    <label class="labelBold" for="group">End Date:</label>
-															    <input name="endDate" placeholder="YYYY-MM-DD" type="date" />
-															  </td>
-															  <!--
-															  <td class="spacerwd"></td>
-															  <td>
-															    <ul class="checklistLG">
-																    <li>
-																      <input name="datesContained" type="checkbox" value="value1">
-																      <p>Dataset is Contained within Start / End Dates</p>
-																      <a class="checkboxLG-select" href="#">Select</a>
-																      <a class="checkboxLG-deselect" href="#">Cancel</a>
-																    </li>
-															    </ul>
-															  </td>
-															    -->
-														  </tr>
-														  <tr>
-															  <td>
-															    <label class="labelBold">Named Time-scale:</label>
-															  </td>
-														  </tr>
-														  <tr>
-															  <td>
-															    <input name="namedTimescale" type="text" >
-															  </td>
-														  </tr>
-													  </table>
-												  </div>
-												  <div class="row-fluid text_bar_pattern themeple_sc">
-												    <div class="span12">
-													    <span class="row-fluid separator_border"></span>
-												    </div>
-											    </div>
-										      <table>
-											      <tr>
-												      <td align="left">
-												        <input class="btn btn-large btn-info btn-default" name="submit" type="submit" value="Submit" />
-												        <input class="btn btn-large btn-info btn-default" name="reset" type="reset" value="Clear All" />
-												      </td>
-											      </tr>
-										      </table>
-											  </div>
-										  </div>
-										  <!-- /#tab4 -->
-
-
-										  <div id="tab7" class="tab-pane  ">
-											  <div class="row-fluid text_bar_pattern themeple_sc">
-												  <div>
-														<table>
-															<tr>
-																<td><label class="labelBold">Taxon:</label></td>
-															</tr>
-															<tr>
-																<td><input name="taxon" type="text" /></td>
-															</tr>
-														</table>
-												  </div>
-												  <div class="row-fluid text_bar_pattern themeple_sc">
-												    <div class="span12">
-													    <span class="row-fluid separator_border"></span>
-												    </div>
-											    </div>
-										      <table>
-											      <tr>
-												      <td align="left">
-												        <input class="btn btn-large btn-info btn-default" name="submit" type="submit" value="Submit" />
-												        <input class="btn btn-large btn-info btn-default" name="reset" type="reset" value="Clear All" />
-												      </td>
-											      </tr>
-										      </table>
-											  </div>
-										  </div>
-										  <!-- /#tab7 -->
-
-										  <div id="tab5" class="tab-pane  ">
-											  <div class="row-fluid text_bar_pattern themeple_sc">
-
-												  <div>
-												  <p>Enter a data package identifier excluding its revision number.</p>
-												  <p>Examples:
-												  <ul>
-												    <li><strong>edi.1</strong></li>
-												    <li><strong>knb-lter-and.2719</strong></li>
-												    <li><strong>knb-lter-jrn.210001001</strong></li>
-												  </ul>
-												  </p>
-												  <p><em>Please note: Only the most current revision of the data package
-												  will appear in the search results.</em></p>
-												  <!--
-												  <ul>
-												  	<li>Digital Object Identifier (DOI), e.g., <strong>doi:10.6073/pasta/397e0bba0f8aeac013d01fc982a74ea8</strong></li>
-												  	<li>Package Identifier, e.g., <strong>knb-lter-and.2719.6</strong></li>
-												  	<li>Package Identifier, excluding its revision value, e.g., <strong>knb-lter-and.2719</strong></li>
-												  	<li>PASTA Identifier, e.g., <strong>https://pasta.lternet.edu/package/eml/knb-lter-and/2719/6</strong></li>
-												  </ul>
-												   -->
-												  </div>
-
-												  <br/>
-
-												  <div>
-														<table>
-															<tr>
-																<td><label class="labelBold">Identifier:</label></td>
-															</tr>
-															<tr>
-																<td><input name="identifier" type="text" /></td>
-															</tr>
-														</table>
-												  </div>
-
-												  <div class="row-fluid text_bar_pattern themeple_sc">
-												    <div class="span12">
-													    <span class="row-fluid separator_border"></span>
-												    </div>
-											    </div>
-										      <table>
-											      <tr>
-												      <td align="left">
-												        <input class="btn btn-large btn-info btn-default" name="submit" type="submit" value="Submit" />
-												        <input class="btn btn-large btn-info btn-default" name="reset" type="reset" value="Clear All" />
-												      </td>
-											      </tr>
-										      </table>
-											  </div>
-										  </div>
-										  <!-- /#tab5 -->
-
-										<!-- /#tab8 -->
-										<!--
-										  <div id="tab8" class="tab-pane  ">
-											  <div class="row-fluid text_bar_pattern themeple_sc">
-												  <div class="row-fluid text_bar_pattern themeple_sc">
-												    <table>
-														  <tr>
-														    <td>
-														      <label class="labelBold">Case Sensitivity:</label>
-														    </td>
-														  </tr>
-													    <tr>
-														    <td>
-															    <ul class="checklist">
-																    <li>
-																      <input name="caseSensitive" type="checkbox" value="value1">
-																      <p>Case Sensitive?</p>
-																      <a class="checkbox-select" href="#">Select</a>
-																      <a class="checkbox-deselect" href="#">Cancel</a>
-																    </li>
-															    </ul>
-														    </td>
-														  </tr>
-														  <tr>
-															  <td class="spacersmh"></td>
-														  </tr>
-														  <tr>
-														    <td>
-														      <label class="labelBold">Match Options:</label>
-														    </td>
-														  </tr>
-														  <tr>
-														    <td valign="top">
-															    <input checked="checked" name="formAllAny" type="radio" value="0" />
-															    Match <b>ALL</b> search criteria
-														    </td>
-														  </tr>
-														  <tr>
-														    <td valign="top">
-															    <input name="formAllAny" type="radio" value="1" />
-															    Match <b>ANY</b> search criteria
-														    </td>
-													    </tr>
-												    </table>
-												    <div class="span12">
-													    <span class="row-fluid separator_border"></span>
-												    </div>
-											    </div>
-										      <table>
-											      <tr>
-												      <td align="left">
-												        <input class="btn btn-large btn-info btn-default" name="submit" type="submit" value="Submit" />
-												        <input class="btn btn-large btn-info btn-default" name="reset" type="reset" value="Clear All" />
-												      </td>
-											      </tr>
-										      </table>
-											  </div>
-										  </div>
-										  /#tab8 -->
-
-									  </div>
-							    </form>
-								</div>
-						  </div>
-						  <!-- /Content -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-<div class="footer-container pt-5">
-	<jsp:include page="asu-footer.jsp" />
-</div>
-
-
-</div>
+  </div>
 
   <script type="text/javascript">
 
@@ -758,6 +403,9 @@
   </script>
   <!-- End  JavaScript input validation checking code. -->
 <%@ include file="bootstrap-javascript.jsp" %>
+<div class="footer-container pt-5">
+	<jsp:include page="asu-footer.jsp" />
+</div>
 
 </body>
 
