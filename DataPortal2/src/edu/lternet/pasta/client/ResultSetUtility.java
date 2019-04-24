@@ -295,7 +295,7 @@ public class ResultSetUtility {
 		String relevanceSort = pageControl.getRelevanceSort();
 		String relevanceURL = String.format("%s?start=0&rows=10&sort=%s", servlet, relevanceSort);
 		sb.append(String.format("  <form id=\"relevance\" action=\"%s\" method=\"post\" name=\"relevance\">", relevanceURL));
-		sb.append(String.format("    <input class=\"btn btn-info btn-default\" name=\"submit\" type=\"submit\" value=\"Reset Sort Order (most relevant first)\" %s />", disabled));
+		sb.append(String.format("    <input class=\"btn btn-warning\" name=\"submit\" type=\"submit\" value=\"Reset Sort\" %s />", disabled));
 	    sb.append("  </form>\n");
 		html = sb.toString();
 		return html;
