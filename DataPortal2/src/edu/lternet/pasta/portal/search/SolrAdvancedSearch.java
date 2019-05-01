@@ -167,7 +167,7 @@ public class SolrAdvancedSearch extends Search {
       // our filter contains reserved characters, so URL encode them
       giosEncodedFilter = URLEncoder.encode(GIOS_FILTER, "UTF-8");
     } catch (UnsupportedEncodingException e) {
-      // do stuff here
+
     }
 
     String giosFilter = String.format("&fq=%s", giosEncodedFilter);
