@@ -17,14 +17,12 @@
 
 <jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
-<div class="container">
+<div class="container main-content">
 	<div class="row">
 		<div class="col">
 			<!-- Content -->
 			<h1>Contact Us</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed felis sed libero blandit venenatis. Duis sit amet libero sit amet elit dictum posuere. Praesent tristique pretium massa a commodo. Sed nec magna ut enim gravida ultrices. In elementum laoreet cursus. Cras hendrerit dui at facilisis elementum. Sed et justo tristique, sodales orci a, pellentesque diam. Phasellus sed dolor vitae sapien varius blandit. Donec felis ligula, tempor sed leo id, faucibus sodales nisl.</p>
-
-			<p><a href="mailto:lorem.ipsum@asu.edu">Lorem.Ipsum@asu.edu</a></p>
+			<p>The GIOS Data Portal is maintained by the <a href="https://sustainability.asu.edu/support-services/web-development/" target="_blank">GIOS Web and Informatics</a> team. You can contact us via email at <a href="mailto:giosweb@asu.edu">giosweb@asu.edu</a>.</p>
 		</div>
 	</div>
 </div>

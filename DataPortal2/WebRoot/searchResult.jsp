@@ -60,23 +60,25 @@
           console.log(e);
       });
     </script>
-    <div class="container">
+    <div class="container main-content">
       <div class="row">
-        <div class="col">
+        <div class="col-8">
           <h1>Search Results</h1>
           <%=termsListHTML%>
         </div>
         <div class="col-2">
-          <form id="mapsearch" class="form-inline" action="./mapSearchServlet" method="post" name="mapsearch">
-            <button type="submit" class="btn btn-secondary"><span class="fas fa-map-marker-alt"></span> View as Map</button>
-          </form>
+            <form id="mapsearch" class="form-inline" action="./mapSearchServlet" method="post" name="mapsearch">
+              <button type="submit" class="btn btn-secondary"><span class="fas fa-map-marker-alt"></span> View as Map</button>
+            </form>
         </div>
         <div class="col-2">
-          <a class="btn btn-secondary" href="#searchDetails" data-toggle="collapse"><span class="fas fa-link"></span> Search URL</a>
+            <button class="btn btn-secondary" href="#searchDetails" data-toggle="collapse"><span class="fas fa-link"></span>Search URL</button>
         </div>
+        <!--
         <div class="col-2">
           <%=relevanceHTML%>
         </div>
+        -->
       </div>
       <div class="collapse" id="searchDetails">
           <div class="card mb-5 bg-light">

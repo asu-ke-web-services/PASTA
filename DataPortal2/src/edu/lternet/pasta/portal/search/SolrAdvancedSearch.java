@@ -200,6 +200,8 @@ public class SolrAdvancedSearch extends Search {
         field = "keyword";
       } else if (subjectField.equals("TITLE")) {
         field = "title";
+      } else if (subjectField.equals("CREATOR")) {
+        field="author";
       }
 
       terms = parseTerms(this.subjectValue);
@@ -252,7 +254,7 @@ public class SolrAdvancedSearch extends Search {
    * An author query will search on the creator name and/or creator organization.
    */
   private void buildQueryAuthor(TermsList termsList) throws UnsupportedEncodingException {
-
+    /*
     if (this.creatorName != null && !this.creatorName.equals("")) {
       termsList.addTerm(this.creatorName);
       String searchName = this.creatorName;
@@ -261,6 +263,7 @@ public class SolrAdvancedSearch extends Search {
       String encodedValue = URLEncoder.encode(authorQuery, "UTF-8");
       updateQString(encodedValue);
     }
+    */
     /*
      * if (this.creatorOrganization != null && !this.creatorOrganization.equals(""))
      * { termsList.addTerm(this.creatorOrganization); String searchName =

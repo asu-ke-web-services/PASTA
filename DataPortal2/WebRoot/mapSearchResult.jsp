@@ -39,7 +39,7 @@
     <jsp:include page="asu-header.jsp" />
     <jsp:include page="header.jsp" />
 
-    <div class="container">
+    <div class="container main-content">
       <div class="row">
         <div class="col">
           <h2>Search Results</h2>

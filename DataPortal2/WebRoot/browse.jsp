@@ -25,7 +25,7 @@
 	<jsp:include page="header.jsp" />
 
 	<body>
-		<div class="container">
+		<div class="container main-content">
 			<div class="row">
 				<div class="col">
 					<h2>Browse Data by Keyword or LTER Site</h2>

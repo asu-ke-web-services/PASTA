@@ -1,0 +1,50 @@
+/* Additional Styling for the GIOS version of the portal. A gentle nod towards Web Standards for now. */
+
+/* for pages with little content */
+.main-content {
+    min-height: 450px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #8c1d40;
+    border-color: #8c1d40;
+    color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:active {
+    background-color: #62142d !important;
+    border-color: #591229 !important;
+}
+
+.btn-secondary {
+    background-color: #dbdbdb;
+    border-color: #dbdbdb;
+    color: #000;
+}
+
+.btn-secondary:hover, .btn-secondary:active {
+    background-color: #c2c2c2 !important;
+    border-color: #bcbcbc !important;
+    color: #000 !important;
+}
+
+/* Links */
+.main-content a {
+    border-bottom: 1px dotted #8C1D40;
+    text-decoration: none;
+    color: #8C1D40;
+    transition: all 0.25s ease-in-out 0s;
+}
+
+.main-content a:hover {
+    color: #d23153;
+    text-decoration: none;
+    border-bottom: 1px dotted #d23153;
+}
+
+/* For the case where links are styled as buttons, we don't want to override button styles */
+.main-content a.btn {
+    border-bottom: none !important;
+    color: #000;
+}

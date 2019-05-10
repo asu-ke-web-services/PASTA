@@ -20,7 +20,7 @@
 <jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
 
-<div class="container">
+<div class="container main-content">
 	<div class="content">
 		<div class="row-fluid">
 			<div class="col-sm">

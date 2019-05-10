@@ -71,30 +71,30 @@
 <body>
   <jsp:include page="asu-header.jsp" />
   <jsp:include page="header.jsp" />
-	<div class="container">
+	<div class="container main-content">
     <h3>Advanced Search</h3>
-    <p>We have a fantastic little sky! You want your tree to have some character. Make it special. It's beautiful - and we haven't even done anything to it yet. Let all these things just sort of happen. Everyone needs a friend. Friends are the most valuable things in the world.</p>
-    <hr />
+    <hr class="mb-3" />
     <form id="advancedSearchForm" action="./advancedSearch" method="post" name="advancedSearchForm" onsubmit="return submitRequest(this)">
 
       <div class="row">
           <div class="col-3" style="border-right: 1px solid #eee;">
             <h4>Subject</h4>
+            <p><small class="text-muted">A <strong>full search</strong> will look for your keyword(s) in the title, abstract, keywords, and author fields. You can optionally restrict your search to any single field.</small></p>
           </div>
           <div class="col">
             <div class="form-group row">
-              <label for="subjectValue" class="col-form-label col-sm-2" for="subjectValue">Search For:</label>
-              <div class="col-sm-10">
+              <label for="subjectValue" class="col-form-label col-sm-3" for="subjectValue">Search For:</label>
+              <div class="col-sm-9">
                 <input name="subjectValue" id="subjectValue" type="text" class="form-control" placeholder="enter search term(s)" />
                 <small id="emailHelp" class="form-text text-muted">Tip: enclose multi-word terms in quotes, e.g. 'Puerto Rico'</small>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-form-label col-sm-2">Search In:</label>
-              <div class="col-sm-10">
+              <label class="col-form-label col-sm-3">Search In:</label>
+              <div class="col-sm-9">
                 <div class="form-check">
                   <input checked="checked" name="subjectField" id="subjectField1" class="form-check-input" type="radio" value="ALL" />
-                  <label class="form-check-label" for="subjectField1">Subject</label>
+                  <label class="form-check-label" for="subjectField1">Full Search</label>
                 </div>
                 <div class="form-check">
                   <input name="subjectField" id="subjectField2" class="form-check-input" type="radio" value="TITLE" />
@@ -108,11 +108,15 @@
                   <input name="subjectField" id="subjectField4" class="form-check-input" type="radio" value="KEYWORDS" />
                   <label class="form-check-label" for="subjectField4">Keywords only</label>
                 </div>
+                <div class="form-check">
+                  <input name="subjectField" id="subjectField5" class="form-check-input" type="radio" value="CREATOR" />
+                  <label class="form-check-label" for="subjectField5">Author only</label>
+                </div>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-for-label col-sm-2">Automatically Add:</label>
-              <div class="col-sm-10">
+              <label class="col-for-label col-sm-3">Automatically Add:</label>
+              <div class="col-sm-9">
                 <div class="form-check">
                   <input name="specific" id="specific-terms" type="checkbox" class="form-check-input" value="value1">
                   <label for="specific-terms" class="form-check-label">More Specific Terms</label>
@@ -130,8 +134,8 @@
             </div>
             -->
             <div class="form-group row">
-              <label class="col-for-label col-sm-2">Also Search:</label>
-              <div class="col-sm-10">
+              <label class="col-for-label col-sm-3">Also Search:</label>
+              <div class="col-sm-9">
                 <div class="form-check">
                   <input name="ecotrends" id="ecotrends" type="checkbox" class="form-check-input" value="value1">
                   <label for="ecotrends" class="form-check-label">EcoTrends Data Packages</label>
@@ -147,6 +151,7 @@
 
       <hr />
 
+      <!--
       <div class="row">
         <div class="col-3" style="border-right: 1px solid #eee;">
           <h4>Sites</h4>
@@ -157,9 +162,9 @@
           </select>
         </div>
       </div>
-
       <hr />
-
+      -->
+      <!--
       <div class="row">
         <div class="col-3" style="border-right: 1px solid #eee;">
           <h4>Creator</h4>
@@ -175,8 +180,8 @@
           </div>
         </div>
       </div>
-
       <hr />
+      -->
 
       <div class="row">
         <div class="col-3" style="border-right: 1px solid #eee;">
@@ -184,8 +189,8 @@
         </div>
         <div class="col">
           <div class="form-group row">
-            <label class="col-form-label col-sm-2">Search:</label>
-            <div class="col-sm-10">
+            <label class="col-form-label col-sm-3">Search:</label>
+            <div class="col-sm-9">
               <div class="form-check">
                 <input checked="checked" name="dateField" id="collection" class="form-check-input" type="radio" value="COLLECTION" />
                 <label for="collection" class="form-check-label">Collection Date</label>
@@ -201,20 +206,20 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-for-label col-sm-2">Start Date:</label>
-            <div class="col-sm-10">
+            <label class="col-for-label col-sm-3">Start Date:</label>
+            <div class="col-sm-9">
               <input name="startDate" id="startDate" class="form-control" placeholder="YYYY-MM-DD" type="date" />
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-for-label col-sm-2">End Date:</label>
-            <div class="col-sm-10">
+            <label class="col-for-label col-sm-3">End Date:</label>
+            <div class="col-sm-9">
               <input name="endDate" id="endDate" class="form-control" placeholder="YYYY-MM-DD" type="date" />
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-for-label col-sm-2">Named Time Scale:</label>
-            <div class="col-sm-10">
+            <label class="col-for-label col-sm-3">Named Time Scale:</label>
+            <div class="col-sm-9">
               <input name="namedTimescale" id="namedTimedScale" class="form-control" type="text" >
             </div>
           </div>
@@ -358,7 +363,7 @@
       <div class="row">
         <div class="col-3"></div>
         <div class="col">
-          <input class="btn btn-danger" name="reset" type="reset" value="Clear All" />
+          <input class="btn btn-secondary" name="reset" type="reset" value="Clear All" />
           <input class="btn btn-primary" name="submit" type="submit" value="Submit" />
         </div>
       </div>
