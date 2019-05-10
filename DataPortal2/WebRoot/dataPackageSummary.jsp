@@ -130,7 +130,7 @@
 
 <div id="<%= watermarkId %>" class="<%= watermarkClass %>"><%= watermarkText %></div>
 
-<div class="container">
+<div class="container main-content">
 	<div class="row">
 		<div class="col">
 			<c:set var="showTestHTML" value="<%= showTestHTML %>"/>

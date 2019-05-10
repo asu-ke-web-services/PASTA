@@ -39,6 +39,9 @@
 <link type="text/css" rel="stylesheet" media="all" href="//www.asu.edu/asuthemes/4.7/css/asu_header_media.min.css?v0.3" />
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+<link type="text/css" rel="stylesheet" media="all" href="css/gios.css" />
+
 <!--[if IE 9]>
 <style type="text/css">
     #asu_universal_nav ul ul{filter:none;box-shadow:0 6px 6px 0 #999}#asu_universal_nav>ul>li.parent:hover>a{filter:none;box-shadow:6px 0 6px -6px #999,-6px 0 6px -6px #999}

@@ -39,7 +39,7 @@
 <jsp:include page="header.jsp" />
 
   <div class="row-fluid ">
-		<div class="container">
+		<div class="container main-content">
 			<div class="row-fluid distance_1">
 				<div class="box_shadow box_layout">
 					<div class="row-fluid">

@@ -91,6 +91,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="advancedSearch.jsp">Advanced Search</a>
 				</li>
+				<!--
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Browse
@@ -102,6 +103,7 @@
 						<a class="dropdown-item" href="savedDataServlet">Your Data Shelf</a>
 					</div>
 				</li>
+				-->
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Help
@@ -114,7 +116,6 @@
 					</div>
 				</li>
 			</ul>
-
 			<form class="form-inline my-2 my-lg-0" action="./simpleSearch" method="post" _lpchecked="1">
 				<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search GIOS Data" aria-label="Search">
 				<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>

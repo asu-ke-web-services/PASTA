@@ -130,12 +130,16 @@ public class AdvancedSearchServlet extends DataPortalServlet {
     String startDate = request.getParameter("startDate");
     String endDate = request.getParameter("endDate");
     String datesContained = request.getParameter("datesContained");
+    // commented this out because we are using our own filter query for organizations
     // String creatorOrganization = request.getParameter("creatorOrganization");
     String creatorOrganization = Search.GIOS_FILTER;
     String creatorName = request.getParameter("creatorName");
     String locationName = request.getParameter("locationName");
     String namedTimescale = request.getParameter("namedTimescale");
-    String[] siteValues = request.getParameterValues("siteValues");
+    // we don't need siteValues, so we're setting it to NULL, as it would be if the form element
+    // were left empty.
+    //String[] siteValues = request.getParameterValues("siteValues");
+    String[] siteValues = null;
     String subjectField = request.getParameter("subjectField");
     String subjectValue = request.getParameter("subjectValue");
     String specific = request.getParameter("specific");

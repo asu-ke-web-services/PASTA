@@ -14,12 +14,12 @@
 	<body>
 		<jsp:include page="asu-header.jsp" />
 		<jsp:include page="header.jsp" />
-		<div class="container">
+		<div class="container main-content">
 			<div class="row">
 				<div class="column">
 					<!-- Content -->
 					<h1>Resources</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed felis sed libero blandit venenatis. Duis sit amet libero sit amet elit dictum posuere. Praesent tristique pretium massa a commodo. Sed nec magna ut enim gravida ultrices. In elementum laoreet cursus.</p>
+					<p>The GIOS Data Portal is based on technology created and used by the Environmental Data Initiative and the LTER Network. If you're interested in finding out more about EDI, or the LTER network, you can use the resources listed below.</p>
 					<h3>EDI Resources</h3>
 					<ul>
 						<li><a class="searchsubcat" href="http://environmentaldatainitiative.org/">Environmental Data Initiative</a></li>
