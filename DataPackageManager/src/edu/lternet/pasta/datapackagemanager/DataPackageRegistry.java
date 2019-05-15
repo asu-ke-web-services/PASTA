@@ -448,6 +448,12 @@ public class DataPackageRegistry {
                          "revision, resource_location, entity_id, entity_name, filename, principal_owner, date_created) " + 
                          "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
       }
+      else if (resourceType == ResourceType.metadata ||
+    		   resourceType == ResourceType.report) {
+          insertSQL.append("resource_id, resource_type, package_id, scope, identifier, " + 
+                  "revision, resource_location, principal_owner, date_created, format_type) " + 
+                  "VALUES(?,?,?,?,?,?,?,?,?,?)");
+        }
       else {
         insertSQL.append("resource_id, resource_type, package_id, scope, identifier, " + 
                          "revision, principal_owner, date_created, format_type) " + 
@@ -472,6 +478,13 @@ public class DataPackageRegistry {
           pstmt.setString(10, fileName);
           pstmt.setString(11, principalOwner);
           pstmt.setTimestamp(12, ts);
+        }
+        else if (resourceType == ResourceType.metadata ||
+        		 resourceType == ResourceType.report) {
+            pstmt.setString(7, resourceLocation);
+            pstmt.setString(8, principalOwner);
+            pstmt.setTimestamp(9, ts);
+            pstmt.setString(10, formatType);
         }
         else {
           pstmt.setString(7, principalOwner);
@@ -1035,6 +1048,58 @@ public class DataPackageRegistry {
     return doi;
     
   }
+
+  
+	/**
+	 * Gets the package ID from the DOI value.
+	 * 
+	 * @param doi
+	 *                the DOI value
+	 * @return the package identifier, or null if none was found
+	 */
+	public String getPackageIdFromDoi(String doi) 
+			throws ClassNotFoundException, SQLException {
+
+		String packageId = null;
+		String doiValue = doi;
+
+		if (doiValue != null && !doiValue.startsWith("doi:")) {
+			doiValue = "doi:" + doiValue;
+		}
+
+		Connection connection = null;
+		String selectString = 
+				"SELECT package_id FROM " + RESOURCE_REGISTRY + 
+				"  WHERE doi='" + doiValue + "'";
+		logger.debug("selectString: " + selectString);
+
+		Statement stmt = null;
+
+		try {
+			connection = getConnection();
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(selectString);
+
+			while (rs.next()) {
+				packageId = rs.getString(1);
+			}
+
+			if (stmt != null)
+				stmt.close();
+		} catch (ClassNotFoundException e) {
+			logger.error("ClassNotFoundException: " + e.getMessage());
+			e.printStackTrace();
+			throw (e);
+		} catch (SQLException e) {
+			logger.error("SQLException: " + e.getMessage());
+			e.printStackTrace();
+			throw (e);
+		} finally {
+			returnConnection(connection);
+		}
+
+		return packageId;
+	}
 
 
 	/**

@@ -46,7 +46,7 @@
                                     downtime));
             downtimeHTML = String.format("<div class=\"alert alert-warning mt-4\" role=\"alert\"<em>Please Note: </em>%s</div>", sb.toString());
         }
-    }
+    }   
 %>
 
 <!DOCTYPE html>

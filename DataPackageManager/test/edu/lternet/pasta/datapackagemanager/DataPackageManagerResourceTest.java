@@ -78,6 +78,7 @@ public class DataPackageManagerResourceTest {
   private static final String testUser = "uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org";
   private static final String testUserAcl = "uid=gmn-pasta,o=LTER,dc=ecoinformatics,dc=org";
   private static Options options = null;
+  private static String testDoi = null;
   private static File testEmlFile = null;
   private static String testEmlFileName = null;
   private static String testPath = null;
@@ -185,6 +186,10 @@ public class DataPackageManagerResourceTest {
       testRevisionStr = options.getOption("datapackagemanager.test.revision");
       if (testRevisionStr == null) {
         fail("No value found for DataPackageManager property 'datapackagemanager.test.revision'");
+      }
+      testDoi = options.getOption("datapackagemanager.test.doi");
+      if (testScope == testDoi) {
+        fail("No value found for DataPackageManager property 'datapackagemanager.test.doi'");
       }
       testEntityId = options.getOption("datapackagemanager.test.entity.id");
       if (testEntityId == null) {
@@ -582,6 +587,46 @@ public class DataPackageManagerResourceTest {
 
     // Test for NOT FOUND status with a bogus package id
     response = dataPackageManagerResource.readDataPackage(httpHeaders, testScopeBogus, testIdentifier, testRevision.toString(), null);
+    assertEquals(404, response.getStatus());
+  }
+    
+
+  /**
+   * Test the status and message body of the Read Data Package From DOI use case.
+   */
+  @Test
+  public void testReadDataPackageFromDoi() {
+    HttpHeaders httpHeaders = new DummyCookieHttpHeaders(testUser);
+    String[] doiParts = testDoi.split("/");
+    
+    assertEquals(doiParts.length, 3);
+    
+    String shoulder = doiParts[0];
+    String pasta = doiParts[1];
+    String md5 = doiParts[2];
+    
+    // Test READ for OK status
+    Response response = dataPackageManagerResource.readDataPackageFromDoi(httpHeaders, shoulder, pasta, md5, null);
+    int statusCode = response.getStatus();
+    assertEquals(200, statusCode);
+    
+    // Check the message body
+    String entityString = (String) response.getEntity();
+    assertFalse(entityString == null);
+    if (entityString != null) {
+      assertFalse(entityString.isEmpty());
+      assertTrue(entityString.contains("package/eml"));
+      assertTrue(entityString.contains("package/metadata/eml"));
+      assertTrue(entityString.contains("package/report/eml"));
+      assertTrue(entityString.contains("package/data/eml"));
+    }
+
+    // Test for BAD REQUEST status with a null DOI value.
+    response = dataPackageManagerResource.readDataPackageFromDoi(httpHeaders, null, null, null, null);
+    assertEquals(400, response.getStatus());
+
+    // Test for NOT FOUND status with a bogus DOI value.
+    response = dataPackageManagerResource.readDataPackageFromDoi(httpHeaders, "a", "b", "c", null);
     assertEquals(404, response.getStatus());
   }
     

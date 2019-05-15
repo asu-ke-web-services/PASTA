@@ -49,13 +49,21 @@ public class GrowthStats {
  /* Instance variables */
 
   DatabaseClient databaseClient;
+  
+  final String WHERE_CLAUSE = " WHERE resource_type='dataPackage' AND" +
+                              "  date_deactivated IS NULL AND" +
+		                      "  scope != 'ecotrends' AND" +
+                              "  scope NOT LIKE 'lter-landsat%' ";
+  final String SELECT_CLAUSE_UNIQUE = 
+      "SELECT scope || '.' || identifier,date_created FROM ";
+  final String SELECT_CLAUSE_ALL = 
+	  "SELECT scope || '.' || identifier || '.' || revision,date_created FROM ";
 
  /* Class variables */
 
   private static final Logger logger = Logger.getLogger(GrowthStats.class);
   private static final String RESOURCE_REGISTRY = "datapackagemanager.resource_registry";
 
-  // Create new calendar for PASTA origin at 2013-01-01 00:00:00
   private static final GregorianCalendar origin = new GregorianCalendar(2013, 0, 1, 0, 0, 0);
 
  /* Constructors */
@@ -71,37 +79,45 @@ public class GrowthStats {
 	this.databaseClient = new DatabaseClient(dbDriver, dbUrl, dbUser, dbPassword);
   }
 
+  
  /* Instance methods */
 
   public String getGoogleChartJson(GregorianCalendar now, int scale) {
 
     StringBuilder pkgSql = new StringBuilder();
-    pkgSql.append("SELECT scope || '.' || identifier,date_created FROM ");
+    pkgSql.append(SELECT_CLAUSE_UNIQUE);
     pkgSql.append(RESOURCE_REGISTRY);
-    pkgSql.append(" WHERE resource_type='dataPackage' AND ");
-    pkgSql.append("date_deactivated IS NULL AND ");
-    pkgSql.append("scope LIKE 'knb-lter-%' AND NOT scope='knb-lter-nwk' ");
+    pkgSql.append(WHERE_CLAUSE);
     pkgSql.append("ORDER BY date_created ASC;");
 
+    StringBuilder pkgSqlAll = new StringBuilder();
+    pkgSqlAll.append(SELECT_CLAUSE_ALL);
+    pkgSqlAll.append(RESOURCE_REGISTRY);
+    pkgSqlAll.append(WHERE_CLAUSE);
+    pkgSqlAll.append("ORDER BY date_created ASC;");
+
     HashMap<String, Long> pkgMap;
+    HashMap<String, Long> pkgMapAll;
 
     try {
       pkgMap = buildHashMap(pkgSql.toString());
+      pkgMapAll = buildHashMap(pkgSqlAll.toString());
     }
     catch (SQLException e) {
       logger.error("getGoogleChartJson: " + e.getMessage());
       e.printStackTrace();
       pkgMap = new HashMap<String, Long>(); // Create empty package map
+      pkgMapAll = new HashMap<String, Long>(); // Create empty package map
     }
 
     Long[] pkgList = buildSortedList(pkgMap);
+    Long[] pkgListAll = buildSortedList(pkgMapAll);
 
+    /* 
     StringBuilder siteSql = new StringBuilder();
     siteSql.append("SELECT scope,date_created FROM ");
     siteSql.append(RESOURCE_REGISTRY);
-    siteSql.append(" WHERE resource_type='dataPackage' AND ");
-    siteSql.append("date_deactivated IS NULL AND ");
-    siteSql.append("scope LIKE 'knb-lter-%' AND NOT scope='knb-lter-nwk' ");
+    siteSql.append(WHERE_CLAUSE);
     siteSql.append("ORDER BY date_created ASC;");
 
     HashMap<String, Long> siteMap = null;
@@ -115,40 +131,47 @@ public class GrowthStats {
     }
 
     Long[] siteList = buildSortedList(siteMap);
+    */
 
     ArrayList<String> labels = buildLabels(origin, now, scale);
     ArrayList<Integer> pkgFreq = buildFrequencies(origin, now, scale, pkgList);
-    ArrayList<Integer> siteFreq = buildFrequencies(origin, now, scale, siteList);
+    ArrayList<Integer> pkgFreqAll = buildFrequencies(origin, now, scale, pkgListAll);
+    //ArrayList<Integer> siteFreq = buildFrequencies(origin, now, scale, siteList);
 
     Integer pkgCDist = 0;
-    Integer siteCDist = 0;
+    Integer pkgAllCDist = 0;
+    //Integer siteCDist = 0;
     int i;
 
     StringBuilder json = new StringBuilder();
+    int nLabels = labels.size();
 
-    for (i = 0; i < labels.size() - 1; i++) {
+    
+    for (i = 0; i < nLabels - 1; i++) {
       pkgCDist += pkgFreq.get(i);
-      siteCDist += siteFreq.get(i);
-      json.append(String.format("['%s',%d,%d],%n", labels.get(i), pkgCDist,
-                                   siteCDist));
+      pkgAllCDist += pkgFreqAll.get(i);
+      //siteCDist += siteFreq.get(i);
+      json.append(String.format("['%s',%d, %d],%n", labels.get(i), pkgCDist, pkgAllCDist));
     }
 
-    i = labels.size() - 1;
-    pkgCDist += pkgFreq.get(i);
-    siteCDist += siteFreq.get(i);
-    json.append(String.format("['%s',%d,%d]%n", labels.get(i), pkgCDist,
-                                 siteCDist));
+    i = nLabels - 1;
+	if (i >= 0) {
+		pkgCDist += pkgFreq.get(i);
+		pkgAllCDist += pkgFreqAll.get(i);
+		//siteCDist += siteFreq.get(i);
+		json.append(String.format("['%s',%d, %d]%n", labels.get(i), pkgCDist, pkgAllCDist));
+	}
 
     return json.toString();
-
   }
 
+  
   private HashMap<String, Long> buildHashMap(String sql) throws SQLException {
 	Connection conn = databaseClient.getConnection();
     HashMap<String, Long> map = new HashMap<String, Long>();
 
-	try {
-		if (conn != null) {
+	if (conn != null) {
+		try {
 			Statement stmnt = conn.createStatement();
 			ResultSet rs = stmnt.executeQuery(sql);
 
@@ -159,16 +182,15 @@ public class GrowthStats {
 					map.put(key, date_created);
 				}
 			}
+		} finally {
+			databaseClient.closeConnection(conn);
 		}
-	}
-	finally {
-		databaseClient.closeConnection(conn);
 	}
 
     return map;
-
   }
 
+  
   private Long[] buildSortedList(HashMap<String, Long> map) {
 
     Long[] list = new Long[map.size()];
@@ -184,6 +206,7 @@ public class GrowthStats {
 
   }
 
+  
   private ArrayList<String> buildLabels(GregorianCalendar start,
                                         GregorianCalendar end,
                                         int scale) {
@@ -199,11 +222,6 @@ public class GrowthStats {
       upper.add(scale, 1);
       split.setTime(new Date(lower.getTimeInMillis() +
                                  (upper.getTimeInMillis() - lower.getTimeInMillis()) / 2));
-      /*
-      System.out.printf("%s-%s-%s%n", lower.getTime().toString(),
-                           split.getTime().toString(),
-                           upper.getTime().toString());
-       */
       labels.add(getLabel(scale, split));
       lower.setTime(upper.getTime());
     }
@@ -281,14 +299,10 @@ public class GrowthStats {
   /* Class methods */
 
   public static void main(String[] args) {
-
-
     ConfigurationListener.configure();
     GregorianCalendar now = new GregorianCalendar();
-
     GrowthStats gs = new GrowthStats();
     System.out.print(gs.getGoogleChartJson(now, Calendar.MONTH));
-
   }
 
 }
