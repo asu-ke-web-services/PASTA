@@ -26,8 +26,10 @@ package edu.lternet.pasta.datapackagemanager;
 
 
 import java.io.File;
+import java.io.IOException;
 
 import edu.lternet.pasta.common.EmlPackageId;
+import edu.lternet.pasta.datapackagemanager.DataPackageManager.ResourceType;
 
 
 /**
@@ -83,26 +85,41 @@ public class DataPackageMetadata {
   * @param  evaluateMode   true if this is evaluate mode
   * @return the Level-1 EML metadata file, or null if it doesn't exist
   */
- public File getMetadata(boolean evaluateMode) {
-   File xmlFile = null;
-   
-   if (this.emlPackageId != null) {
-     FileSystemResource metadataResource = new FileSystemResource(emlPackageId);
-     metadataResource.setEvaluateMode(evaluateMode);
-     boolean isReportResource = false;
-     String dirPath = metadataResource.getDirPath(isReportResource);   
-     String metadataFilename = fileName;
-     File metadataFile = new File(dirPath, metadataFilename);
-     
-     if (metadataFile != null && metadataFile.exists()) {
-       xmlFile = metadataFile;
-     }
-   }
-     
-   return xmlFile;
- }
+	public File getMetadata(boolean evaluateMode) throws IOException {
+		File metadataFile = null; // The XML metadata file
+
+		if (this.emlPackageId != null) {
+			try {
+				String baseDir = DataPackageManager.getMetadataResourceLocation(
+						                   emlPackageId, ResourceType.metadata);
+				FileSystemResource metadataResource = 
+						new FileSystemResource(baseDir, emlPackageId);
+				metadataResource.setEvaluateMode(evaluateMode);
+				boolean isReportResource = false;
+				String dirPath = metadataResource.getDirPath(isReportResource);
+				String metadataFilename = fileName;
+				metadataFile = new File(dirPath, metadataFilename);
+				
+				if (metadataFile == null || !metadataFile.exists()) {
+					String msg = 
+							String.format("Metadata file %s/%s does not exist.", 
+									      dirPath, metadataFilename);
+					throw new IOException(msg);
+				}
+			}
+			catch (Exception e) {
+				throw new IOException(
+						"Metadata resource location could not be determined.");
+			}
+		}
+		else {
+			throw new IOException("No packageId was specified for the resource.");
+		}
+
+		return metadataFile;
+	} 
  
- 
+	
  /**
   * Sets the isDublinCore variable to true or false. A value of true
   * indicates that we are working with Dublin Core metadata, else we
