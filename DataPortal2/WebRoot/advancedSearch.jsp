@@ -79,7 +79,9 @@
       <div class="row">
           <div class="col-3" style="border-right: 1px solid #eee;">
             <h4>Subject</h4>
-            <p><small class="text-muted">A <strong>full search</strong> will look for your keyword(s) in the title, abstract, keywords, and author fields. You can optionally restrict your search to any single field.</small></p>
+            <p class="mt-3"><small class="text-muted">A <strong>full search</strong> will look for your keyword(s) in the title, abstract, keywords, and author fields. You can optionally restrict your search to any single field.</small></p>
+
+            <p class="mt-3"><small class="text-muted"><span class="fas fa-info-circle"></span> You can expand your search by automatically including more specific, or related, terms from the <a href="http://vocab.lternet.edu/vocab/vocab/index.php" target="_blank">LTER Controlled Vocabulary</a>.</small></p>
           </div>
           <div class="col">
             <div class="form-group row">
@@ -115,7 +117,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-for-label col-sm-3">Automatically Add:</label>
+              <label class="col-for-label col-sm-3">Also Include:</label>
               <div class="col-sm-9">
                 <div class="form-check">
                   <input name="specific" id="specific-terms" type="checkbox" class="form-check-input" value="value1">
@@ -125,14 +127,12 @@
                   <input name="related" id="related-terms" type="checkbox" class="form-check-input" value="value1">
                   <label for="related-terms" class="form-check-label">Related Terms</label>
                 </div>
+                <div class="form-check"  style="margin-left: 2em;">
+                  <input name="relatedSpecific" id="relatedSpecific" type="checkbox" class="form-check-input" value="value1">
+                  <label for="related-specific" class="form-check-label"><small class="text-muted">Also Include More Specific Versions of Related Terms</small></label>
+                </div>
               </div>
             </div>
-            <!--
-            <div class="form-check form-check-inline">
-            <input name="relatedSpecific" id="relatedSpecific" type="checkbox" class="for-check-input" value="value1">
-            <label for="related-specific" class="form-check-label">Related/More Specific Terms</label>
-            </div>
-            -->
             <div class="form-group row">
               <label class="col-for-label col-sm-3">Also Search:</label>
               <div class="col-sm-9">
@@ -408,6 +408,19 @@
   </script>
   <!-- End  JavaScript input validation checking code. -->
 <%@ include file="bootstrap-javascript.jsp" %>
+<script>
+  $('#relatedSpecific').change( function() {
+    if($(this).prop('checked')) {
+      $('#related-terms').prop('checked', true);
+    }
+  });
+
+  $('#related-terms').change( function()  {
+    if(!$(this).prop('checked')) {
+      $('#relatedSpecific').prop('checked', false);
+    }
+  });
+</script>
 <div class="footer-container pt-5">
 	<jsp:include page="asu-footer.jsp" />
 </div>
