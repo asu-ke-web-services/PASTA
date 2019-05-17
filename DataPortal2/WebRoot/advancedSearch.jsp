@@ -412,6 +412,7 @@
   $('#relatedSpecific').change( function() {
     if($(this).prop('checked')) {
       $('#related-terms').prop('checked', true);
+      $('#specific-terms').prop('checked', true);
     }
   });
 
