@@ -122,17 +122,14 @@
                 <div class="form-check">
                   <input name="specific" id="specific-terms" type="checkbox" class="form-check-input" value="value1">
                   <label for="specific-terms" class="form-check-label">More Specific Terms </label>
-                  <span tabindex=0 class="fas fa-question-circle" style="color: #ccc;" data-trigger="focus" data-toggle="popover" title="More Specific Terms" data-content="Includes terms from the LTER Controlled Vocabulary that are considered more specific versions of your term(s)."></span>
                 </div>
                 <div class="form-check">
                   <input name="related" id="related-terms" type="checkbox" class="form-check-input" value="value1">
                   <label for="related-terms" class="form-check-label">Related Terms </label>
-                  <span tabindex=1 class="fas fa-question-circle" style="color: #ccc;" data-trigger="focus" data-toggle="popover" title="Related Terms" data-content="Includes any terms from the LTER Controlled Vocabulary that are considered related to your term(s)"></span>
                 </div>
                 <div class="form-check"  style="margin-left: 2em;">
                   <input name="relatedSpecific" id="relatedSpecific" type="checkbox" class="form-check-input" value="value1">
                   <label for="related-specific" class="form-check-label"><small class="text-muted">Also Include More Specific Versions of Related Terms </small></label>
-                  <span tabindex=1 class="fas fa-question-circle" style="color: #ccc;" data-trigger="focus" data-toggle="popover" title="Related-Specific" data-content="Includes your term(s), more specific terms, related terms, and the more specific 'children' of the related terms."></span>
                 </div>
               </div>
             </div>
@@ -412,10 +409,6 @@
   <!-- End  JavaScript input validation checking code. -->
 <%@ include file="bootstrap-javascript.jsp" %>
 <script>
-  $(function () {
-    $('[data-toggle="popover"]').popover()
-  });
-
   $('#relatedSpecific').change( function() {
     if($(this).prop('checked')) {
       $('#related-terms').prop('checked', true);
