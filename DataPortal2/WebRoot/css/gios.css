@@ -1,8 +1,90 @@
 /* Additional Styling for the GIOS version of the portal. A gentle nod towards Web Standards for now. */
 
+/* ASU Header */
+
+#asu_mobile_menu {
+    margin-top: 10px;
+}
+
+#asu_universal_nav {
+    font-weight: 200;
+    font-size: 12px;
+    font-family: Arial, Helvetic, "sans-serif";
+}
+
+#asu_school_name {
+    margin-bottom: 13px;
+}
+
+.site-title a {
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: -.5px;
+    line-height: 28px;
+}
+
+#asu_logo {
+    padding-top: 0;
+}
+
 /* for pages with little content */
 .main-content {
     min-height: 450px;
+}
+
+#asu_hdr {
+    width: 1170px;
+    max-width: 1170px;
+}
+
+/* Menu */
+/*
+ * To match the existing site menu, we need to tell the navbar, and its child items, to be a specific height
+ * and remove the padding inside the navbar itself (this gives us 'full-height' rollover states). Removing that
+ * padding messes up the placement of the menu items, so we change the line height to move them down
+ */
+.navbar {
+    height: 56px;
+    padding: 0;
+}
+
+.navbar-nav {
+    height: 56px;
+    line-height: 2.5em;
+}
+
+.nav-item {
+    padding-left: .5em;
+    padding-right: .5em;
+    font-size: .9375rem;
+}
+
+.nav-item:hover {
+    background-color: #000;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffb310;
+}
+
+.home-icon {
+    background-color: #1f1f1f;
+    font-size: 12px;
+    padding-top: .6em; /* needed to align the FontAwesome icon with menu text */
+    text-align: center;
+    width: 64px;
+}
+
+.home-icon a {
+    color: #ffb310;
+    width: 100%;
+    height: 100%;
 }
 
 /* Buttons */
