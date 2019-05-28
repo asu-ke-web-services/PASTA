@@ -136,8 +136,14 @@ if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
 	document.getElementById('asu_hdr').className = document.getElementById('asu_hdr').className+" chrome";
 }
 //--><!]]>
-ASUHeader.generateSiteTitle();
+//ASUHeader.generateSiteTitle();
 </script>
+<div class="container site-title-container">
+    <div class="site-title" id="asu_school_name">
+        <a href="www.google.com">Julie Ann Wrigley Global Institute of Sustainability</a>
+    </div>
+</div>
 <div style="clear:both;"></div>
 </div>
+<script type="text/javascript" src="//www.asu.edu/asuthemes/4.7/js/asu_header.min.js?v0.3"></script>
 <!-- END /asuthemes/4.7/headers/default.shtml -->
