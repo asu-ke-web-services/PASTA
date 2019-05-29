@@ -111,6 +111,13 @@
     color: #000 !important;
 }
 
+#main-wrapper {
+    background-image: url('../images/lab-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 487px;
+}
+
 /* Links */
 .main-content a {
     border-bottom: 1px dotted #8C1D40;
