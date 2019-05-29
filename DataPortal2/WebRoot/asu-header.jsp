@@ -145,5 +145,4 @@ if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
 </div>
 <div style="clear:both;"></div>
 </div>
-<script type="text/javascript" src="//www.asu.edu/asuthemes/4.7/js/asu_header.min.js?v0.3"></script>
 <!-- END /asuthemes/4.7/headers/default.shtml -->
