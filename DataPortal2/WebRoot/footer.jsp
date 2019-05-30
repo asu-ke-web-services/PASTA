@@ -93,7 +93,7 @@ if (recentScope4 != null && !recentScope4.equals("")) {
 }
 
 %>
-
+ </div> <!--closing our generic <div class="mt-5"> in header.jsp -->
 	<!-- Divider -->
 	<div class="footers row-fluid pull-left distance_1">
 		<div class="row-fluid ">
