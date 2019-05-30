@@ -118,7 +118,7 @@
 	}
 
 	.morelink {
-    display: block;
+    /* display: block; */
 	}
 </style>
 </head>
