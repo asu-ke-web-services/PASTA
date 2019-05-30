@@ -16,13 +16,16 @@
     margin-bottom: 13px;
 }
 
-.site-title a {
-    color: #000;
+.site-title {
     font-size: 24px;
     font-weight: bold;
     font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
     letter-spacing: -.5px;
     line-height: 28px;
+}
+
+.site-title a {
+    color: #000;
 }
 
 #asu_logo {
@@ -45,7 +48,7 @@
  * and remove the padding inside the navbar itself (this gives us 'full-height' rollover states). Removing that
  * padding messes up the placement of the menu items, so we change the line height to move them down
  */
-.navbar {
+ .navbar {
     height: 56px;
     padding: 0;
 }
@@ -74,17 +77,12 @@
 }
 
 .home-icon {
-    background-color: #1f1f1f;
-    font-size: 12px;
-    padding-top: .6em; /* needed to align the FontAwesome icon with menu text */
     text-align: center;
     width: 64px;
 }
 
-.home-icon a {
+.home-icon > a {
     color: #ffb310;
-    width: 100%;
-    height: 100%;
 }
 
 /* Buttons */
@@ -136,4 +134,28 @@
 .main-content a.btn {
     border-bottom: none !important;
     color: #000;
+}
+
+/* override ASU link borders on our Maps */
+#map-canvas a, #map-canvas-summary a{
+    border-bottom: none;
+}
+
+/* fix conflict because ASU header uses a class called "border", and Bootstrap uses that same name */
+#asu_universal_nav li.parent ul li a.border {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+a.subsite-title {
+    color: #4f5557;
+}
+
+.hero-text {
+    background-color: rgba(0, 0, 0, .5);
+    padding: 1em;
+    border-radius: 10px;
+    width: 40%;
+    color: white;
 }
