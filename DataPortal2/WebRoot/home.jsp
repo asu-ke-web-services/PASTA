@@ -62,7 +62,7 @@
 <jsp:include page="header.jsp" />
 
 <div id="main-wrapper">
-<div class="container main-content">
+<div class="container main-content" style="margin-top: -3rem!important;">
 	<div class="row pt-5">
 		<div class="col-sm">
 			<!--
@@ -110,6 +110,7 @@
 		</div>
 	</div>
 
+	<!--
 	<div class="card" style="width: 40%">
 		<div class="card-body">
 			<h1 class="display-4">GIOS Data Portal</h1>
@@ -123,6 +124,11 @@
 				<button type="submit" class="btn btn-primary mb-2">Submit</button>
 			</form>
 		</div>
+	</div>
+	-->
+	<div class="hero-text">
+		<h1>GIOS Data Portal</h1>
+		<p>Browse and download data sets from research conducted across the globe by GIOS scientists and scholars.</p>
 	</div>
 
 </div>
