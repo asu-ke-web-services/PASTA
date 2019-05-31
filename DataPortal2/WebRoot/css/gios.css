@@ -117,10 +117,10 @@
 }
 
 /* Links */
-.main-content a {
+.main-content a, .secondary-nav a {
     border-bottom: 1px dotted #8C1D40;
     text-decoration: none;
-    color: #8C1D40;
+    color: #8C1D40 !important;
     transition: all 0.25s ease-in-out 0s;
 }
 
@@ -158,4 +158,8 @@ a.subsite-title {
     border-radius: 10px;
     width: 40%;
     color: white;
+}
+
+.secondary-nav {
+    background-color: #eee;
 }

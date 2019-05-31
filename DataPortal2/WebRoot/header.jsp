@@ -90,9 +90,6 @@
 							<a class="nav-link" href="home.jsp"><span class="fas fa-home"></span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="advancedSearch.jsp">Advanced Search</a>
-						</li>
-						<li class="nav-item">
 							<a class="nav-link" href="about.jsp">About</a>
 						</li>
 						<li class="nav-item">
@@ -106,16 +103,17 @@
 		</div>
 	</div>
 
-	<div class="container-fluid"  style="background-color: #eee;">
+	<div class="container-fluid secondary-nav">
 		<div class="container">
-			<nav class="navbar navbar-expand-lg navbar-light sticky-top" id="portal-menu">
+			<nav class="navbar navbar-expand-lg navbar-light" id="portal-menu">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 					<form class="form-inline my-2 my-lg-0" action="./simpleSearch" method="post" _lpchecked="1">
-						<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search GIOS Data" aria-label="Search">
+						<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search Portal" aria-label="Search">
 						<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+						<span class="navbar-text pl-3"><a href="advancedSearch.jsp">Advanced Search</a></span>
 					</form>
 				</div>
 			</nav>
