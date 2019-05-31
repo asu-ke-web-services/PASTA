@@ -1,11 +1,104 @@
-/* Additional Styling for the GIOS version of the portal. A gentle nod towards Web Standards for now. */
+/* Additional Styling for the GIOS version of the portal */
+
+/*******************
+ASU Header
+*******************/
+
+#asu_hdr {
+    width: 1170px;
+    max-width: 1170px;
+}
+
+#asu_mobile_menu {
+    margin-top: 10px;
+}
+
+#asu_universal_nav {
+    font-weight: 200;
+    font-size: 12px;
+    font-family: Arial, Helvetic, "sans-serif";
+}
+
+#asu_school_name {
+    margin-bottom: 13px;
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: -.5px;
+    line-height: 28px;
+}
+
+.site-title a {
+    color: #000;
+}
+
+#asu_logo {
+    padding-top: 0;
+}
 
 /* for pages with little content */
 .main-content {
     min-height: 450px;
 }
 
-/* Buttons */
+/*******************
+Menu
+*******************/
+/*
+ * To match the existing site menu, we need to tell the navbar, and its child items, to be a specific height
+ * and remove the padding inside the navbar itself (this gives us 'full-height' rollover states). Removing that
+ * padding messes up the placement of the menu items, so we change the line height to move them down
+ */
+ .navbar {
+    height: 56px;
+    padding: 0;
+}
+
+.navbar-nav {
+    height: 56px;
+    line-height: 2.5em;
+}
+
+.nav-item {
+    padding-left: .5em;
+    padding-right: .5em;
+    font-size: .9375rem;
+}
+
+.nav-item:hover {
+    background-color: #000;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffb310;
+}
+
+.home-icon {
+    text-align: center;
+    width: 64px;
+}
+
+.home-icon > a {
+    color: #ffb310;
+}
+
+/*******************
+Sub-Menu
+*******************/
+.secondary-nav {
+    background-color: #eee;
+}
+
+/*******************
+Buttons
+*******************/
 .btn-primary {
     background-color: #8c1d40;
     border-color: #8c1d40;
@@ -29,11 +122,20 @@
     color: #000 !important;
 }
 
-/* Links */
-.main-content a {
+#main-wrapper {
+    background-image: url('../images/lab-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 487px;
+}
+
+/*******************
+Links
+*******************/
+.main-content a, .secondary-nav a {
     border-bottom: 1px dotted #8C1D40;
     text-decoration: none;
-    color: #8C1D40;
+    color: #8C1D40 !important;
     transition: all 0.25s ease-in-out 0s;
 }
 
@@ -47,4 +149,36 @@
 .main-content a.btn {
     border-bottom: none !important;
     color: #000;
+}
+
+/* override ASU link borders on our Maps */
+#map-canvas a, #map-canvas-summary a{
+    border-bottom: none;
+}
+
+a.subsite-title {
+    color: #4f5557;
+}
+
+
+/*******************
+Other Fixes
+*******************/
+/* fix conflict because ASU header uses a class called "border", and Bootstrap uses that same name */
+#asu_universal_nav li.parent ul li a.border {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+
+/************************
+Text on Top of Hero Image
+************************/
+.hero-text {
+    background-color: rgba(0, 0, 0, .5);
+    padding: 1em;
+    border-radius: 10px;
+    width: 40%;
+    color: white;
 }

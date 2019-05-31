@@ -55,5 +55,5 @@
 <!--[if IE 6]><script>ASUHeader.browser = true;</script><![endif]-->
 <!--[if IE 7]><script>ASUHeader.browser = true;</script><![endif]-->
 <!--[if IE 8]><script>ASUHeader.browser = true;</script><![endif]-->
-<script type="text/javascript" src="//www.asu.edu/asuthemes/4.7/js/asu_header.min.js?v0.3"></script>
 <!-- END /asuthemes/4.7/heads/default.shtml -->
+<script type="text/javascript" src="//www.asu.edu/asuthemes/4.7/js/asu_header.min.js?v0.3"></script>

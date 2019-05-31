@@ -46,7 +46,7 @@
                                     downtime));
             downtimeHTML = String.format("<div class=\"alert alert-warning mt-4\" role=\"alert\"<em>Please Note: </em>%s</div>", sb.toString());
         }
-    }   
+    }
 %>
 
 <!DOCTYPE html>
@@ -61,8 +61,9 @@
 <jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
 
-<div class="container main-content">
-	<div class="row mt-3">
+<div id="main-wrapper">
+<div class="container main-content" style="margin-top: -3rem!important;">
+	<div class="row pt-5">
 		<div class="col-sm">
 			<!--
 			<%= downtimeHTML %>
@@ -109,22 +110,31 @@
 		</div>
 	</div>
 
-	<div class="jumbotron">
-		<h1 class="display-4">GIOS Data Portal</h1>
-		<p class="lead">Search through the library of GIOS datasets</p>
-		<form id="searchform" action="./simpleSearch" method="post">
-			<div class="form-group">
-				<label class="sr-only" for="lterterms">Search For: </label>
-				<input type="text" name="terms" class="form-control mb-2 mr-sm-2" id="lterterms" placeholder="Search Term(s)">
-				<small id="advanced-text" class="form-text text-muted">Looking for something more specific? Try the <a href="advancedSearch.jsp">Advanced Search</a></small>
-			</div>
-			<button type="submit" class="btn btn-primary mb-2">Submit</button>
-		</form>
+	<!--
+	<div class="card" style="width: 40%">
+		<div class="card-body">
+			<h1 class="display-4">GIOS Data Portal</h1>
+			<p class="lead">Search through the library of GIOS datasets</p>
+			<form id="searchform" action="./simpleSearch" method="post">
+				<div class="form-group">
+					<label class="sr-only" for="lterterms">Search For: </label>
+					<input type="text" name="terms" class="form-control mb-2 mr-sm-2" id="lterterms" placeholder="Search Term(s)">
+					<small id="advanced-text" class="form-text text-muted">Looking for something more specific? Try the <a href="advancedSearch.jsp">Advanced Search</a></small>
+				</div>
+				<button type="submit" class="btn btn-primary mb-2">Submit</button>
+			</form>
+		</div>
+	</div>
+	-->
+	<div class="hero-text">
+		<h1>GIOS Data Portal</h1>
+		<p>Browse and download data sets from research conducted across the globe by GIOS scientists and scholars.</p>
 	</div>
 
 </div>
+</div>
 
-<div class="footer-container pt-5">
+<div class="footer-container">
 	<jsp:include page="asu-footer.jsp" />
 </div>
 

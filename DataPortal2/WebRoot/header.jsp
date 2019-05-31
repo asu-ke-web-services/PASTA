@@ -75,55 +75,50 @@
     loginClass = currentClass;
   }
 %>
-
 <header role="banner">
 	<!-- Bootstrap NavBar -->
-	<div class="container-fluid bg-dark mb-4">
-	<div class="container">
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="home.jsp"><span class="fas fa-home"></span></a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+	<div class="container-fluid bg-dark">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="gios-nav">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="advancedSearch.jsp">Advanced Search</a>
-				</li>
-				<!--
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Browse
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="browse.jsp">Keyword or LTER Site</a>
-						<a class="dropdown-item" href="scopebrowse">Package Identifier</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="savedDataServlet">Your Data Shelf</a>
-					</div>
-				</li>
-				-->
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Help
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="contact.jsp">Contact Us</a>
-						<a class="dropdown-item" href="resources.jsp">Resources</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="about.jsp">About Us</a>
-					</div>
-				</li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0" action="./simpleSearch" method="post" _lpchecked="1">
-				<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search GIOS Data" aria-label="Search">
-				<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-			</form>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item home-icon">
+							<a class="nav-link" href="home.jsp"><span class="fas fa-home"></span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="about.jsp">About</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="resources.jsp">Resources</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="contact.jsp">Contact</a>
+						</li>
+				</div>
+			</nav>
+		</div>
+	</div>
 
+	<div class="container-fluid secondary-nav">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light" id="portal-menu">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+					<form class="form-inline my-2 my-lg-0" action="./simpleSearch" method="post" _lpchecked="1">
+						<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search The Portal" aria-label="Search">
+						<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+						<span class="navbar-text pl-3"><a href="advancedSearch.jsp">Advanced Search</a></span>
+					</form>
+				</div>
+			</nav>
 		</div>
-		</div>
-		</div>
-	</nav>
+	</div>
 	<!-- end Bootstrap NavBar -->
 </header>
+<div class="pt-5"> <!-- generic wrapper with Bootstrap padding class to push all content down from the main menu --->
