@@ -111,7 +111,7 @@
 				</button>
 				<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 					<form class="form-inline my-2 my-lg-0" action="./simpleSearch" method="post" _lpchecked="1">
-						<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search Portal" aria-label="Search">
+						<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search The Portal" aria-label="Search">
 						<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
 						<span class="navbar-text pl-3"><a href="advancedSearch.jsp">Advanced Search</a></span>
 					</form>
