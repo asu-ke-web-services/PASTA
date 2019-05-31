@@ -1,6 +1,13 @@
-/* Additional Styling for the GIOS version of the portal. A gentle nod towards Web Standards for now. */
+/* Additional Styling for the GIOS version of the portal */
 
-/* ASU Header */
+/*******************
+ASU Header
+*******************/
+
+#asu_hdr {
+    width: 1170px;
+    max-width: 1170px;
+}
 
 #asu_mobile_menu {
     margin-top: 10px;
@@ -37,12 +44,9 @@
     min-height: 450px;
 }
 
-#asu_hdr {
-    width: 1170px;
-    max-width: 1170px;
-}
-
-/* Menu */
+/*******************
+Menu
+*******************/
 /*
  * To match the existing site menu, we need to tell the navbar, and its child items, to be a specific height
  * and remove the padding inside the navbar itself (this gives us 'full-height' rollover states). Removing that
@@ -85,7 +89,16 @@
     color: #ffb310;
 }
 
-/* Buttons */
+/*******************
+Sub-Menu
+*******************/
+.secondary-nav {
+    background-color: #eee;
+}
+
+/*******************
+Buttons
+*******************/
 .btn-primary {
     background-color: #8c1d40;
     border-color: #8c1d40;
@@ -116,7 +129,9 @@
     height: 487px;
 }
 
-/* Links */
+/*******************
+Links
+*******************/
 .main-content a, .secondary-nav a {
     border-bottom: 1px dotted #8C1D40;
     text-decoration: none;
@@ -141,6 +156,14 @@
     border-bottom: none;
 }
 
+a.subsite-title {
+    color: #4f5557;
+}
+
+
+/*******************
+Other Fixes
+*******************/
 /* fix conflict because ASU header uses a class called "border", and Bootstrap uses that same name */
 #asu_universal_nav li.parent ul li a.border {
     border-top: none !important;
@@ -148,18 +171,14 @@
     border-right: none !important;
 }
 
-a.subsite-title {
-    color: #4f5557;
-}
 
+/************************
+Text on Top of Hero Image
+************************/
 .hero-text {
     background-color: rgba(0, 0, 0, .5);
     padding: 1em;
     border-radius: 10px;
     width: 40%;
     color: white;
-}
-
-.secondary-nav {
-    background-color: #eee;
 }
