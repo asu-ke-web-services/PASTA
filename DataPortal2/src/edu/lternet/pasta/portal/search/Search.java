@@ -23,6 +23,7 @@ public class Search {
 	protected final static String ECOTRENDS_FILTER = "-scope:ecotrends";
 	protected final static String LANDSAT_FILTER = "-scope:lter-landsat*";
 	public final static String GIOS_FILTER = "organization:(\"CAPLTER\") OR organization:(\"CAP LTER\")";
+	public final static String CAP_FILTER = "scope:knb-lter-cap";
 	protected final static String DEFAULT_FIELDS = "id,packageid,title,author,organization,pubdate,coordinates";
 	public final static int DEFAULT_START = 0;
 	public final static int DEFAULT_ROWS = 10;

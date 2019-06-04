@@ -165,7 +165,7 @@ public class SolrAdvancedSearch extends Search {
     // always add a query filter to limit results to our desired organization(s)
     try {
       // our filter contains reserved characters, so URL encode them
-      giosEncodedFilter = URLEncoder.encode(GIOS_FILTER, "UTF-8");
+      giosEncodedFilter = URLEncoder.encode(CAP_FILTER, "UTF-8");
     } catch (UnsupportedEncodingException e) {
 
     }
