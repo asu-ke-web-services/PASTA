@@ -90,7 +90,8 @@ public class SimpleSearch extends Search {
 
 			// supply a filter query to limit our search to just the organization(s) we want
 			try {
-				giosEncodedFilter = URLEncoder.encode(GIOS_FILTER, "UTF-8");
+				//giosEncodedFilter = URLEncoder.encode(GIOS_FILTER, "UTF-8");
+				giosEncodedFilter = URLEncoder.encode(CAP_FILTER, "UTF-8");
 			} catch (UnsupportedEncodingException e) {
 
 			}
