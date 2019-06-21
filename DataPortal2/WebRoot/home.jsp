@@ -25,6 +25,9 @@
 <%@ page import="edu.lternet.pasta.portal.statistics.GrowthStats"%>
 
 <%
+	ServletContext sc = getServletContext();
+	String myString = sc.getInitParameter("searchType");
+
 	final String pageTitle = "Home";
 	final String titleText = DataPortalServlet.getTitleText(pageTitle);
 	session.setAttribute("menuid", "home");
@@ -47,6 +50,11 @@
             downtimeHTML = String.format("<div class=\"alert alert-warning mt-4\" role=\"alert\"<em>Please Note: </em>%s</div>", sb.toString());
         }
     }
+
+	String myHtml = "";
+	StringBuilder sb2 = new StringBuilder();
+	sb2.append(String.format("Using search type: %s", myString));
+	myHtml = String.format("<p>%s</p>", sb2.toString());
 %>
 
 <!DOCTYPE html>
@@ -129,6 +137,7 @@
 	<div class="hero-text">
 		<h1>GIOS Data Portal</h1>
 		<p>Browse and download data sets from research conducted across the globe by GIOS scientists and scholars.</p>
+		<%= myHtml %>
 	</div>
 
 </div>
