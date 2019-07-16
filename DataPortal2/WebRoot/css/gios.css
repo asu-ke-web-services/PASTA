@@ -191,6 +191,10 @@ Big Footer Styles
 .footer div,
 .footer span {
   color: #fff;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 24px;
 }
 
 .footer h1 {
