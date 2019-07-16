@@ -3,7 +3,6 @@
       <div class="row">
           <div class="col-md-4 col-sm-12 space-bot-md">
               <img src="images/sustainability-JAW-GIOS_REV.png" alt="GIOS Logo" />
-              <h2>GIOS Data Portal</h2>
               <p><a class="contact-link" href="contact.jsp" id="contact-us-link-in-footer">Contact Us</a></p>
               <ul class="social-media">
                   <li><a href="https://www.facebook.com/ASUSustainability?rdr=p" title="Facebook" id="facebook-link-in-footer"><i class="fab fa-facebook-square"></i><span class="sr-only">Facebook</span></a></li>
