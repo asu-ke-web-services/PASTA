@@ -182,3 +182,185 @@ Text on Top of Hero Image
     width: 40%;
     color: white;
 }
+
+
+/***************************
+Big Footer Styles
+***************************/
+.footer p,
+.footer div,
+.footer span {
+  color: #fff;
+}
+
+.footer h1 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.footer h2 {
+  color: #fff;
+  font-size: 1.3125rem;
+  font-weight: normal;
+  margin-bottom: 16px;
+}
+
+.footer h3,
+.footer h4,
+.footer h5,
+.footer h6 {
+  color: #fff;
+}
+
+.footer a:not(.btn),
+.footer address,
+.footer .phone-link {
+  border-bottom-color: #ccc;
+  color: #ccc;
+  margin-bottom: 0;
+}
+
+.footer .contact-link {
+  border-bottom-color: #a9a9a9;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  color: #a9a9a9;
+}
+
+.footer .contact-link:hover, .footer .contact-link:focus {
+  color: #fff;
+}
+
+.footer ul,
+.footer ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer ul::before, .footer ul::after,
+.footer ol::before,
+.footer ol::after {
+  content: ' ';
+  display: table;
+}
+
+.footer ul::after,
+.footer ol::after {
+  clear: both;
+}
+
+.footer ul > li,
+.footer ol > li {
+  display: block;
+  position: relative;
+}
+
+.footer ul > li > a,
+.footer ol > li > a {
+  position: relative;
+  text-decoration: none;
+}
+
+.footer ul > li > a:hover, .footer ul > li > a:focus,
+.footer ol > li > a:hover,
+.footer ol > li > a:focus {
+  text-decoration: none;
+}
+
+.footer .social-media {
+  margin-bottom: 30px;
+}
+
+.footer .social-media > li {
+  float: left;
+}
+
+.footer .social-media > li > a {
+  border-bottom: 0;
+  color: #a9a9a9;
+  font-size: 2.375rem;
+  margin-right: 10px;
+}
+
+.footer .social-media > li > a:hover, .footer .social-media > li > a:focus {
+  color: #fff;
+}
+
+.footer .social-media > li:last-child > a {
+  margin-right: 0;
+}
+
+.footer .big-foot {
+  background-color: #1e1e1e;
+  color: #fff;
+  padding-bottom: 14px;
+  padding-top: 40px;
+}
+
+.footer .big-foot img {
+  max-width: 300px;
+}
+
+.footer .big-foot a {
+  border-bottom: 1px dotted;
+  border-bottom-color: #a9a9a9;
+  color: #a9a9a9;
+  text-decoration: none;
+}
+
+.footer .big-foot a.no-border {
+  border-bottom: 0;
+}
+
+.footer .big-foot a:hover, .footer .big-foot a:focus {
+  color: #fff;
+}
+
+.footer .big-foot a.btn,
+.footer .big-foot button {
+  border: inherit;
+  color: inherit;
+}
+
+.footer .big-foot-nav li {
+  margin-bottom: 12px;
+}
+
+.footer .little-foot {
+  background-color: #e5e5e5;
+  height: 59px;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.footer .little-foot-nav > li {
+  float: left;
+  padding-bottom: 12px;
+}
+
+.footer .little-foot-nav > li > a {
+  border-bottom: 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-right: 30px;
+  text-decoration: none;
+}
+
+.footer .little-foot-nav > li:last-child > a {
+  margin-right: 0;
+}
+
+.little-foot__right {
+  padding: 20px 10px;
+}
+
+@media (max-width: 991px) {
+  .footer h2 {
+    cursor: pointer;
+  }
+}

@@ -134,7 +134,8 @@
 </div>
 </div>
 
-<div class="footer-container">
+<div class="footer">
+	<jsp:include page="asu-big-footer.jsp" />
 	<jsp:include page="asu-footer.jsp" />
 </div>
 
