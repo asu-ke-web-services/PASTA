@@ -61,7 +61,8 @@
 			</div>
 		</div>
 
-		<div class="footer-container pt-5">
+		<div class="footer mt-5">
+			<jsp:include page="asu-big-footer.jsp" />
 			<jsp:include page="asu-footer.jsp" />
 		</div>
 		<%@ include file="bootstrap-javascript.jsp" %>
