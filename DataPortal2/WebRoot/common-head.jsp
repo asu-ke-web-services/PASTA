@@ -43,7 +43,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
 <link type="text/css" rel="stylesheet" media="all" href="css/gios.css" />
-
+<script type="text/javascript" src="//www.asu.edu/asuthemes/4.7/js/asu_header.min.js?v0.3"></script>
 <!--[if IE 9]>
 <style type="text/css">
     #asu_universal_nav ul ul{filter:none;box-shadow:0 6px 6px 0 #999}#asu_universal_nav>ul>li.parent:hover>a{filter:none;box-shadow:6px 0 6px -6px #999,-6px 0 6px -6px #999}
@@ -52,10 +52,18 @@
 <script>
     var ASUHeader = ASUHeader || {};
     ASUHeader.browser = false;
+    ASUHeader.site_menu = {
+        "json": '[\
+            { "title": "Home", "path": "home.jsp"},\
+            { "title": "Advanced Search", "path": "advancedSearch.jsp"},\
+            { "title": "About", "path": "about.jsp"},\
+            { "title": "Resources", "path": "resources.jsp"},\
+            { "title": "Contact Us", "path": "contact.jsp"}\
+        ]'
+    };
 </script>
 <!--[if IE 5]><script>ASUHeader.browser = true;</script><![endif]-->
 <!--[if IE 6]><script>ASUHeader.browser = true;</script><![endif]-->
 <!--[if IE 7]><script>ASUHeader.browser = true;</script><![endif]-->
 <!--[if IE 8]><script>ASUHeader.browser = true;</script><![endif]-->
 <!-- END /asuthemes/4.7/heads/default.shtml -->
-<script type="text/javascript" src="//www.asu.edu/asuthemes/4.7/js/asu_header.min.js?v0.3"></script>

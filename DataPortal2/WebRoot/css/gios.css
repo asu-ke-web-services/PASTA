@@ -5,8 +5,16 @@ ASU Header
 *******************/
 
 #asu_hdr {
-    width: 1170px;
     max-width: 1170px;
+}
+
+@media (max-width: 991.98px) {
+  /* On mobile, we want the ASU nav to be 100% wide. I'm accomplishing this by telling its parent container that it's okay to be up to 991.98px wide on all screens that are 991.98px wide or smaller (contradicting Bootstrap's responsive sizes that will down-size 'container' as the screen gets smaller).
+  */
+  #asu-header-container {
+    max-width: 991.98px;
+    padding: 0;
+  }
 }
 
 #asu_mobile_menu {
@@ -31,17 +39,28 @@ ASU Header
     line-height: 28px;
 }
 
-.site-title a {
+.site-title a, a:hover {
     color: #000;
+    text-decoration: none;
 }
 
 #asu_logo {
-    padding-top: 0;
+    padding-top: 12px;
 }
 
 /* for pages with little content */
 .main-content {
     min-height: 450px;
+}
+
+#mobile-nav-header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#mobile-have-header a:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 /*******************
@@ -176,11 +195,15 @@ Other Fixes
 Text on Top of Hero Image
 ************************/
 .hero-text {
-    background-color: rgba(0, 0, 0, .5);
+    /* background-color: rgba(0, 0, 0, .5); */
+    background-color: rgba(0, 0, 0, .75);
     padding: 1em;
     border-radius: 10px;
-    width: 40%;
     color: white;
+}
+
+.hero-text a {
+  color: #fff;
 }
 
 

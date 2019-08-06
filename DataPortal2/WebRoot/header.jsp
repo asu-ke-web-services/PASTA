@@ -77,9 +77,16 @@
 %>
 <header role="banner">
 	<!-- Bootstrap NavBar -->
+	<div class="container-fluid  bg-dark d-lg-none">
+
+			<div id="mobile-nav-header" class="navbar-header">
+				<a class="navbar-brand" href="home.jsp">GIOS Data Portal</a>
+			</div>
+
+	</div>
 	<div class="container-fluid bg-dark">
 		<div class="container">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="gios-nav">
+			<nav class="navbar d-none d-lg-block navbar-expand-lg navbar-dark bg-dark" id="gios-nav">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -103,6 +110,7 @@
 		</div>
 	</div>
 
+	<!--
 	<div class="container-fluid secondary-nav">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light" id="portal-menu">
@@ -119,6 +127,7 @@
 			</nav>
 		</div>
 	</div>
+-->
 	<!-- end Bootstrap NavBar -->
 </header>
 <div class="pt-5"> <!-- generic wrapper with Bootstrap padding class to push all content down from the main menu --->
