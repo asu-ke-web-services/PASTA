@@ -34,7 +34,8 @@
 <!-- Google Chart for NIS Data Package and Site Growth -->
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-<link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+
 
 <!-- START /asuthemes/4.7/heads/default.shtml -->
 <link type="text/css" rel="stylesheet" media="all" href="//www.asu.edu/asuthemes/4.7/css/asu_header.min.css?v0.3" />
