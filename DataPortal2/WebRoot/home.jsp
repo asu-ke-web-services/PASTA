@@ -129,7 +129,7 @@
 	<div class="hero-text col-sm-12 col-md-8 col-lg-6">
 		<h1>GIOS Data Portal</h1>
 		<p>Browse and download data sets from research conducted across the globe by GIOS scientists and scholars.</p>
-		<form class="form-inline my-2 my-lg-0" action="./simpleSearch" method="post" _lpchecked="1">
+		<form class="form-inline my-2 my-lg-0 d-inline d-lg-none" action="./simpleSearch" method="post" _lpchecked="1">
 			<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search The Portal" aria-label="Search">
 			<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
 			<span class="navbar-text pl-3"><a href="advancedSearch.jsp">Advanced Search</a></span>

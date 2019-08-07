@@ -78,11 +78,9 @@
 <header role="banner">
 	<!-- Bootstrap NavBar -->
 	<div class="container-fluid  bg-dark d-lg-none">
-
 			<div id="mobile-nav-header" class="navbar-header">
 				<a class="navbar-brand" href="home.jsp">GIOS Data Portal</a>
 			</div>
-
 	</div>
 	<div class="container-fluid bg-dark">
 		<div class="container">
@@ -108,6 +106,17 @@
 				</div>
 			</nav>
 		</div>
+	</div>
+	<div class="container-fluid bg-light d-none d-lg-block">
+			<div class="container d-flex justify-content-end">
+				<nav class="navbar bg-light">
+						<form class="form-inline my-2 my-lg-0 d-none d-lg-inline" action="./simpleSearch" method="post" _lpchecked="1">
+							<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search The Portal" aria-label="Search">
+							<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+							<span class="navbar-text pl-3"><a href="advancedSearch.jsp">Advanced Search</a></span>
+						</form>
+			</nav>
+			</div>
 	</div>
 
 	<!--
