@@ -28,7 +28,7 @@ ASU Header
 }
 
 #asu_school_name {
-    margin-bottom: 13px;
+  padding: 0 13px 13px 0;
 }
 
 .site-title {
@@ -36,7 +36,6 @@ ASU Header
     font-weight: bold;
     font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
     letter-spacing: -.5px;
-    line-height: 28px;
 }
 
 .site-title a, a:hover {
