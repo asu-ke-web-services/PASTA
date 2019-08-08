@@ -95,13 +95,34 @@
 							<a class="nav-link" href="home.jsp"><span class="fas fa-home"></span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="about.jsp">About</a>
+							<a class="nav-link" href="https://sustainability.asu.edu/people/">People</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="resources.jsp">Resources</a>
+							<a class="nav-link" href="https://sustainability.asu.edu/programs/">Programs</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="contact.jsp">Contact</a>
+							<a class="nav-link" href="https://sustainability.asu.edu/research/">Research</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/education/">Education</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/data/">Data</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/partnerships/">Partnerships</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/news/">News</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/events/">Events</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/about/">About</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/contact/">Contact</a>
 						</li>
 				</div>
 			</nav>

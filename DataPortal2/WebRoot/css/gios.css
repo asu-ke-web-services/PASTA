@@ -84,6 +84,7 @@ Menu
     padding-left: .5em;
     padding-right: .5em;
     font-size: .9375rem;
+    font-weight: 700;
 }
 
 .nav-item:hover {
@@ -383,6 +384,11 @@ Big Footer Styles
 
 .little-foot__right {
   padding: 20px 10px;
+}
+
+
+.footer-menu h2 {
+  margin-top: 24px;
 }
 
 @media (max-width: 991px) {
