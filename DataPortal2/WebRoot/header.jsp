@@ -107,7 +107,7 @@
 							<a class="nav-link" href="https://sustainability.asu.edu/education/">Education</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="https://sustainability.asu.edu/data/">Data</a>
+							<a class="nav-link" href="https://data.sustainability.asu.edu/dataportal/home.jsp">Data</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="https://sustainability.asu.edu/partnerships/">Partnerships</a>
