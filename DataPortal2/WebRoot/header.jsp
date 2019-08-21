@@ -128,36 +128,5 @@
 			</nav>
 		</div>
 	</div>
-	<div class="container-fluid bg-light d-none d-lg-block">
-			<div class="container d-flex justify-content-end">
-				<nav class="navbar bg-light">
-						<form class="form-inline my-2 my-lg-0 d-none d-lg-inline" action="./simpleSearch" method="post" _lpchecked="1">
-							<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search The Portal" aria-label="Search">
-							<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-							<span class="navbar-text pl-3"><a href="advancedSearch.jsp">Advanced Search</a></span>
-						</form>
-			</nav>
-			</div>
-	</div>
-
-	<!--
-	<div class="container-fluid secondary-nav">
-		<div class="container">
-			<nav class="navbar navbar-expand-lg navbar-light" id="portal-menu">
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-					<form class="form-inline my-2 my-lg-0" action="./simpleSearch" method="post" _lpchecked="1">
-						<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search The Portal" aria-label="Search">
-						<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-						<span class="navbar-text pl-3"><a href="advancedSearch.jsp">Advanced Search</a></span>
-					</form>
-				</div>
-			</nav>
-		</div>
-	</div>
--->
-	<!-- end Bootstrap NavBar -->
 </header>
 <div class="pt-5"> <!-- generic wrapper with Bootstrap padding class to push all content down from the main menu --->
