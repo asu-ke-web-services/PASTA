@@ -83,10 +83,9 @@
 <div class="container main-content" style="min-height: 700px;">
 
 	<div class="row p-5">
-		<div class="col" style="font-weight: 300; font-size: 18px;">
+		<div class="col-7" style="font-weight: 300; font-size: 18px;">
 			<h1>About The GIOS Data Portal</h1>
 
-			<img class="float-right ml-3" src="images/portal-graphic-01.svg" alt="placeholder" width="420" height="420">
 			<p>The GIOS Data Portal is the main resource for the discovery and download of datasets created by GIOS scientists and scholars. With the GIOS Data Portal you can:</p>
 				<ul>
 					<li>Quickly search for datasets based on keywords or author names</li>
@@ -97,6 +96,9 @@
 				</ul>
 
 			<p>The GIOS Data Portal is a modified version of <a href="https://portal.edirepository.org/nis/home.jsp" target="_blank">the EDI Data Portal</a> - it is powered by the same technology, and searches the same EDI database, but is filtered to only include datasets that originate from GIOS scientists and scholars.
+		</div>
+		<div class="col">
+			<img class="img-100" src="images/portal-graphic-01.svg" alt="placeholder">
 		</div>
 	</div>
 
