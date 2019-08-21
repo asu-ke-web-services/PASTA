@@ -80,7 +80,7 @@
 
 
 </div>
-<div class="container main-content">
+<div class="container main-content" style="min-height: 700px;">
 
 	<div class="row p-5">
 		<div class="col" style="font-weight: 300; font-size: 18px;">
@@ -96,21 +96,7 @@
 					<li>Generate code to use datasets in Python, R, and other languages</li>
 				</ul>
 
-			<h2 class="h3">Resources</h2>
-			<p>The GIOS Data Portal is a modified version of <a href="https://portal.edirepository.org/nis/home.jsp" target="_blank">the EDI Data Portal</a> - it is powered by the same technology, and searches the same EDI database, but is restricted to datasets that originate from GIOS scientists and scholars. If you're interested in finding out more about EDI, or the LTER network, we've provided the links below to get you started.</p>
-
-			<h3 class="h4">EDI Resources</h3>
-			<ul>
-				<li><a class="searchsubcat" href="http://environmentaldatainitiative.org/">Environmental Data Initiative</a></li>
-				<li><a class="searchsubcat" href="https://dashboard.edirepository.org/dashboard/">EDI Dashboard</a></li>
-			</ul>
-
-			<h3 class="h4">LTER Resources</h3>
-			<ul>
-				<li><a class="searchsubcat" href="http://www.lternet.edu">LTER Network</a></li>
-				<li><a class="searchsubcat" href="http://vocab.lternet.edu/vocab/vocab/index.php">LTER Network Controlled Vocabulary</a></li>
-				<li><a class="searchsubcat" href="http://unit.lternet.edu/unitregistry/">LTER Network Unit Registry</a></li>
-			</ul>
+			<p>The GIOS Data Portal is a modified version of <a href="https://portal.edirepository.org/nis/home.jsp" target="_blank">the EDI Data Portal</a> - it is powered by the same technology, and searches the same EDI database, but is restricted to datasets that originate from GIOS scientists and scholars.
 		</div>
 	</div>
 
