@@ -86,7 +86,7 @@
 		<div class="col" style="font-weight: 300; font-size: 18px;">
 			<h1>About The GIOS Data Portal</h1>
 
-			<img class="rounded float-right ml-3" src="https://via.placeholder.com/360" alt="placeholder">
+			<img class="rounded float-right ml-3" src="https://via.placeholder.com/320" alt="placeholder">
 			<p>The GIOS Data Portal is the main resource for the discovery and download of datasets created by GIOS scientists and scholars. With the GIOS Data Portal you can:</p>
 				<ul>
 					<li>Search for datasets based on keywords or author names</li>
@@ -97,7 +97,7 @@
 				</ul>
 
 			<h2 class="h3">Resources</h2>
-			<p>The GIOS Data Portal is a modified version of <a href="https://portal.edirepository.org/nis/home.jsp" target="_blank">the EDI Data Portal</a> - it is powered by the same technology, and searches the same EDI database, but is restricted to datasets that originate from GIOS scientists and scholoars.</p> If you're interested in finding out more about EDI, or the LTER network, we've provided the links below to get you started.</p>
+			<p>The GIOS Data Portal is a modified version of <a href="https://portal.edirepository.org/nis/home.jsp" target="_blank">the EDI Data Portal</a> - it is powered by the same technology, and searches the same EDI database, but is restricted to datasets that originate from GIOS scientists and scholars. If you're interested in finding out more about EDI, or the LTER network, we've provided the links below to get you started.</p>
 
 			<h3 class="h4">EDI Resources</h3>
 			<ul>
@@ -110,7 +110,6 @@
 				<li><a class="searchsubcat" href="http://www.lternet.edu">LTER Network</a></li>
 				<li><a class="searchsubcat" href="http://vocab.lternet.edu/vocab/vocab/index.php">LTER Network Controlled Vocabulary</a></li>
 				<li><a class="searchsubcat" href="http://unit.lternet.edu/unitregistry/">LTER Network Unit Registry</a></li>
-				<!-- <li><a class="searchsubcat" href="https://lter.dev.gios.asu.edu/lter/html/index.php">LTER Network Information System Reporting Tool</a></li>-->
 			</ul>
 		</div>
 	</div>
