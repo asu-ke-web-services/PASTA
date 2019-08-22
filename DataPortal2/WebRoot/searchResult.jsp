@@ -61,51 +61,92 @@
       });
     </script>
     <div class="container main-content">
-      <div class="row">
-        <div class="col-8">
-          <h1>Search Results</h1>
-          <%=termsListHTML%>
+      <div class="row align-items-center">
+        <div class="col">
+            <h1>Search Results</h1>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-secondary" href="#search-details" data-toggle="collapse"><span class="fas fa-link"></span> Search URL</button>
         </div>
         <div class="col-2">
             <form id="mapsearch" class="form-inline" action="./mapSearchServlet" method="post" name="mapsearch">
               <button type="submit" class="btn btn-secondary"><span class="fas fa-map-marker-alt"></span> View as Map</button>
             </form>
         </div>
-        <div class="col-2">
-            <button class="btn btn-secondary" href="#searchDetails" data-toggle="collapse"><span class="fas fa-link"></span>Search URL</button>
-        </div>
-        <!--
-        <div class="col-2">
-          <%=relevanceHTML%>
-        </div>
-        -->
+        <div class="col">
+          <form class="form-inline" action="./simpleSearch" method="post" _lpchecked="1">
+            <div class="input-group">
+              <input class="form-control" type="search" name="terms" id="navBarTerms" placeholder="Search The Portal" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </div>
+            </div>
+          </form>
+          <!-- <span><a href="advancedSearch.jsp">Advanced Search</a></span> -->
+       </div>
       </div>
-      <div class="collapse" id="searchDetails">
-          <div class="card mb-5 bg-light">
-            <h5 class="card-header">Search URL</h5>
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <p>You can use the URL shown below to run this search again:</p>
-                  <div class="input-group">
-                    <input id="queryURL" type="text" value="<%=queryURL%>" class="form-control" placeholder="query-URL" aria-label="query-URL" aria-describedby="basic-addon1">
-                    <div class="input-group-append">
-                      <a href="#" data-clipboard-target="#queryURL" class="btn btn-secondary">Copy URL</a>
+      <div class="row">
+        <div class="col-8">
+          <%=termsListHTML%>
+        </div>
+        <div class="col">
+          <a href="advancedSearch.jsp">Advanced Search</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+            <div class="collapse" id="search-details">
+                <div class="card mb-5 bg-light">
+                  <h5 class="card-header">Search URL</h5>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <p>You can use the URL shown below to run this search again:</p>
+                        <div class="input-group">
+                          <input id="queryURL" type="text" value="<%=queryURL%>" class="form-control" placeholder="query-URL" aria-label="query-URL" aria-describedby="basic-addon1">
+                          <div class="input-group-append">
+                            <a href="#" data-clipboard-target="#queryURL" class="btn btn-secondary">Copy URL</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
       </div>
+
       <hr />
+      <div class="row">
+          <div class="col">
+              <div class="collapse" id="search-details">
+                  <div class="card mb-5 bg-light">
+                    <h5 class="card-header">Search URL</h5>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col">
+                          <p>You can use the URL shown below to run this search again:</p>
+                          <div class="input-group">
+                            <input id="queryURL" type="text" value="<%=queryURL%>" class="form-control" placeholder="query-URL" aria-label="query-URL" aria-describedby="basic-addon1">
+                            <div class="input-group-append">
+                              <a href="#" data-clipboard-target="#queryURL" class="btn btn-secondary">Copy URL</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
       <div class="row">
         <div class="col">
           <%=searchResult%>
         </div>
       </div>
     </div>
-    <div class="footer-container pt-5">
+    <div class="footer mt-5">
+      <jsp:include page="asu-big-footer.jsp" />
       <jsp:include page="asu-footer.jsp" />
     </div>
     <%@ include file="bootstrap-javascript.jsp" %>
