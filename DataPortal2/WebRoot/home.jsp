@@ -86,7 +86,7 @@
 		<div class="col-7" style="font-weight: 300; font-size: 18px;">
 			<h1>About The GIOS Data Portal</h1>
 
-			<p>The GIOS Data Portal is the main resource for the discovery and download of datasets created by GIOS scientists and scholars. With the GIOS Data Portal you can:</p>
+			<p>The GIOS Data Portal is the main resource for the discovery and download of datasets published by GIOS scientists and scholars. With the GIOS Data Portal you can:</p>
 				<ul>
 					<li>Quickly search for datasets based on keywords or author names</li>
 					<li>Create more granular searches using the <a href="advancedSearch.jsp">advanced search</a> features</li>
