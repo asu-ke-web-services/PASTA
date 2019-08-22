@@ -74,7 +74,7 @@
 
 		       </div>
 		<!-- end of content -->
-							  
+
 						  </div>
 					</div>
 				</div>
@@ -82,15 +82,18 @@
 		</div>
 	</div>
 
+	<div class="footer mt-5">
+		<jsp:include page="asu-big-footer.jsp" />
 		<jsp:include page="footer.jsp" />
-		
+	</div>
+
 </div>
 
 <script type="text/javascript">
 	jQuery("#showAll").click(function() {
 		jQuery(".collapsible").show();
 	});
-    
+
 	jQuery("#hideAll").click(function() {
 		jQuery(".collapsible").hide();
 	});
@@ -98,13 +101,12 @@
 	jQuery(".toggleButton").click(function() {
 		jQuery(this).next(".collapsible").slideToggle("fast");
 	});
-    
+
 	jQuery(".collapsible").hide();
-	
+
 	jQuery("#toggleSummary").next(".collapsible").show();
-</script>  
+</script>
 
 </body>
 
 </html>
-

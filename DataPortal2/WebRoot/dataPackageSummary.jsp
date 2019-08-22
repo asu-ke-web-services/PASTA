@@ -8,7 +8,7 @@
   final String googleMapsKey = (String) ConfigurationListener.getOptions().getProperty("maps.google.key");
   final String pageTitle = "Data Package Summary";
   final String titleText = DataPortalServlet.getTitleText(pageTitle);
- 
+
   String wasDeletedHTML = (String) request.getAttribute("wasDeletedHTML");
   String titleHTML = (String) request.getAttribute("dataPackageTitleHTML");
   String viewFullMetadataHTML = (String) request.getAttribute("viewFullMetadataHTML");
@@ -42,18 +42,18 @@
   boolean showCodeGeneration = !(codeGenerationHTML == null || codeGenerationHTML.isEmpty());
   boolean showSavedData = !(savedDataHTML == null || savedDataHTML.isEmpty());
   String showCoordinates = "true";
-  if ((expandCoordinates != null) && !expandCoordinates) { 
+  if ((expandCoordinates != null) && !expandCoordinates) {
   	showCoordinates = "false";
   }
   String showWasDeleted = "true";
-  if ((wasDeletedHTML == null) || (wasDeletedHTML.equals(""))) { 
+  if ((wasDeletedHTML == null) || (wasDeletedHTML.equals(""))) {
     showWasDeleted = "false";
   }
 
     HttpSession httpSession = request.getSession();
     if ((uid == null) || (uid.equals(""))) {
         uid = "public";
-    } 
+    }
     String tier = null;
     String testHTML = "";
     String watermarkClass = "";
@@ -63,7 +63,7 @@
     DataPackageManagerClient dpmc = new DataPackageManagerClient(uid);
     String pastaHost = dpmc.getPastaHost();
 
-    if (pastaHost.startsWith("pasta-d") || 
+    if (pastaHost.startsWith("pasta-d") ||
         pastaHost.startsWith("localhost")
        ) {
        tier = "development";
@@ -71,15 +71,14 @@
     else if (pastaHost.startsWith("pasta-s")) {
        tier = "staging";
     }
-    
+
     if (tier != null) {
         showTestHTML = "true";
         watermarkClass = "watermarked";
         watermarkId = "watermarked-background-text";
         watermarkText = "Test Data Package";
         String fontColor = "darkorange";
-        testHTML = String.format("<font color='%s'>This test data package was submitted to a %s environment. It is not considered production ready.</font>", 
-                                 fontColor, tier);
+        testHTML = String.format("<font color='%s'>This test data package was submitted to a %s environment. It is not considered production ready.</font>", fontColor, tier);
     }
 
 %>
@@ -88,336 +87,293 @@
 <html lang="en">
 
 <head>
-<title><%= titleText %></title>
-
-<meta charset="UTF-8" />
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-
-<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
-
-<!-- Google Fonts CSS -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,300italic" rel="stylesheet" type="text/css">
-
-<!-- jqWidgets CSS for jqxTree widget -->
-<link rel="stylesheet" href="./js/jqwidgets/styles/jqx.base.css"  type="text/css" />
-<link rel="stylesheet" href="./js/jqwidgets/styles/jqx.bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="./js/jqwidgets/styles/jqx.energyblue.css" type="text/css" />
-
-<!-- Page Layout CSS MUST LOAD BEFORE bootstap.css -->
-<link href="css/style_slate.css" media="all" rel="stylesheet" type="text/css">
-
-<!-- Mobile Device CSS -->
-<link href="bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css">
-<link href="bootstrap/css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css">
-
-<!-- JS 
-<script src="js/jqueryba3a.js?ver=1.7.2" type="text/javascript"></script>
-<script src="bootstrap/js/bootstrap68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.easing.1.368b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.flexslider-min68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/themeple68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.pixel68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/jquery.mobilemenu68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/isotope68b368b3.js?ver=1" type="text/javascript"></script>
-<script src="js/mediaelement-and-player.min68b368b3.js?ver=1" type="text/javascript"></script>-->
-<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
-<script src="js/data-shelf-ajax.js" type="text/javascript"></script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= googleMapsKey %>" type="text/javascript"></script>
-<script src="./js/map_functions.js" type="text/javascript"></script>
-<script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/keydragzoom/src/keydragzoom.js" type="text/javascript"></script>
+	<!-- common <head> tag elements -->
+	<%@ include file="common-head.jsp" %>
+	<script type="text/javascript" src="./js/map_functions_bing.js"></script>
+	<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 
 <c:set var="showSpatial" value="<%= showSpatial %>"/>
 <c:choose>
 	<c:when test="${showSpatial}">
 		<script type="text/javascript">
 			window.onload = function () {
-			    var coordinatesArray = <%= jsonCoordinates %>;
-			    var north = <%= northCoord %>;
-			    var south = <%= southCoord %>;
-			    var east = <%= eastCoord %>;
-			    var west = <%= westCoord %>;
-  				initialize_summary_map(coordinatesArray, north, south, east, west);
+				var coordinatesArray = <%= jsonCoordinates %>;
+				var north = <%= northCoord %>;
+				var south = <%= southCoord %>;
+				var east = <%= eastCoord %>;
+				var west = <%= westCoord %>;
+				initialize_summary_map_bing(coordinatesArray, north, south, east, west);
 			};
 		</script>
 	</c:when>
 </c:choose>
+<style>
+	.no-list-style {
+		list-style-type: none;
+		padding: 0;
+	}
+	/* Styles to support "Show more" and "Show less" in combination with jQuery code */
+	.morecontent span {
+			display: none;
+	}
 
+	.morelink {
+    /* display: block; */
+	}
+</style>
 </head>
 
 <body>
 
+<jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
 
 <div id="<%= watermarkId %>" class="<%= watermarkClass %>"><%= watermarkText %></div>
 
-<div class="row-fluid ">
-	<div>
-		<div class="container">
-			<div class="row-fluid distance_1">
-				<div class="box_shadow box_layout">
-					<div class="row-fluid">
-						<div class="span12">
-
-
-                            <c:set var="showTestHTML" value="<%= showTestHTML %>"/>
-                            <c:choose>
-                                <c:when test="${showTestHTML}">
-                                    <div>
-                                        <h2><%= testHTML %></h2>
-                                    </div>
-                                </c:when>
-                            </c:choose>
-
-                            <c:set var="showWasDeleted" value="<%= showWasDeleted %>"/>
-                            <c:choose>
-                                <c:when test="${showWasDeleted}">
-                                <span class="nis-banner-msg">&nbsp;&nbsp;<%= wasDeletedHTML %>&nbsp;&nbsp;</span>
-                                <span class="row-fluid separator_border"></span>
-                                </c:when>
-                            </c:choose>
-
-                            <div class="recent_title">
-                                <h2>Data Package Summary&nbsp;&nbsp;&nbsp;<small><small><%= viewFullMetadataHTML %></small></small></h2>
-                            </div>      
-                                
-
-                            <span class="row-fluid separator_border"></span>
- 
-						</div>
-						<div class="row-fluid">
-							<div class="span12">
-								<div class="display-table">
-
-									<div class="table-row">										
-										<div class="table-cell text-align-right">
-											<label class="labelBold">Title:</label>
-										</div>
-										<div class="table-cell">
-											<%= titleHTML %>
-										</div>
-									</div>
-											
-									<div class="table-row">										
-										<div class="table-cell text-align-right">
-											<label class="labelBold">Creators:</label>
-										</div>
-										<div class="table-cell">
-											<%= creatorsHTML %>
-										</div>											
-									</div>
-
-							<c:set var="showDate" value="<%= showPubDate %>"/>
-							<c:choose>
-								<c:when test="${showDate}">
-									<div class="table-row">										
-										<div class="table-cell text-align-right">
-											<label class="labelBold">Publication Date:</label>
-										</div>
-										<div class="table-cell">
-											<%= publicationDateHTML %>
-										</div>											
-									</div>
-								</c:when>
-							</c:choose>
-
-                                    <div class="table-row">                                     
-                                        <div class="table-cell text-align-right">
-                                            <label class="labelBold">Citation:</label>
-                                        </div>
-                                        <div class="table-cell">
-                                            <%= citationHTML %>
-                                        </div>                                          
-                                    </div>
-
-							<c:set var="showAbstract" value="<%= showAbstract %>"/>
-							<c:choose>
-								<c:when test="${showAbstract}">
-									<div class="table-row">										
-										<div class="table-cell text-align-right nis-summary-label">
-											<label class="labelBold">Abstract:</label>
-										</div>
-										<div class="table-cell">
-											<ul class="no-list-style">
-												<li>
-													<div class="more"><%= abstractHTML %></div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</c:when>
-							</c:choose>
-
-							<c:choose>
-								<c:when test="${showSpatial}">
-								
-									<div class="table-row">
-																	
-										<div class="table-cell text-align-right nis-summary-label">
-											<label class="labelBold">Spatial Coverage:</label>
-										</div>
-																				
-										<div class="table-cell">
-											<%= googleMapHTML %>
-										</div>			
-																		
-									</div>
-
-									<div class="table-row">	
-																		
-										<div class="table-cell text-align-right">
-											<label class="labelBold"></label>
-										</div>
-										
-										<div class="table-cell">
-											<ul class="no-list-style" style="margin-top:2px">
-												<li>
- 													<%= spatialCoverageHTML %>
-												</li>
-											</ul>
-										</div>
-										
-									</div>
-																		
-									<div class="table-row">									
-										<div class="table-cell text-align-right">
-											<label class="labelBold"></label>
-										</div>
-										<div class="table-cell"></div>								
-									</div>
-																		
-								</c:when>
-							</c:choose>
-
-									<div class="table-row">										
-										<div class="table-cell text-align-right">
-											<label class="labelBold">Package ID:</label>
-										</div>
-										<div class="table-cell">
-											<%= packageIdHTML %>
-  <c:set var="showSavedData" value="<%= showSavedData %>"/>
-  <c:if test="${showSavedData}">
-    <%= savedDataHTML %> 
-  </c:if>
-										</div>											
-									</div>
-
-									<div class="table-row">										
-										<div class="table-cell text-align-right">
-											<label class="labelBold">Resources:</label>
-										</div>
-										<div class="table-cell">
-											<%= resourcesHTML %>
-										</div>											
-									</div>
-
-                            <c:set var="showIntellectualRights" value="<%= showIntellectualRights %>"/>
-                            <c:choose>
-                                <c:when test="${showIntellectualRights}">
-                                    <div class="table-row">                                     
-                                        <div class="table-cell text-align-right nis-summary-label">
-                                            <label class="labelBold">Intellectual Rights:</label>
-                                        </div>
-                                        <div class="table-cell">
-                                            <ul class="no-list-style">
-                                                <li>
-                                                    <div class="more"><%= intellectualRightsHTML %></div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </c:when>
-                            </c:choose>
-
-									<div class="table-row">										
-										<div class="table-cell text-align-right">
-											<label class="labelBold">Digital Object Identifier:</label>
-										</div>
-										<div class="table-cell">
-											<ul class="no-list-style">
-												<li><%= digitalObjectIdentifier %></li>
-											</ul>
-										</div>											
-									</div>
-
-									<div class="table-row">										
-										<div class="table-cell text-align-right">
-											<label class="labelBold">PASTA Identifier:</label>
-										</div>
-										<div class="table-cell">
-											<ul class="no-list-style">
-												<li><%= pastaDataObjectIdentifier %></li>
-											</ul>
-										</div>											
-									</div>
-
-<!-- 
-									<div class="table-row">										
-										<div class="table-cell text-align-right">
-											<label class="labelBold">Citation:</label>
-										</div>
-										<div class="table-cell">
-											<ul class="no-list-style">
-												<li><%= citationLinkHTML %></li>
-											</ul>
-										</div>											
-									</div>
--->
-
-									<div class="table-row">										
-										<div class="table-cell text-align-right">
-											<label class="labelBold">Provenance:</label>
-										</div>
-										<div class="table-cell">
-											<ul class="no-list-style">
-												<li><%= provenanceHTML %></li>
-											</ul>
-										</div>											
-									</div>
-
-							<c:set var="showCodeGeneration" value="<%= showCodeGeneration %>"/>
-							<c:if test="${showCodeGeneration}">
-									<div class="table-row">										
-										<div class="table-cell text-align-right">
-											<label class="labelBold">Code Generation:</label>
-										</div>
-										<div class="table-cell">
-											<ul class="no-list-style">
-												<li><%= codeGenerationHTML %></li>
-											</ul>
-										</div>											
-									</div>
-							</c:if>
-									
-								</div> <!-- end display table -->
-							</div>
-						</div>
-					</div>
-				</div>
+<div class="container main-content">
+	<div class="row">
+		<div class="col">
+			<c:set var="showTestHTML" value="<%= showTestHTML %>"/>
+			<c:choose>
+				<c:when test="${showTestHTML}">
+					<p class="alert alert-warning my-4"><%= testHTML %></p>
+				</c:when>
+			</c:choose>
+			<c:set var="showWasDeleted" value="<%= showWasDeleted %>"/>
+			<c:choose>
+				<c:when test="${showWasDeleted}">
+					<span class="nis-banner-msg">&nbsp;&nbsp;<%= wasDeletedHTML %>&nbsp;&nbsp;</span>
+					<span class="row-fluid separator_border"></span>
+				</c:when>
+			</c:choose>
+			<!--
+			<div class="recent_title">
+				<h2>Data Package Summary&nbsp;&nbsp;&nbsp;<small><small><%= viewFullMetadataHTML %></small></small></h2>
 			</div>
+			-->
+		</div>
+	</div>
+	<!--
+	<dl class="row">
+		<dt class="col-sm-2 text-right">
+			Title:
+		</dt>
+		<dd class="col">
+			<%= titleHTML %>
+		</dd>
+	</dl>
+	-->
+	<div class="row">
+		<div class="col">
+			<p class="text-muted">Data Package Summary</p>
 		</div>
 	</div>
 
-	<jsp:include page="footer.jsp" />
-		
+	<div class="row">
+		<div class="col">
+			<h3><%=titleHTML%></h3>
+		</div>
+	</div>
+	<!-- Potential Menu Idea
+	<hr />
+	<div class="row">
+		<div class="col">
+			<ul class="nav nav-pills nav-fill">
+				<li class="nav-item">
+					<div class="dropdown">
+						<a class="dropdown-toggle" href="#" id="metadataMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Metadata</a>
+						<div class="dropdown-menu" aria-labelledby="metadataMenuLink">
+							<a class="dropdown-item" href="#">Full Metadata</a>
+							<a class="dropdown-item" href="#">Provenance Metadata</a>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<div class="dropdown">
+						<a class="dropdown-toggle" href="#" id="codeMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Revisions
+						</a>
+						<div class="dropdown-menu" aria-labelledby="codeMenuLink">
+							<a class="dropdown-item" href="#">Previous Revision</a>
+							<a class="dropdown-item" href="#">All Revisions</a>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<div class="dropdown">
+						<a class="dropdown-toggle" href="#" id="codeMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Generate Code
+						</a>
+						<div class="dropdown-menu" aria-labelledby="codeMenuLink">
+							<a class="dropdown-item" href="#">MatLab</a>
+							<a class="dropdown-item" href="#">R</a>
+							<a class="dropdown-item" href="#">SAS</a>
+							<a class="dropdown-item" href="#">SPSS</a>
+							<a class="dropdown-item" href="#">tidyr</a>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="" href="#">Data Package Report</a>
+				</li>
+				<li class="nav-item">
+					<a class="" href="#"><span class="fas fa-download">&nbsp;Download</span></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<hr />
+	end menu idea-->
+
+	<dl class="row">
+		<dt class="col-sm-2 text-right">Creators:</dt>
+		<dd class="col">
+			<%= creatorsHTML %>
+		</dd>
+	</dl>
+
+	<c:set var="showDate" value="<%= showPubDate %>"/>
+	<c:choose>
+		<c:when test="${showDate}">
+			<dl class="row">
+				<dt class="col-sm-2 text-right">Publication Date:</dt>
+				<dd class="col">
+					<%= publicationDateHTML %>
+				</dd>
+			</dl>
+		</c:when>
+	</c:choose>
+
+	<dl class="row">
+		<dt class="col-sm-2 text-right">Citation:</dt>
+		<dd class="col">
+			<%= citationHTML %>
+		</dd>
+	</dl>
+
+	<c:set var="showAbstract" value="<%= showAbstract %>"/>
+	<c:choose>
+		<c:when test="${showAbstract}">
+			<dl class="row">
+				<dt class="col-sm-2 text-right">Abstract:</dt>
+				<dd class="col">
+					<div class="more"><%= abstractHTML %></div>
+				</dd>
+			</dl>
+		</c:when>
+	</c:choose>
+
+		<c:choose>
+			<c:when test="${showSpatial}">
+				<dl class="row">
+					<dt class="col-sm-2 text-right">Spatial Coverage:</dt>
+					<dd class="col-8">
+						<div id="map-canvas-summary" style="width: 100%; height: 400px;"></div>
+						<%-- googleMapHTML --%>
+						<div class="card">
+							<div class="card-header">
+								<a href="#spatialCoverage" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="spatialCoverage">Show/Hide Coordinates</a>
+							</div>
+							<div class="collapse" id="spatialCoverage">
+								<div class="card-body">
+									<%= spatialCoverageHTML %>
+								</div>
+							</div>
+						</div>
+					</dd>
+				</dl>
+			</c:when>
+		</c:choose>
+		<dl class="row">
+			<dt class="col-sm-2 text-right">Package ID:</dt>
+			<dd class="col">
+				<%= packageIdHTML %>
+				<c:set var="showSavedData" value="<%= showSavedData %>"/>
+				<c:if test="${showSavedData}">
+					<%= savedDataHTML %>
+				</c:if>
+			</dd>
+		</dl>
+		<dl class="row">
+			<dt class="col-sm-2 text-right">Resources:</dt>
+			<dd class="row">
+				<div class="resources" style="padding-left: 40px;">
+					<%= resourcesHTML %>
+				</div>
+			</dd>
+		</dl>
+
+		<c:set var="showIntellectualRights" value="<%= showIntellectualRights %>"/>
+		<c:choose>
+			<c:when test="${showIntellectualRights}">
+				<dl class="row">
+					<dt class="col-sm-2 text-right">Intellectual Rights:</dt>
+					<dd class="col">
+						<%= intellectualRightsHTML %>
+					</dd>
+				</dl>
+			</c:when>
+		</c:choose>
+
+		<dl class="row">
+			<dt class="col-sm-2 text-right">Digital Object Identifier:</dt>
+			<dd class="col">
+				<%= digitalObjectIdentifier %>
+			</dd>
+		</dl>
+
+		<dl class="row">
+			<dt class="col-sm-2 text-right">PASTA Identifier:</dt>
+			<dd class="col">
+				<%= pastaDataObjectIdentifier %>
+			</dd>
+		</dl>
+
+<!--
+<div class="table-row">
+<div class="table-cell text-align-right">
+<label class="labelBold">Citation:</label>
+</div>
+<div class="table-cell">
+<ul class="no-list-style">
+<li><%= citationLinkHTML %></li>
+</ul>
+</div>
+</div>
+-->
+
+		<dl class="row">
+			<dt class="col-sm-2 text-right">Provenance:</dt>
+			<dd class="col">
+				<%= provenanceHTML %>
+			</dd>
+		</dl>
+
+		<c:set var="showCodeGeneration" value="<%= showCodeGeneration %>"/>
+		<c:if test="${showCodeGeneration}">
+			<dl class="row">
+				<dt class="col-sm-2 text-right">Code Generation:</dt>
+				<dd class="col">
+					<%= codeGenerationHTML %>
+				</dd>
+			</dl>
+		</c:if>
+
+		</div>
+	</div>
+</div>
+
+<div class="footer pt-5">
+	<jsp:include page="asu-big-footer.jsp" />
+	<jsp:include page="asu-footer.jsp" />
+</div>
+
+
   </div>
-  
-<!-- jqWidgets JavaScript for jqxTree widget -->
-<script type="text/javascript" src="./js/jqwidgets-ver3.2.1/jqxcore.js"></script>
-<script type="text/javascript" src="./js/jqwidgets-ver3.2.1/jqxexpander.js"></script>
-<script>
-	// Create jqxExpander
-	$("#jqxExpander").jqxExpander(
-    					{ width: '454px', 
-    					  theme: 'bootstrap',
-    					  expanded: <%= showCoordinates %>
-            	        }
-    );
-</script>
+<%@ include file="bootstrap-javascript.jsp" %>
+<script type="text/javascript" src="./js/more_less.js"></script>
+
 <!-- End jqWidgets JavaScript for jqxTree widget -->
-
-<script src="./js/more_less.js" type="text/javascript"></script>
-
 </body>
 
 </html>

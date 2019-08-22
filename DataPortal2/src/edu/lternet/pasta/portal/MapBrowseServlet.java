@@ -68,7 +68,7 @@ import edu.lternet.pasta.portal.user.SavedData;
 
 /**
  * Class to compose HTML for display in the Data Package Summary page.
- * 
+ *
  * @author dcosta
  *
  */
@@ -81,12 +81,12 @@ public class MapBrowseServlet extends DataPortalServlet {
 	private static final Logger logger = Logger
 	    .getLogger(edu.lternet.pasta.portal.MapBrowseServlet.class);
 	private static final long serialVersionUID = 1L;
-	
+
 	private static String pastaUriHead;
 	private static final String forward = "./dataPackageSummary.jsp";
 	private static final String PUBLISHER = "Environmental Data Initiative. ";
 	private static final String DoiOrg = "https://doi.org/";
-	private static final String wasDeletedMsg = 
+	private static final String wasDeletedMsg =
 	"This data package has been deleted by the metadata provider. It remains accessible for archival purposes only.";
 
 
@@ -96,36 +96,36 @@ public class MapBrowseServlet extends DataPortalServlet {
 	public MapBrowseServlet() {
 		super();
 	}
-	
-	
+
+
 	/*
-	 * Class methods 
+	 * Class methods
 	 */
-	
+
 	/**
 	 * Composes a relative URL to the mapbrowse servlet for the specified
 	 * packageId.
-	 * 
+	 *
 	 * @param packageId  the packageId value
 	 * @return the URL for the specified packageId
 	 */
 	public static String getRelativeURL(String packageId) {
 		String mapBrowseURL = null;
-		
+
 		if (packageId != null) {
 			EmlPackageIdFormat emlPackageIdFormat = new EmlPackageIdFormat();
 			EmlPackageId emlPackageId = emlPackageIdFormat.parse(packageId);
 			String scope = emlPackageId.getScope();
 			Integer identifier = emlPackageId.getIdentifier();
 			Integer revision = emlPackageId.getRevision();
-			mapBrowseURL = String.format("./mapbrowse?scope=%s&identifier=%d&revision=%d", 
+			mapBrowseURL = String.format("./mapbrowse?scope=%s&identifier=%d&revision=%d",
 										scope, identifier, revision);
 		}
 
 		return mapBrowseURL;
 	}
 
-	
+
 	/**
 	 * Destruction of the servlet. <br>
 	 */
@@ -136,9 +136,9 @@ public class MapBrowseServlet extends DataPortalServlet {
 
 	/**
 	 * The doGet method of the servlet. <br>
-	 * 
+	 *
 	 * This method is called when a form has its tag value method equals to get.
-	 * 
+	 *
 	 * @param request
 	 *          the request send by the client to the server
 	 * @param response
@@ -157,9 +157,9 @@ public class MapBrowseServlet extends DataPortalServlet {
 
 	/**
 	 * The doPost method of the servlet. <br>
-	 * 
+	 *
 	 * This method is called when a form has its tag value method equals to post.
-	 * 
+	 *
 	 * @param request
 	 *          the request send by the client to the server
 	 * @param response
@@ -286,7 +286,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 				try {
 
 					dpmClient = new DataPackageManagerClient(uid);
-					
+
 					String deletionList = dpmClient.listDeletedDataPackages();
 					wasDeleted = isDeletedDataPackage(deletionList, scope, identifier);
 					if (wasDeleted) {
@@ -309,7 +309,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 					emlString = dpmClient.readMetadata(scope, id, revision);
 					emlObject = new EmlObject(emlString);
 					titles = emlObject.getTitles();
-					
+
 					if (showSaved) {
 						SavedData savedData = new SavedData(uid);
 						Integer identifierInt = new Integer(identifier);
@@ -320,13 +320,13 @@ public class MapBrowseServlet extends DataPortalServlet {
 						String operation = isSaved ? "unsave" : "save";
 						String display = isSaved ? "Remove from your data shelf" : "Add to your data shelf";
 						String imgName = isSaved ? "minus_blue_small.png" : "plus_blue_small.png";
-						
+
 						savedDataHTMLBuilder.append("<form style=\"display:inline-block\" id=\"savedData\" class=\"form-no-margin\" name=\"savedDataForm\" method=\"post\" action=\"./savedDataServlet\" >\n");
 						savedDataHTMLBuilder.append("  <input type=\"hidden\" name=\"operation\" value=\""+ operation + "\" >\n");
 						savedDataHTMLBuilder.append("  <input type=\"hidden\" name=\"packageId\" value=\""+ packageId + "\" >\n");
 						savedDataHTMLBuilder.append("  <input type=\"hidden\" name=\"forward\" value=\"\" >\n");
-						savedDataHTMLBuilder.append("  <sup><input type=\"image\" name=\"submit\" src=\"images/" + imgName +  "\" alt=\"" + display + "\" title=\"" + display + "\"></sup>");	
-						savedDataHTMLBuilder.append("</form>\n");		
+						savedDataHTMLBuilder.append("  <sup><input type=\"image\" name=\"submit\" src=\"images/" + imgName +  "\" alt=\"" + display + "\" title=\"" + display + "\"></sup>");
+						savedDataHTMLBuilder.append("</form>\n");
 						savedDataHTML = savedDataHTMLBuilder.toString();
 					}
 
@@ -392,14 +392,14 @@ public class MapBrowseServlet extends DataPortalServlet {
 						creatorsHTMLBuilder.append("</ul>\n");
 						creatorsHTML = creatorsHTMLBuilder.toString();
 					}
-					
+
 					String abstractText = emlObject.getAbstractText();
 
 					if (abstractText != null) {
 						abstractHTML = toSingleLine(abstractText);
 					}
 
-					
+
 					String intellectualRightsText = emlObject.getIntellectualRightsText();
 
 					if (intellectualRightsText != null) {
@@ -419,10 +419,10 @@ public class MapBrowseServlet extends DataPortalServlet {
 					}
 
 					map = dpmClient.readDataPackage(scope, id, revision);
-					
+
 					String jsonCoordinates = emlObject.jsonSerializeCoordinates();
 					String stringCoordinates = emlObject.stringSerializeCoordinates();
-					
+
 					request.setAttribute("jsonCoordinates", jsonCoordinates);
 					if (stringCoordinates != null && !stringCoordinates.equals("")) {
 
@@ -437,7 +437,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 
 						// Only use the expander widget if there's more than one set of coordinates
 						boolean useExpander = (coordinatesArray.length > 1) ? true : false;
-						
+
 						if (useExpander) {
 							spatialCoverageHTMLBuilder.append("<div id='jqxWidget'>\n");
 							spatialCoverageHTMLBuilder.append("    <div id='jqxExpander'>\n");
@@ -445,7 +445,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 							spatialCoverageHTMLBuilder.append("        <div>\n");
 							spatialCoverageHTMLBuilder.append("            <ul class=\"no-list-style\">\n");
 							boolean firstCoordinates = true;
-							
+
 							for (String coordinates : coordinatesArray) {
 								String[] nsew = coordinates.split(",");
 								Double northCoord = new Double(nsew[0]);
@@ -462,16 +462,16 @@ public class MapBrowseServlet extends DataPortalServlet {
 								String spatial = String.format("N: %s,  S: %s,  E: %s,  W: %s",
 								             northCoord, southCoord, eastCoord, westCoord);
 								spatialCoverageHTMLBuilder.append(
-										String.format("  <li>%s</li>\n", spatial));	
+										String.format("  <li>%s</li>\n", spatial));
 							}
-							
+
 							spatialCoverageHTMLBuilder.append("            </ul>\n");
 							spatialCoverageHTMLBuilder.append("        </div>\n");
 							spatialCoverageHTMLBuilder.append("    </div>\n");
 							spatialCoverageHTMLBuilder.append("</div>\n");
 						}
 						else {
-							String[] nsew = coordinatesArray[0].split(",");						
+							String[] nsew = coordinatesArray[0].split(",");
 							Double northCoord = new Double(nsew[0]);
 							Double southCoord = new Double(nsew[1]);
 							Double eastCoord = new Double(nsew[2]);
@@ -487,11 +487,11 @@ public class MapBrowseServlet extends DataPortalServlet {
 							spatialCoverageHTMLBuilder.append(String.format("%s\n", spatial));
 							spatialCoverageHTMLBuilder.append("</div>\n");
 						}
-						
+
 						spatialCoverageHTML = spatialCoverageHTMLBuilder.toString();
 
 						googleMapHTMLBuilder.append("<ul class=\"no-list-style\">\n");
-						googleMapHTMLBuilder.append("  <li><div id='map-canvas-summary'></div></li>");						
+						googleMapHTMLBuilder.append("  <li><div id='map-canvas-summary'></div></li>");
 						googleMapHTMLBuilder.append("</ul>\n");
 						googleMapHTML = googleMapHTMLBuilder.toString();
 					}
@@ -517,13 +517,13 @@ public class MapBrowseServlet extends DataPortalServlet {
 				String entityNames = dpmClient.readDataEntityNames(scope, id, revision);
 				String entitySizes = dpmClient.readDataEntitySizes(scope, id, revision);
 				ScaledNumberFormat scaledNumberFormat = new ScaledNumberFormat();
-				
+
 				while (tokens.hasNext()) {
 					resource = tokens.nextToken();
 
 					if (resource.contains(metadataUri)) {
 						metadata = "<li><a class=\"searchsubcat\" href=\"./metadataviewer?packageid="
-								+ packageId + "\">View Full Metadata</a></li>\n";	
+								+ packageId + "\">View Full Metadata</a></li>\n";
 						viewFullMetadataHTML = String.format(
 	                               "<a class=\"searchsubcat\" href=\"./metadataviewer?packageid=%s\">View Full Metadata</a>",
 	                               packageId);
@@ -545,7 +545,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 
 								entityName = findEntityName(entityNames, entityId);
 								entitySize = findEntitySize(entitySizes, entityId);
-								
+
 								if (entitySize != null) {
 									try {
 										long l = Long.parseLong(entitySize);
@@ -565,7 +565,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 									logger.error(e.getMessage());
 									e.printStackTrace();
 								}
-								
+
 								/*
 								 * Entity name will only be returned for authorized data
 								 * entities, so if it's non-null then we know the user is authorized.
@@ -582,11 +582,11 @@ public class MapBrowseServlet extends DataPortalServlet {
 									String fileInfo = (objectName == null) ? entityName : objectName;
 									String href = String.format("./dataviewer?packageid=%s&entityid=%s",
 											                    packageId, entityId);
-									String downloadLink = 
+									String downloadLink =
 											String.format("<a class='searchsubcat' href='%s' />%s</a>",
 			                                              href, fileInfo);
 									data += String.format("<li><em>Name</em>: %s<br/><em>File</em>: %s %s</li>\n",
-                                                          entityName, downloadLink, entitySizeStr); 
+                                                          entityName, downloadLink, entitySizeStr);
 								}
 								else {
 									entityName = "Data object";
@@ -598,11 +598,11 @@ public class MapBrowseServlet extends DataPortalServlet {
 										tooltip = "You may not have permission to access this data object.";
 									}
 									data += String.format(
-											  "<li>%s [<span name='%s' class='tooltip'><em>more info</em></span>]</li>\n", 
+											  "<li>%s [<span name='%s' class='tooltip'><em>more info</em></span>]</li>\n",
 											  entityName, tooltip);
 								}
-								
-								
+
+
 							}
 							else {
 
@@ -618,7 +618,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 								pastaDataObjectIdentifier = dpmClient
 										.getPastaPackageUri(scope, id, revision);
 
-								packageIdListItem = 
+								packageIdListItem =
 										"<li>" + packageId  + "&nbsp;&nbsp;" + savedDataHTML + "</li>\n";
 
 								if (predecessor != null) {
@@ -677,9 +677,9 @@ public class MapBrowseServlet extends DataPortalServlet {
 						hasOffline = true;
 						break;
 					}
-				}					
+				}
 				if (hasOffline) {
-					String offlineMsg = 
+					String offlineMsg =
 							"Offline data: the metadata describes one or more data entities that have not been made available to this repository.";
 					data += String.format("<li>%s</li>\n", offlineMsg);
 				}
@@ -695,10 +695,10 @@ public class MapBrowseServlet extends DataPortalServlet {
 				resourcesHTMLBuilder.append("<li>&nbsp;</li>\n");
 
 				resourcesHTMLBuilder.append("<li>\n");
-				resourcesHTMLBuilder.append("<div>\n");				
+				resourcesHTMLBuilder.append("<div>\n");
 				resourcesHTMLBuilder.append("<form id=\"archive\" name=\"archiveform\" method=\"post\" action=\"./archiveDownload\"	target=\"_top\">\n");
 				resourcesHTMLBuilder.append("  <input type=\"hidden\" name=\"packageid\" value=\"" + packageId + "\" >\n");
-				resourcesHTMLBuilder.append("  <input class=\"btn btn-info btn-default\" type=\"submit\" name=\"archive\" value=\"Download Zip Archive\" >\n");
+				resourcesHTMLBuilder.append("  <input class=\"btn btn-secondary\" type=\"submit\" name=\"archive\" value=\"Download Zip Archive\" >\n");
 				resourcesHTMLBuilder.append("</form>\n");
 				resourcesHTMLBuilder.append("</div>\n");
 				resourcesHTMLBuilder.append("</li>\n");
@@ -716,7 +716,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 				resourcesHTMLBuilder.append("</ul>\n");
 				}
 				*/
-				
+
 				resourcesHTML = resourcesHTMLBuilder.toString();
 
 
@@ -737,7 +737,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 				citationLinkHTML = citationHTMLBuilder.toString();
 
 				String dataSourcesXML = dpmClient.listDataSources(scope, id, revision);
-				
+
 				if ((dataSourcesXML != null) && (dataSourcesXML.length() > 0)) {
 					ArrayList<DataPackage.DataSource> dataSources = xmlToDataSources(dataSourcesXML);
 					if ((dataSources != null) && (dataSources.size() > 0)) {
@@ -750,9 +750,9 @@ public class MapBrowseServlet extends DataPortalServlet {
 						provenanceHTMLBuilder.append("<br/>");
 					}
 				}
-				
+
 				String dataDescendantsXML = dpmClient.listDataDescendants(scope, id, revision);
-				
+
 				if ((dataDescendantsXML != null) && (dataDescendantsXML.length() > 0)) {
 					ArrayList<DataPackage.DataDescendant> dataDescendants = xmlToDataDescendants(dataDescendantsXML);
 					if ((dataDescendants != null) && (dataDescendants.size() > 0)) {
@@ -765,17 +765,17 @@ public class MapBrowseServlet extends DataPortalServlet {
 						provenanceHTMLBuilder.append("<br/>");
 					}
 				}
-				
+
 				/*
 				 * Provenance metadata generator
 				 */
 				provenanceHTMLBuilder.append(
 						String.format(
 				"Generate <a class=\"searchsubcat\" href=\"./provenanceGenerator?packageid=%s\">" +
-				"provenance metadata</a> for use within your derived data package", 
+				"provenance metadata</a> for use within your derived data package",
 				packageId));
-					
-				provenanceHTML = provenanceHTMLBuilder.toString();				
+
+				provenanceHTML = provenanceHTMLBuilder.toString();
 
 				/*
 				 * Add code generation section only if this data package has at
@@ -811,7 +811,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 		catch (Exception e) {
 			handleDataPortalError(logger, e);
 		}
-		
+
 		request.setAttribute("wasDeletedHTML", wasDeletedHTML);
 		request.setAttribute("viewFullMetadataHTML", viewFullMetadataHTML);
 		request.setAttribute("dataPackageTitleHTML", titleHTML);
@@ -833,27 +833,27 @@ public class MapBrowseServlet extends DataPortalServlet {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(forward);
 		requestDispatcher.forward(request, response);
 	}
-	
-	
+
+
 	private ArrayList<DataPackage.DataSource> xmlToDataSources(String xml) {
 		ArrayList<DataPackage.DataSource> dataSources = new ArrayList<DataPackage.DataSource>();
-		
+
   		if (xml != null) {
   			InputStream inputStream = null;
   			try {
   				inputStream = IOUtils.toInputStream(xml, "UTF-8");
-  				DocumentBuilder documentBuilder = 
+  				DocumentBuilder documentBuilder =
   	              DocumentBuilderFactory.newInstance().newDocumentBuilder();
   				CachedXPathAPI xpathapi = new CachedXPathAPI();
 
   				Document document = null;
   				document = documentBuilder.parse(inputStream);
-  	      
-  				if (document != null) { 	        
+
+  				if (document != null) {
   					NodeList dataSourceNodes = xpathapi.selectNodeList(document, "//dataSource");
-  					
+
   					for (int i = 0; i < dataSourceNodes.getLength(); i++) {
-  						String packageId = null; 
+  						String packageId = null;
   						String title = null;
   						String url = null;
   						Node dataSourceNode = dataSourceNodes.item(i);
@@ -881,11 +881,11 @@ public class MapBrowseServlet extends DataPortalServlet {
 				}
 			}
   		}
-		
+
 		return dataSources;
 	}
-	
-	
+
+
 	/*
 	 * Convert a PASTA metadata URL to a Data Portal URL. This is done as a convenience to
 	 * the user, since it is easier to view a data package in the Data Portal as opposed
@@ -893,7 +893,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 	 */
 	private String convertToDataPortalURL(String url, String packageId) {
 		String dataPortalURL = url;
-		
+
 		if (packageId != null ) {
 			EmlPackageIdFormat epif = new EmlPackageIdFormat();
 			try {
@@ -912,30 +912,30 @@ public class MapBrowseServlet extends DataPortalServlet {
 				// No action needed; not a valid packageId so use the original url
 			}
 		}
-		
+
 		return dataPortalURL;
 	}
-	
-	
+
+
 	private ArrayList<DataPackage.DataDescendant> xmlToDataDescendants(String xml) {
 		ArrayList<DataPackage.DataDescendant> dataDescendants = new ArrayList<DataPackage.DataDescendant>();
-		
+
   		if (xml != null) {
   			InputStream inputStream = null;
   			try {
   				inputStream = IOUtils.toInputStream(xml, "UTF-8");
-  				DocumentBuilder documentBuilder = 
+  				DocumentBuilder documentBuilder =
   	              DocumentBuilderFactory.newInstance().newDocumentBuilder();
   				CachedXPathAPI xpathapi = new CachedXPathAPI();
 
   				Document document = null;
   				document = documentBuilder.parse(inputStream);
-  	      
-  				if (document != null) { 	        
+
+  				if (document != null) {
   					NodeList dataDescendantNodes = xpathapi.selectNodeList(document, "//dataDescendant");
-  					
+
   					for (int i = 0; i < dataDescendantNodes.getLength(); i++) {
-  						String packageId = null; 
+  						String packageId = null;
   						String title = null;
   						String url = null;
   						Node dataDescendantNode = dataDescendantNodes.item(i);
@@ -963,11 +963,11 @@ public class MapBrowseServlet extends DataPortalServlet {
 				}
 			}
   		}
-		
+
 		return dataDescendants;
 	}
-	
-	
+
+
 	private String findEntityName(String entityNames, String entityId) {
 		String entityName = null;
 		if (entityNames != null && entityId != null) {
@@ -978,11 +978,11 @@ public class MapBrowseServlet extends DataPortalServlet {
 				}
 			}
 		}
-		
+
 		return entityName;
 	}
-	
-	
+
+
 	private String findEntitySize(String entitySizes, String entityId) {
 		String entitySize = null;
 		if (entitySizes != null && entityId != null) {
@@ -993,11 +993,11 @@ public class MapBrowseServlet extends DataPortalServlet {
 				}
 			}
 		}
-		
+
 		return entitySize;
 	}
-	
-	
+
+
 	/*
 	 * Compose a relative URL to the mapbrowse servlet given a metadata resource identifier
 	 * as input.
@@ -1006,7 +1006,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 	 */
 	private String mapbrowseURL(String uri) {
 		String url = null;
-		
+
 		if (uri != null) {
 			final String patternString = "^.*/package/metadata/eml/(\\S+)/(\\d+)/(\\d+)$";
 			Pattern pattern = Pattern.compile(patternString);
@@ -1020,11 +1020,11 @@ public class MapBrowseServlet extends DataPortalServlet {
 				url = String.format("<a class=\"searchsubcat\" href=\"%s\">%s</a>", href, displayURL);
 			}
 		}
-		
+
 		return url;
 	}
-	
-	
+
+
 	/*
 	 * Extract the package id value from a metadata resource identifier
 	 * as input.
@@ -1033,7 +1033,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 	 */
 	private String packageIdFromPastaId(String uri) {
 		String packageId = null;
-		
+
 		if (uri != null) {
 			final String patternString = "^.*/package/metadata/eml/(\\S+)/(\\d+)/(\\d+)$";
 			Pattern pattern = Pattern.compile(patternString);
@@ -1045,26 +1045,26 @@ public class MapBrowseServlet extends DataPortalServlet {
 				packageId = String.format("%s.%s.%s", scope, identifier, revision);
 			}
 		}
-		
+
 		return packageId;
 	}
-	
-	
+
+
 	/*
 	 * Converts newline-separated text into a single line, so that we can display
-	 * abstract text in a <textarea> HTML element without using an XLST stylesheet. 
-	 * Without this conversion, the <textarea> displays the abstract in literal 
+	 * abstract text in a <textarea> HTML element without using an XLST stylesheet.
+	 * Without this conversion, the <textarea> displays the abstract in literal
 	 * layout format.
 	 */
 	private String toSingleLine(String text) {
 		String singleLine = null;
 		StringBuilder sb = new StringBuilder();
-		
+
 		String[] lines = text.split("\n");
 		for (String line : lines) {
 			sb.append(String.format("%s ", line.trim()));
 		}
-		
+
 		singleLine = sb.toString().trim();
 		return singleLine;
 	}
@@ -1072,7 +1072,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 
 	/**
 	 * Initialization of the servlet. <br>
-	 * 
+	 *
 	 * @throws ServletException
 	 *           if an error occurs
 	 */
@@ -1086,20 +1086,20 @@ public class MapBrowseServlet extends DataPortalServlet {
 		}
 	}
 
-	
+
 	/**
 	 * Formats the output for the data package citation.
-	 * 
+	 *
 	 * @param scope
 	 *          The data package scope (namespace) value
 	 * @param id
 	 *          The data package identifier (accession number) value
 	 * @param revision
 	 *          The data package revision value
-	 * 
+	 *
 	 * @return The formatted citation as HTML
 	 */
-	private String citationFormatter(EmlObject emlObject, String uid, 
+	private String citationFormatter(EmlObject emlObject, String uid,
 			                         String scope, Integer identifier, String revision) {
 		String html = null;
 		ArrayList<Title> titles = null;
@@ -1111,7 +1111,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 		String citationId = "";
 		String caveat = "";
 		String citationUrl = "";
-		
+
 		if (emlObject == null) {
 			return html;
 		}
@@ -1139,11 +1139,11 @@ public class MapBrowseServlet extends DataPortalServlet {
 
 				// Citations should include only person names, if possible
 				if (personCount != 0) {
-					for (ResponsibleParty creator : creators) {	
+					for (ResponsibleParty creator : creators) {
 						boolean useFullGivenName = false;;
 						boolean lastNameFirst = (cnt == 0);
 						String individualName = creator.getIndividualName(useFullGivenName, lastNameFirst);
-						
+
 						if (individualName != null) {
 							cnt++;
 							if (cnt == personCount) {
@@ -1153,13 +1153,13 @@ public class MapBrowseServlet extends DataPortalServlet {
 								else {
 									creatorText += individualName + ". ";
 								}
-							} 
+							}
 							else {
 								creatorText += individualName + ", ";
 							}
 						}
 					}
-				} 
+				}
 				else if (orgCount != 0) { // otherwise, use organization names
 					for (ResponsibleParty creator : creators) {
 						String organizationName = creator.getOrganizationName();
@@ -1179,7 +1179,7 @@ public class MapBrowseServlet extends DataPortalServlet {
 			try {
 				citationId = dpmClient.readDataPackageDoi(scope, identifier, revision);
 				citationId = citationId.replace("doi:", DoiOrg);
-			} 
+			}
 			catch (Exception e) {
 				logger.error(e.getMessage());
 				e.printStackTrace();
@@ -1187,8 +1187,8 @@ public class MapBrowseServlet extends DataPortalServlet {
 				caveat = "Note: DOIs are generated hourly for all data packages"
 				    + " that are \"publicly\" accessible.";
 			}
-			
-			citationUrl = "<a href=\"" + citationId + "\">" + citationId + "</a>."; 
+
+			citationUrl = "<a href=\"" + citationId + "\">" + citationId + "</a>.";
 
 			String pubYear = emlObject.getPubYear();
 
@@ -1205,20 +1205,20 @@ public class MapBrowseServlet extends DataPortalServlet {
 			html = "<p class=\"warning\">" + e.getMessage() + "</p>\n";
 			return html;
 		}
-		
+
 		String datasetAccessed=datasetAccessed();
 
-		html = String.format("<ul class=\"no-list-style\"><li>%s%s <cite>%s</cite> %s %s %s %s</li><li>%s</li></ul>", 
+		html = String.format("<ul class=\"no-list-style\"><li>%s%s <cite>%s</cite> %s %s %s %s</li><li>%s</li></ul>",
 	               creatorText, pubDateText, titleText, orgText, PUBLISHER, citationUrl, datasetAccessed, caveat);
-		
+
 		return html;
 
 	}
-	
-	
+
+
 	private String datasetAccessed() {
 		String datasetAccessed = null;
-		
+
 		Date now = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		String dateString = sdf.format(now);
@@ -1226,14 +1226,14 @@ public class MapBrowseServlet extends DataPortalServlet {
 			dateString = dateString.substring(1);
 		}
 		datasetAccessed = String.format("Dataset accessed %s.", dateString);
-		
+
 		return datasetAccessed;
 	}
-	
-	
+
+
 	private boolean isDeletedDataPackage(String deletionList, String scope, String identifier) {
 		boolean isDeleted = false;
-		
+
 		if (deletionList != null && !deletionList.isEmpty()) {
 			String docid = String.format("%s.%s", scope, identifier);
 			String[] tokens = deletionList.split("\n");
@@ -1247,8 +1247,8 @@ public class MapBrowseServlet extends DataPortalServlet {
 				}
 			}
 		}
-		
+
 		return isDeleted;
 	}
-	
+
 }

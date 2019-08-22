@@ -18,74 +18,71 @@
 <html lang="en">
 
 <head>
-<title><%= titleText %></title>
-
-<meta charset="UTF-8" />
-<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-
-<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
-
-<!-- Google Fonts CSS -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,300italic" rel="stylesheet" type="text/css">
-
-<!-- Page Layout CSS MUST LOAD BEFORE bootstap.css -->
-<link href="css/style_slate.css" media="all" rel="stylesheet" type="text/css">
-
-<!-- JS -->
-<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
-<script src="bootstrap/js/bootstrap68b368b3.js?ver=1" type="text/javascript"></script>
-
-<!-- Mobile Device CSS -->
-<link href="bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css">
-<link href="bootstrap/css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css">
-
+	<!-- common <head> tag elements -->
+	<%@ include file="common-head.jsp" %>
+	<style>
+		pre {
+			white-space: pre-wrap;
+			word-break: keep-all
+		}
+	</style>
 </head>
 
 <body>
 
+<jsp:include page="asu-header.jsp" />
 <jsp:include page="header.jsp" />
 
-<div class="row-fluid ">
-		<div class="container">
-			<div class="row-fluid distance_1">
-				<div class="box_shadow box_layout">
-					<div class="row-fluid">
-						<div class="row-fluid">
-							<div class="span12">
-							
-								<!-- Content -->
-                  <%= metadataHtml %>																
-							  <!-- /Content -->
-							  
-						  </div>
-					</div>
-				</div>
-			</div>
+<div class="container main-content">
+	<div class="row">
+		<div class="col">
+			<!-- Content -->
+			<%= metadataHtml %>
+			<!-- /Content -->
 		</div>
 	</div>
-
-		<jsp:include page="footer.jsp" />
-		
 </div>
 
-<script type="text/javascript">
-	jQuery("#showAll").click(function() {
-		jQuery(".collapsible").show();
-	});
-    
-	jQuery("#hideAll").click(function() {
-		jQuery(".collapsible").hide();
+<div class="footer pt-5">
+	<jsp:include page="asu-big-footer.jsp" />
+	<jsp:include page="asu-footer.jsp" />
+</div>
+
+
+</div>
+
+<%@ include file="bootstrap-javascript.jsp" %>
+<script>
+	// handles the toggling of collapsed sub-tables (such as in the
+	// data entities area of the page). Uses a combination of jQuery
+	// the the collapse() method provided by Bootstrap 4.
+	//
+	// Whenever the user clicks on a link with the class of 'non-numeric-toggle',
+	// the nearest item with the '.collapse' class is toggled.
+	$('.non-numeric-toggle').click( function(e) {
+		$(this).siblings('.collapse').collapse('toggle');
+		return false;
 	});
 
-	jQuery(".toggleButton").click(function() {
-		jQuery(this).next(".collapsible").slideToggle("fast");
-	});
-    
-	jQuery(".collapsible").hide();
-	
-	jQuery("#toggleSummary").next(".collapsible").show();
-</script>  
+	// we are using Bootstrap's 'collapse' feature to toggle metadata boxes
+	// open and closed, but this doesn't work as well when you're trying to open/close
+	// of of them at once, because the collapse code will toggle them by default. This
+	// means that if you have already opened one or more boxes, and then use 'show all'
+	// to try to show them all, the ones you've opened will toggle closed, while the others
+	// will toggle open.
 
+	// here we are being more specific, so that our show/hide all buttons do what they say.
+
+	$("#hideAll").click( function(e) {
+		// find any open card bodies, and close them
+		$(".card-body.collapse.show").collapse('hide');
+	});
+
+	$("#showAll").click( function() {
+		// find any card bodies set to be collapsible, and open them up
+		$(".card-body.collapse").collapse('show');
+	});
+</script>
 </body>
 
 </html>

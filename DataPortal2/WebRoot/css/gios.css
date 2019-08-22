@@ -1,0 +1,398 @@
+/* Additional Styling for the GIOS version of the portal */
+
+/*******************
+ASU Header
+*******************/
+
+#asu_hdr {
+    max-width: 1170px;
+}
+
+@media (max-width: 991.98px) {
+  /* On mobile, we want the ASU nav to be 100% wide. I'm accomplishing this by telling its parent container that it's okay to be up to 991.98px wide on all screens that are 991.98px wide or smaller (contradicting Bootstrap's responsive sizes that will down-size 'container' as the screen gets smaller).
+  */
+  #asu-header-container {
+    max-width: 991.98px;
+    padding: 0;
+  }
+}
+
+#asu_mobile_menu {
+    margin-top: 10px;
+}
+
+#asu_universal_nav {
+    font-weight: 200;
+    font-size: 12px;
+    font-family: Arial, Helvetic, "sans-serif";
+}
+
+#asu_school_name {
+  padding: 0 13px 13px 0;
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: -.5px;
+}
+
+.site-title a, a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+#asu_logo {
+    padding-top: 12px;
+}
+
+/* for pages with little content */
+.main-content {
+    min-height: 450px;
+}
+
+#mobile-nav-header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#mobile-have-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*******************
+Menu
+*******************/
+/*
+ * To match the existing site menu, we need to tell the navbar, and its child items, to be a specific height
+ * and remove the padding inside the navbar itself (this gives us 'full-height' rollover states). Removing that
+ * padding messes up the placement of the menu items, so we change the line height to move them down
+ */
+ .navbar {
+    height: 56px;
+    padding: 0;
+}
+
+.navbar-nav {
+    height: 56px;
+    line-height: 2.5em;
+}
+
+.nav-item {
+    padding-left: .5em;
+    padding-right: .5em;
+    font-size: .9375rem;
+    font-weight: 700;
+}
+
+.nav-item:hover {
+    background-color: #000;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffb310;
+}
+
+.home-icon {
+    text-align: center;
+    width: 64px;
+}
+
+.home-icon > a {
+    color: #ffb310;
+}
+
+/*******************
+Sub-Menu
+*******************/
+.secondary-nav {
+    background-color: #eee;
+}
+
+/*******************
+Buttons
+*******************/
+.btn-primary {
+    background-color: #8c1d40;
+    border-color: #8c1d40;
+    color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:active {
+    background-color: #62142d !important;
+    border-color: #591229 !important;
+}
+
+.btn-secondary {
+    background-color: #dbdbdb;
+    border-color: #dbdbdb;
+    color: #000;
+}
+
+.btn-secondary:hover, .btn-secondary:active {
+    background-color: #c2c2c2 !important;
+    border-color: #bcbcbc !important;
+    color: #000 !important;
+}
+
+#main-wrapper {
+    background-image: url('../images/lab-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 487px;
+}
+
+/*******************
+Links
+*******************/
+.main-content a, .secondary-nav a {
+    border-bottom: 1px dotted #8C1D40;
+    text-decoration: none;
+    color: #8C1D40 !important;
+    transition: all 0.25s ease-in-out 0s;
+}
+
+.main-content a:hover {
+    color: #d23153;
+    text-decoration: none;
+    border-bottom: 1px dotted #d23153;
+}
+
+/* For the case where links are styled as buttons, we don't want to override button styles */
+.main-content a.btn {
+    border-bottom: none !important;
+    color: #000;
+}
+
+/* override ASU link borders on our Maps */
+#map-canvas a, #map-canvas-summary a{
+    border-bottom: none;
+}
+
+a.subsite-title {
+    color: #4f5557;
+}
+
+
+/*******************
+Other Fixes
+*******************/
+/* fix conflict because ASU header uses a class called "border", and Bootstrap uses that same name */
+#asu_universal_nav li.parent ul li a.border {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+
+/************************
+Text on Top of Hero Image
+************************/
+.hero-text {
+    /* background-color: rgba(0, 0, 0, .5); */
+    background-color: rgba(0, 0, 0, .75);
+    padding: 1em;
+    border-radius: 10px;
+    color: white;
+}
+
+.hero-text a {
+  color: #fff;
+}
+
+
+/***************************
+Big Footer Styles
+***************************/
+.footer p,
+.footer div,
+.footer span {
+  color: #fff;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+.footer h1 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.footer h2 {
+  color: #fff;
+  font-size: 1.3125rem;
+  font-weight: normal;
+  margin-bottom: 16px;
+}
+
+.footer h3,
+.footer h4,
+.footer h5,
+.footer h6 {
+  color: #fff;
+}
+
+.footer a:not(.btn),
+.footer address,
+.footer .phone-link {
+  border-bottom-color: #ccc;
+  color: #ccc;
+  margin-bottom: 0;
+}
+
+.footer .contact-link {
+  border-bottom-color: #a9a9a9;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  color: #a9a9a9;
+}
+
+.footer .contact-link:hover, .footer .contact-link:focus {
+  color: #fff;
+}
+
+.footer ul,
+.footer ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer ul::before, .footer ul::after,
+.footer ol::before,
+.footer ol::after {
+  content: ' ';
+  display: table;
+}
+
+.footer ul::after,
+.footer ol::after {
+  clear: both;
+}
+
+.footer ul > li,
+.footer ol > li {
+  display: block;
+  position: relative;
+}
+
+.footer ul > li > a,
+.footer ol > li > a {
+  position: relative;
+  text-decoration: none;
+}
+
+.footer ul > li > a:hover, .footer ul > li > a:focus,
+.footer ol > li > a:hover,
+.footer ol > li > a:focus {
+  text-decoration: none;
+}
+
+.footer .social-media {
+  margin-bottom: 30px;
+}
+
+.footer .social-media > li {
+  float: left;
+}
+
+.footer .social-media > li > a {
+  border-bottom: 0;
+  color: #a9a9a9;
+  font-size: 2.375rem;
+  margin-right: 10px;
+}
+
+.footer .social-media > li > a:hover, .footer .social-media > li > a:focus {
+  color: #fff;
+}
+
+.footer .social-media > li:last-child > a {
+  margin-right: 0;
+}
+
+.footer .big-foot {
+  background-color: #1e1e1e;
+  color: #fff;
+  padding-bottom: 14px;
+  padding-top: 40px;
+}
+
+.footer .big-foot img {
+  max-width: 300px;
+}
+
+.footer .big-foot a {
+  border-bottom: 1px dotted;
+  border-bottom-color: #a9a9a9;
+  color: #a9a9a9;
+  text-decoration: none;
+}
+
+.footer .big-foot a.no-border {
+  border-bottom: 0;
+}
+
+.footer .big-foot a:hover, .footer .big-foot a:focus {
+  color: #fff;
+}
+
+.footer .big-foot a.btn,
+.footer .big-foot button {
+  border: inherit;
+  color: inherit;
+}
+
+.footer .big-foot-nav li {
+  margin-bottom: 12px;
+}
+
+.footer .little-foot {
+  background-color: #e5e5e5;
+  height: 59px;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.footer .little-foot-nav > li {
+  float: left;
+  padding-bottom: 12px;
+}
+
+.footer .little-foot-nav > li > a {
+  border-bottom: 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-right: 30px;
+  text-decoration: none;
+}
+
+.footer .little-foot-nav > li:last-child > a {
+  margin-right: 0;
+}
+
+.little-foot__right {
+  padding: 20px 10px;
+}
+
+
+.footer-menu h2 {
+  margin-top: 24px;
+}
+
+@media (max-width: 991px) {
+  .footer h2 {
+    cursor: pointer;
+  }
+}

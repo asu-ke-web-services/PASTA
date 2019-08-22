@@ -46,7 +46,7 @@ dbMaxConnections=10
 ##
 ## LTER Scope Registry
 ##
-scopeRegistry=edi,ecotrends,knb-lter-and,knb-lter-arc,knb-lter-bes,knb-lter-bnz,knb-lter-cap,knb-lter-cce,knb-lter-cdr,knb-lter-cwt,knb-lter-fce,knb-lter-gce,knb-lter-hbr,knb-lter-hfr,knb-lter-jrn,knb-lter-kbs,knb-lter-knz,knb-lter-luq,knb-lter-mcm,knb-lter-mcr,knb-lter-nes,knb-lter-nin,knb-lter-ntl,knb-lter-nwk,knb-lter-nwt,knb-lter-pal,knb-lter-pie,knb-lter-sbc,knb-lter-sev,knb-lter-sgs,knb-lter-vcr,lter-landsat,lter-landsat-ledaps,msb-tempbiodev,msb-paleon,ltreb-cap,msb-cap
+scopeRegistry=edi,ecotrends,knb-lter-and,knb-lter-arc,knb-lter-bes,knb-lter-ble,knb-lter-bnz,knb-lter-cap,knb-lter-cce,knb-lter-cdr,knb-lter-cwt,knb-lter-fce,knb-lter-gce,knb-lter-hbr,knb-lter-hfr,knb-lter-jrn,knb-lter-kbs,knb-lter-knz,knb-lter-luq,knb-lter-mcm,knb-lter-mcr,knb-lter-nes,knb-lter-nin,knb-lter-ntl,knb-lter-nwk,knb-lter-nwt,knb-lter-pal,knb-lter-pie,knb-lter-sbc,knb-lter-sev,knb-lter-sgs,knb-lter-vcr,lter-landsat,lter-landsat-ledaps,msb-tempbiodev,msb-paleon,ltreb-cap,msb-cap
 
 #
 # Sample document properties. Used by the sample calling application
@@ -56,7 +56,7 @@ scopeRegistry=edi,ecotrends,knb-lter-and,knb-lter-arc,knb-lter-bes,knb-lter-bnz,
 #
 testDocument=knb-lter-gce.1.9
 testServer=http://metacat.lternet.edu/knb/metacat
-documentURL=http://svn.lternet.edu/svn/NIS/trunk/DataPackageManager/test/data/NoneSuchBugCount.xml
+documentURL=https://raw.githubusercontent.com/PASTAplus/PASTA/master/DataPackageManager/test/data/NoneSuchBugCount.xml.template
 entityName=INS-GCEM-0011_1_3.TXT
 packageID=knb-lter-gce.1.9
 
@@ -87,6 +87,7 @@ datapackagemanager.auditmanager.host=audit.lternet.edu
 datapackagemanager.metadatacatalog.pastaUser=uid=pasta,o=LTER,dc=ecoinformatics,dc=org
 datapackagemanager.metadatacatalog.solrUrl=http://solr.lternet.edu:8983/solr
 datapackagemanager.pastaUriHead=https://pasta.lternet.edu/package/
+datapackagemanager.test.doi=doi:10.6073/pasta/3bcc89b2d1a410b7a2c678e3c55055e1
 datapackagemanager.test.emlFileName=NoneSuchBugCount.xml
 datapackagemanager.test.path=test/data
 datapackagemanager.test.scope=knb-lter-nwk

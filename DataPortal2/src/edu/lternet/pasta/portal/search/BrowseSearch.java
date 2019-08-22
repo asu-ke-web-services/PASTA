@@ -37,9 +37,9 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
 
-/** 
+/**
  * The BrowseSearch class supports browse-based search operations. This is equivalent
- * to a simple search, but the user clicks on a link to determine the search 
+ * to a simple search, but the user clicks on a link to determine the search
  * term. Browse search uses the search results stored in a browse cache (as
  * implemented by the BrowseGroup class) for high performance.
  */
@@ -48,12 +48,12 @@ public class BrowseSearch {
   /*
    * Class fields
    */
-  
+
   /*
    * Default value of the browse cache directory is below, but it can be set to a
    * different value in the dataportal.properties file
    */
-  public static String browseCacheDir = "/home/pasta/local/browse";     
+  public static String browseCacheDir = "/home/pasta/local/browse";
   private static final String browseKeywordFilename = "browseKeyword.xml";
   public static String browseKeywordPath = browseCacheDir + "/" + browseKeywordFilename;
   private static final Logger logger = Logger.getLogger(BrowseSearch.class);
@@ -63,18 +63,18 @@ public class BrowseSearch {
   /*
    * Instance fields
    */
-  
-  
+
+
   /*
    * Constructors
    */
-  
+
 
 
   /*
    * Class methods
    */
-  
+
   /**
    * Sets the value of the browse directory and related path value
    * @param  directoryPath   the browse directory path value to set
@@ -83,15 +83,15 @@ public class BrowseSearch {
     BrowseSearch.browseCacheDir = directoryPath;
     BrowseSearch.browseKeywordPath = String.format("%s/%s", directoryPath, browseKeywordFilename);
   }
-  
+
 
   /*
    * Instance methods
    */
- 
+
   /**
    * Reads the browse cache file into a XML DOM tree and parses it.
-   * 
+   *
    * @param  browseCacheFile     the browse cache File object
    * @return topBrowseGroup, a BrowseGroup object holding the browse cache
    */
@@ -99,7 +99,7 @@ public class BrowseSearch {
     Document document;
     DocumentBuilder documentBuilder;
     DocumentBuilderFactory documentBuilderFactory =
-                                           DocumentBuilderFactory.newInstance(); 
+                                           DocumentBuilderFactory.newInstance();
     Element documentElement;
     Node documentNode;
     NodeList documentNodeList;
@@ -116,20 +116,20 @@ public class BrowseSearch {
       document = documentBuilder.parse(browseCacheFile);
       documentElement = document.getDocumentElement();
       documentNodeList = documentElement.getChildNodes();
-      
+
       for (int i = 0; i < documentNodeList.getLength(); i++) {
         documentNode = documentNodeList.item(i);
-        
+
         if (documentNode instanceof Element) {
           topElement = (Element) documentNode;
-          
+
           if (topElement.getTagName().equals("group")) {
             groupNodeList = topElement.getChildNodes();
 
             for (int j = 0; j < groupNodeList.getLength(); j++) {
               String value = null;
               groupNode = groupNodeList.item(j);
-              
+
               if (groupNode instanceof Element) {
                 groupElement = (Element) groupNode;
 
@@ -161,21 +161,21 @@ public class BrowseSearch {
       logger.error("Exception:\n" + e.getMessage());
       e.printStackTrace();
     }
- 
+
     return topBrowseGroup;
   }
-  
+
 
   /**
    * Recursive method that parses a <group> element. A group element may contain
    * other <group> elements, or a <terms> elements containing a list of <term>
    * elements.
-   *  
+   *
    * @param parentGroupElement  a <group> element in the DOM tree
    * @param parentBrowseGroup   a BrowseGroup object representing the parent
    *                            group
    */
-  private void parseGroupElement(Element parentGroupElement, 
+  private void parseGroupElement(Element parentGroupElement,
                                  BrowseGroup parentBrowseGroup) {
     BrowseGroup browseGroup = null;
     BrowseTerm browseTerm = null;
@@ -194,16 +194,16 @@ public class BrowseSearch {
 
     Text text;
     String textString;
-    
+
     groupNodeList = parentGroupElement.getChildNodes();
-    
+
     for (int i = 0; i < groupNodeList.getLength(); i++) {
       groupNode = groupNodeList.item(i);
-      
+
       if (groupNode instanceof Element) {
         groupElement = (Element) groupNode;
- 
-        /* 
+
+        /*
          * If we encounter a value element, use the text of the value element
          * to create a new BrowseGroup, then add the new BrowseGroup to the
          * parent BrowseGroup
@@ -233,22 +233,22 @@ public class BrowseSearch {
          */
         else if (groupElement.getTagName().equals("terms")) {
           termsNodeList = groupElement.getChildNodes();
-                
+
           for (int j = 0; j < termsNodeList.getLength(); j++) {
             termsNode = termsNodeList.item(j);
-                  
+
             if (termsNode instanceof Element) {
               termsElement = (Element) termsNode;
-                    
+
               if (termsElement.getTagName().equals("term")) {
                 termNodeList = termsNode.getChildNodes();
-                      
+
                 for (int k = 0; k < termNodeList.getLength(); k++) {
                   termNode = termNodeList.item(k);
-                        
+
                   if (termNode instanceof Element) {
                     termElement = (Element) termNode;
-                          
+
                     if (termElement.getTagName().equals("value")) {
                       text = (Text) termElement.getFirstChild();
                       textString = text.getData().trim();
@@ -262,7 +262,7 @@ public class BrowseSearch {
                       int matchCount = integer.intValue();
                       browseTerm.setMatchCount(matchCount);
                     }
-                  } 
+                  }
                 }
               }
             }
