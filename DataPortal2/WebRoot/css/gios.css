@@ -70,13 +70,18 @@ Menu
  * and remove the padding inside the navbar itself (this gives us 'full-height' rollover states). Removing that
  * padding messes up the placement of the menu items, so we change the line height to move them down
  */
- .navbar {
-    height: 56px;
+
+.asu-menu {
+  background-color: #353535;
+}
+
+.navbar {
+    height: 57px;
     padding: 0;
 }
 
 .navbar-nav {
-    height: 56px;
+    height: 57px;
     line-height: 2.5em;
 }
 
@@ -84,7 +89,8 @@ Menu
     padding-left: .5em;
     padding-right: .5em;
     font-size: .9375rem;
-    font-weight: 700;
+    font-weight: 500;
+    color: white;
 }
 
 .nav-item:hover {

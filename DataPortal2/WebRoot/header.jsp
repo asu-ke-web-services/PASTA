@@ -77,14 +77,14 @@
 %>
 <header role="banner">
 	<!-- Bootstrap NavBar -->
-	<div class="container-fluid  bg-dark d-lg-none">
+	<div class="container-fluid asu-menu d-lg-none">
 			<div id="mobile-nav-header" class="navbar-header">
-				<a class="navbar-brand" href="home.jsp">GIOS Data Portal</a>
+				<a class="navbar-brand asu-menu" href="https://data.sustainability.asu.edu/dataportal/home.jsp">GIOS Data Portal</a>
 			</div>
 	</div>
-	<div class="container-fluid bg-dark">
+	<div class="container-fluid asu-menu">
 		<div class="container">
-			<nav class="navbar d-none d-lg-block navbar-expand-lg navbar-dark bg-dark" id="gios-nav">
+			<nav class="navbar d-none d-lg-block navbar-expand-lg navbar-dark asu-menu" id="gios-nav">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
