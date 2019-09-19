@@ -24,16 +24,11 @@
 	<div class="content">
 		<div class="row-fluid">
 			<div class="col-sm">
-				<div class="alert alert-danger mt-3 mb-3">
+				<div class="mt-3 mb-3">
 					<h2>Error</h2>
 					<hr />
-					<p><strong>An <em>error</em> has occurred</strong> in the Data Portal:</p>
-					<p class="nis-error">${pageContext.exception.message}</p>
-					<p>For further assistance, please contact the
-					<a href="mailto:support@environmentaldatainitiative.org?Subject=EDI%20Data%20Portal%20error" target="_top">
-					Environmental Data Initiative</a>. Please copy the error message shown
-					above into your email message, along with any other information
-					that might help us to assist you more promptly.</p>
+					<p>Something seems to have gone wrong with the Data Portal. Try searching again from <a href="home.jsp">the home page</a>, or the <a href="advancedSearch.jsp">Advanced Search Page</a>. If you continue to encounter this message, contact us at <a href="mailto:giosweb@asu.edu">giosweb@asu.edu</a>.</p>
+					<p class="nis-error">${pageContext.exception.message}</p>					
 				</div>
 			</div>
 		</div>
@@ -46,6 +41,7 @@
 
 </div>
 <%@ include file="bootstrap-javascript.jsp" %>
+
 </body>
 
 </html>

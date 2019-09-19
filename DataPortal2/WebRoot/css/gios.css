@@ -130,9 +130,16 @@ Buttons
     color: #fff;
 }
 
-.btn-primary:hover, .btn-primary:active {
+.btn-primary:hover {
     background-color: #62142d !important;
     border-color: #591229 !important;
+}
+
+.btn[disabled] {
+	background-color: #333;
+	border: none;
+	color: #999;
+	pointer-events: none;
 }
 
 .btn-secondary {

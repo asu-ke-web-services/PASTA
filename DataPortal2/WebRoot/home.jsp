@@ -70,7 +70,7 @@
 				<p>Search for datasets from research conducted across the globe by GIOS scientists and scholars.</p>
 				<form class="form-inline my-2 my-lg-0 d-inline" action="./simpleSearch" method="post" _lpchecked="1">
 					<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search The Portal" aria-label="Search">
-					<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+					<button class="btn btn-primary my-2 my-sm-0" name="searchButton" id="searchButton" type="submit">Search</button>
 					<span class="navbar-text pl-3"><a href="advancedSearch.jsp">Advanced Search</a></span>
 				</form>
 			</div>
@@ -95,7 +95,7 @@
 					<li>Generate code to use datasets in Python, R, and other languages</li>
 				</ul>
 
-			<p>The GIOS Data Portal is a modified version of <a href="https://portal.edirepository.org/nis/home.jsp" target="_blank">the Environmental Data Initiative (EDI) Data Portal</a> - it is powered by the same technology, and searches the same EDI database, but is filtered to only include datasets published by GIOS scientists and scholars.
+			<p>The GIOS Data Portal is a modified version of <a href="https://portal.edirepository.org/nis/home.jsp" target="_blank">the Environmental Data Initiative (EDI) Data Portal</a> - it is powered by the same technology, and searches the same EDI database, but is filtered to only include datasets published by GIOS scientists and scholars.</p>
 		</div>
 		<div class="col">
 			<img class="img-100" src="images/portal-graphic-01.svg" alt="placeholder">
@@ -112,7 +112,23 @@
 
 
 </div>
-	<%@ include file="bootstrap-javascript.jsp" %>
+	<%@ include file="bootstrap-javascript.jsp" %>	
+	<script>
+		$( document ).ready(function() {
+			$("#searchButton").prop('disabled', true);
+
+			$("#navBarTerms").on("input", function() {
+				var searchTerm = $.trim( $("#navBarTerms").val() );
+
+				if ( searchTerm.length >= 3 ) {
+					$("#searchButton").prop('disabled', false);
+				}else{
+					$("#searchButton").prop('disabled', true);
+				}
+			});
+
+		});
+	</script>
 </body>
 
 </html>
