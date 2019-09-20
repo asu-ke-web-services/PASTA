@@ -5,7 +5,7 @@
           <a href="https://www.asu.edu/rankings"><span>ASU is #1 in the U.S. for Innovation</span></a>
         </div>
         <div class="innovation-hidden">
-          <a href="https://www.asu.edu/rankings"><img src="//www.asu.edu/asuthemes/4.7/assets/best-colleges-most-innovative.png" alt="Best Colleges U.S. News Most Innovative 2019"></a>
+          <a href="https://www.asu.edu/rankings"><img src="./images/asu-innovation-2020.png" alt="Best Colleges U.S. News Most Innovative 2020"></a>
         </div>
       </div>
     </div>
