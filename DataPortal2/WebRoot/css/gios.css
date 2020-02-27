@@ -5,8 +5,16 @@ ASU Header
 *******************/
 
 #asu_hdr {
-    width: 1170px;
     max-width: 1170px;
+}
+
+@media (max-width: 991.98px) {
+  /* On mobile, we want the ASU nav to be 100% wide. I'm accomplishing this by telling its parent container that it's okay to be up to 991.98px wide on all screens that are 991.98px wide or smaller (contradicting Bootstrap's responsive sizes that will down-size 'container' as the screen gets smaller).
+  */
+  #asu-header-container {
+    max-width: 991.98px;
+    padding: 0;
+  }
 }
 
 #asu_mobile_menu {
@@ -20,7 +28,7 @@ ASU Header
 }
 
 #asu_school_name {
-    margin-bottom: 13px;
+  padding: 0 13px 13px 0;
 }
 
 .site-title {
@@ -28,20 +36,30 @@ ASU Header
     font-weight: bold;
     font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
     letter-spacing: -.5px;
-    line-height: 28px;
 }
 
-.site-title a {
+.site-title a, a:hover {
     color: #000;
+    text-decoration: none;
 }
 
 #asu_logo {
-    padding-top: 0;
+    padding-top: 12px;
 }
 
 /* for pages with little content */
 .main-content {
     min-height: 450px;
+}
+
+#mobile-nav-header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#mobile-have-header a:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 /*******************
@@ -52,13 +70,18 @@ Menu
  * and remove the padding inside the navbar itself (this gives us 'full-height' rollover states). Removing that
  * padding messes up the placement of the menu items, so we change the line height to move them down
  */
- .navbar {
-    height: 56px;
+
+.asu-menu {
+  background-color: #353535;
+}
+
+.navbar {
+    height: 57px;
     padding: 0;
 }
 
 .navbar-nav {
-    height: 56px;
+    height: 57px;
     line-height: 2.5em;
 }
 
@@ -66,6 +89,8 @@ Menu
     padding-left: .5em;
     padding-right: .5em;
     font-size: .9375rem;
+    font-weight: 500;
+    color: white;
 }
 
 .nav-item:hover {
@@ -176,9 +201,204 @@ Other Fixes
 Text on Top of Hero Image
 ************************/
 .hero-text {
-    background-color: rgba(0, 0, 0, .5);
+    /* background-color: rgba(0, 0, 0, .5); */
+    background-color: rgba(0, 0, 0, .75);
     padding: 1em;
     border-radius: 10px;
-    width: 40%;
     color: white;
+}
+
+.hero-text a {
+  color: #fff;
+}
+
+
+/***************************
+Big Footer Styles
+***************************/
+.footer p,
+.footer div,
+.footer span {
+  color: #fff;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+.footer h1 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.footer h2 {
+  color: #fff;
+  font-size: 1.3125rem;
+  font-weight: normal;
+  margin-bottom: 16px;
+}
+
+.footer h3,
+.footer h4,
+.footer h5,
+.footer h6 {
+  color: #fff;
+}
+
+.footer a:not(.btn),
+.footer address,
+.footer .phone-link {
+  border-bottom-color: #ccc;
+  color: #ccc;
+  margin-bottom: 0;
+}
+
+.footer .contact-link {
+  border-bottom-color: #a9a9a9;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  color: #a9a9a9;
+}
+
+.footer .contact-link:hover, .footer .contact-link:focus {
+  color: #fff;
+}
+
+.footer ul,
+.footer ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer ul::before, .footer ul::after,
+.footer ol::before,
+.footer ol::after {
+  content: ' ';
+  display: table;
+}
+
+.footer ul::after,
+.footer ol::after {
+  clear: both;
+}
+
+.footer ul > li,
+.footer ol > li {
+  display: block;
+  position: relative;
+}
+
+.footer ul > li > a,
+.footer ol > li > a {
+  position: relative;
+  text-decoration: none;
+}
+
+.footer ul > li > a:hover, .footer ul > li > a:focus,
+.footer ol > li > a:hover,
+.footer ol > li > a:focus {
+  text-decoration: none;
+}
+
+.footer .social-media {
+  margin-bottom: 30px;
+}
+
+.footer .social-media > li {
+  float: left;
+}
+
+.footer .social-media > li > a {
+  border-bottom: 0;
+  color: #a9a9a9;
+  font-size: 2.375rem;
+  margin-right: 10px;
+}
+
+.footer .social-media > li > a:hover, .footer .social-media > li > a:focus {
+  color: #fff;
+}
+
+.footer .social-media > li:last-child > a {
+  margin-right: 0;
+}
+
+.footer .big-foot {
+  background-color: #1e1e1e;
+  color: #fff;
+  padding-bottom: 14px;
+  padding-top: 40px;
+}
+
+.footer .big-foot img {
+  max-width: 300px;
+}
+
+.footer .big-foot a {
+  border-bottom: 1px dotted;
+  border-bottom-color: #a9a9a9;
+  color: #a9a9a9;
+  text-decoration: none;
+}
+
+.footer .big-foot a.no-border {
+  border-bottom: 0;
+}
+
+.footer .big-foot a:hover, .footer .big-foot a:focus {
+  color: #fff;
+}
+
+.footer .big-foot a.btn,
+.footer .big-foot button {
+  border: inherit;
+  color: inherit;
+}
+
+.footer .big-foot-nav li {
+  margin-bottom: 12px;
+}
+
+.footer .little-foot {
+  background-color: #e5e5e5;
+  height: 59px;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.footer .little-foot-nav > li {
+  float: left;
+  padding-bottom: 12px;
+}
+
+.footer .little-foot-nav > li > a {
+  border-bottom: 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-right: 30px;
+  text-decoration: none;
+}
+
+.footer .little-foot-nav > li:last-child > a {
+  margin-right: 0;
+}
+
+.little-foot__right {
+  padding: 20px 10px;
+}
+
+
+.footer-menu h2 {
+  margin-top: 24px;
+}
+
+@media (max-width: 991px) {
+  .footer h2 {
+    cursor: pointer;
+  }
 }

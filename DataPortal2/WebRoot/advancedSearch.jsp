@@ -282,7 +282,7 @@
       <div class="row">
         <div class="col-3" style="border-right: 1px solid #eee;">
           <h4>Geographic</h4>
-          <p><small class="text-muted">Use the map, or the input fields, to set a geogrpahical boundary for your search.</small></p>
+          <p><small class="text-muted">Use the map, or the input fields, to set a geographical boundary for your search.</small></p>
         </div>
         <div class="col">
           <!-- map grid top row -->
@@ -422,7 +422,8 @@
     }
   });
 </script>
-<div class="footer-container pt-5">
+<div class="footer mt-5">
+  <jsp:include page="asu-big-footer.jsp" />
 	<jsp:include page="asu-footer.jsp" />
 </div>
 

@@ -77,9 +77,14 @@
 %>
 <header role="banner">
 	<!-- Bootstrap NavBar -->
-	<div class="container-fluid bg-dark">
+	<div class="container-fluid asu-menu d-lg-none">
+			<div id="mobile-nav-header" class="navbar-header">
+				<a class="navbar-brand asu-menu" href="https://data.sustainability.asu.edu/dataportal/home.jsp">GIOS Data Portal</a>
+			</div>
+	</div>
+	<div class="container-fluid asu-menu">
 		<div class="container">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="gios-nav">
+			<nav class="navbar d-none d-lg-block navbar-expand-lg navbar-dark asu-menu" id="gios-nav">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -87,38 +92,38 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item home-icon">
-							<a class="nav-link" href="home.jsp"><span class="fas fa-home"></span></a>
+							<a class="nav-link" href="https://sustainability.asu.edu/"><span class="fas fa-home"></span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="about.jsp">About</a>
+							<a class="nav-link" href="https://sustainability.asu.edu/people/">People</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="resources.jsp">Resources</a>
+							<a class="nav-link" href="https://sustainability.asu.edu/programs/">Programs</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="contact.jsp">Contact</a>
+							<a class="nav-link" href="https://sustainability.asu.edu/research/">Research</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/education/">Education</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://data.sustainability.asu.edu/dataportal/home.jsp">Data</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/partnerships/">Partnerships</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/news/">News</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/events/">Events</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://sustainability.asu.edu/about/">About</a>
 						</li>
 				</div>
 			</nav>
 		</div>
 	</div>
-
-	<div class="container-fluid secondary-nav">
-		<div class="container">
-			<nav class="navbar navbar-expand-lg navbar-light" id="portal-menu">
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-					<form class="form-inline my-2 my-lg-0" action="./simpleSearch" method="post" _lpchecked="1">
-						<input class="form-control mr-sm-2" type="search" name="terms" id="navBarTerms" placeholder="Search The Portal" aria-label="Search">
-						<button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-						<span class="navbar-text pl-3"><a href="advancedSearch.jsp">Advanced Search</a></span>
-					</form>
-				</div>
-			</nav>
-		</div>
-	</div>
-	<!-- end Bootstrap NavBar -->
 </header>
 <div class="pt-5"> <!-- generic wrapper with Bootstrap padding class to push all content down from the main menu --->

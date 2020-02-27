@@ -107,7 +107,8 @@
 		</div>
 	</div>
 
-	<div class="footer-container pt-5">
+	<div class="footer pt-5">
+		<jsp:include page="asu-big-footer.jsp" />
 		<jsp:include page="asu-footer.jsp" />
 	</div>
 	<%@ include file="bootstrap-javascript.jsp" %>

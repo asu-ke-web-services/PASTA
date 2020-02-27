@@ -55,9 +55,11 @@
 			</div>
 		</div>
 
-		<div class="footer-container mt-5">
+		<div class="footer mt-5">
+			<jsp:include page="asu-big-footer.jsp" />
 			<jsp:include page="asu-footer.jsp" />
 		</div>
+
 		<script type="text/javascript">
 			$(document).ready(function () {
 				// Create jqxTree
