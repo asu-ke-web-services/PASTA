@@ -3,8 +3,21 @@
         <div class="row">
             <div class="col-12 col-lg-4">
                 <img src="images/CAPLTER_REV.png" alt="CAP LTER Logo" />
+                <span>
+                    Central Arizona-Phoenix<br>
+                    Long-Term Ecological Research<br>
+                    is a unit of the Julie Ann Wrigley Global<br>
+                    Instititue of Sustainability<br>
+                </span>
+                <br>
+                <span>
+                    800 South Cady Mall<br>
+                    Tempe, AZ 85281<br>
+                    Phone: (480) 965-2975<br>
+                    Fax: (480) 965-8087<br>
+                </span>
                 <p>
-                    <a class="contact-link" href="https://sustainability.asu.edu/contact/" id="contact-us-link-in-footer">CAP LTER Us</a>
+                    <a class="contact-link" href="https://sustainability.asu.edu/contact/" id="contact-us-link-in-footer"></a>
                 </p>
                 <ul class="social-media">
                     <li>
@@ -61,6 +74,8 @@
                     </ul>
                 </div>
         </div><!-- /.row -->
+        <p>This research was supported by funding from the National Science Foundation Long-term Ecological Research Program. This material is based upon work supported by the National Science Foundation under Grant No. DEB-1832016. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.</p>
+
         <div class="row d-xs-block d-sm-none">
             <div class="col">
                 <ul class="big-foot-menu">
