@@ -141,7 +141,7 @@
         </script>
         <div class="container site-title-container">
             <div class="site-title d-none d-lg-inline" id="asu_school_name">
-                <a href="https://sustainability.asu.edu">Julie Ann Wrigley Global Institute of Sustainability</a>
+                <a href="${param.siteAsuTitleLink}">${param.siteAsuTitle}</a> | <a href="${param.siteAsuSubtitleLink}" id="blog-name-site-title">${param.siteAsuSubtitle}</a>
             </div>
         </div>
         <div style="clear:both;"></div>

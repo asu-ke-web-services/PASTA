@@ -74,7 +74,6 @@
                     </ul>
                 </div>
         </div><!-- /.row -->
-        <p>This research was supported by funding from the National Science Foundation Long-term Ecological Research Program. This material is based upon work supported by the National Science Foundation under Grant No. DEB-1832016. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.</p>
 
         <div class="row d-xs-block d-sm-none">
             <div class="col">
@@ -130,5 +129,6 @@
                 </ul>
             </div>
         </div>
+        <p class="mt-3">This research was supported by funding from the National Science Foundation Long-term Ecological Research Program. This material is based upon work supported by the National Science Foundation under Grant No. DEB-1832016. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.</p>
     </div><!-- /.container -->
 </div><!-- /.big-foot -->

@@ -5,6 +5,8 @@
 	final String titleText = DataPortalServlet.getTitleText(pageTitle);
 %>
 
+<%@ include file="context-reader.jsp" %>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -12,14 +14,20 @@
 		<%@ include file="common-head.jsp" %>
 	</head>
 	<body>
-		<jsp:include page="asu-header.jsp" />
-		<jsp:include page="header.jsp" />
+		<!-- incude main ASU Header-->
+        <jsp:include page="asu-header.jsp">
+            <jsp:param name="siteAsuTitle" value="<%= siteAsuTitle %>" />
+            <jsp:param name="siteAsuSubtitle" value="<%= siteAsuSubtitle %>" />
+            <jsp:param name="siteAsuTitleLink" value="<%= siteAsuTitleLink %>" />
+            <jsp:param name="siteAsuSubtitleLink" value="<%= siteAsuSubtitleLink %>" />
+        </jsp:include>
+        <jsp:include page="<%= menuInclude %>" flush="true" />
 		<div class="container main-content">
 			<div class="row">
 				<div class="column">
 					<!-- Content -->
 					<h1>Resources</h1>
-					<p>The GIOS Data Portal is based on technology created and used by the Environmental Data Initiative and the LTER Network. If you're interested in finding out more about EDI, or the LTER network, you can use the resources listed below.</p>
+					<p>The <%= siteName %> Data Portal is based on technology created and used by the Environmental Data Initiative and the LTER Network. If you're interested in finding out more about EDI, or the LTER network, you can use the resources listed below.</p>
 					<h3>EDI Resources</h3>
 					<ul>
 						<li><a class="searchsubcat" href="http://environmentaldatainitiative.org/">Environmental Data Initiative</a></li>
@@ -39,9 +47,9 @@
 		</div>
 
 		<div class="footer">
-			<jsp:include page="asu-big-footer.jsp" />
-			<jsp:include page="asu-footer.jsp" />
-		</div>
+            <jsp:include page="<%= bigFooterInclude %>" />
+            <jsp:include page="asu-footer.jsp" />
+        </div>
 
 		</div>
 		<%@ include file="bootstrap-javascript.jsp" %>

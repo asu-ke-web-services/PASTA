@@ -1,4 +1,4 @@
-<title><%= titleText %></title>
+<title>${param.siteName} Data Portal</title>
 
 <meta charset="UTF-8" />
 <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
@@ -59,9 +59,6 @@
         "json": '[\
             { "title": "Home", "path": "home.jsp"},\
             { "title": "Advanced Search", "path": "advancedSearch.jsp"},\
-            { "title": "About", "path": "about.jsp"},\
-            { "title": "Resources", "path": "resources.jsp"},\
-            { "title": "Contact Us", "path": "contact.jsp"}\
         ]'
     };
 </script>

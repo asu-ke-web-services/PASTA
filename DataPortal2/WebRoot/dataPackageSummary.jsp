@@ -4,6 +4,8 @@
 <%@ page import="edu.lternet.pasta.client.DataPackageManagerClient" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<%@ include file="context-reader.jsp" %>
+
 <%
   final String googleMapsKey = (String) ConfigurationListener.getOptions().getProperty("maps.google.key");
   final String pageTitle = "Data Package Summary";
@@ -80,7 +82,6 @@
         String fontColor = "darkorange";
         testHTML = String.format("<font color='%s'>This test data package was submitted to a %s environment. It is not considered production ready.</font>", fontColor, tier);
     }
-
 %>
 
 <!DOCTYPE html>
@@ -88,7 +89,9 @@
 
 <head>
 	<!-- common <head> tag elements -->
-	<%@ include file="common-head.jsp" %>
+    <jsp:include page="common-head.jsp">
+        <jsp:param name="siteName" value="<%= siteName %>" />
+    </jsp:include>
 	<script type="text/javascript" src="./js/map_functions_bing.js"></script>
 	<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 
@@ -125,8 +128,13 @@
 
 <body>
 
-<jsp:include page="asu-header.jsp" />
-<jsp:include page="header.jsp" />
+<jsp:include page="asu-header.jsp">
+    <jsp:param name="siteAsuTitle" value="<%= siteAsuTitle %>" />
+    <jsp:param name="siteAsuSubtitle" value="<%= siteAsuSubtitle %>" />
+    <jsp:param name="siteAsuTitleLink" value="<%= siteAsuTitleLink %>" />
+    <jsp:param name="siteAsuSubtitleLink" value="<%= siteAsuSubtitleLink %>" />
+</jsp:include>
+<jsp:include page="<%= menuInclude %>" flush="true" />
 
 <div id="<%= watermarkId %>" class="<%= watermarkClass %>"><%= watermarkText %></div>
 
@@ -364,7 +372,7 @@
 </div>
 
 <div class="footer pt-5">
-	<jsp:include page="asu-big-footer.jsp" />
+    <jsp:include page="<%= bigFooterInclude %>" />
 	<jsp:include page="asu-footer.jsp" />
 </div>
 

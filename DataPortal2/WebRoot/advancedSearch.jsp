@@ -5,11 +5,9 @@
 <%@ page import="edu.lternet.pasta.portal.search.LTERSite" %>
 <%@ page import="edu.lternet.pasta.portal.search.AuthorSearch" %>
 
-<%
-  final String pageTitle = "Advanced Search";
-  final String titleText = DataPortalServlet.getTitleText(pageTitle);
-  final String googleMapsKey = (String) ConfigurationListener.getOptions().getProperty("maps.google.key");
+<%@ include file="context-reader.jsp" %>
 
+<%
   final String indent = "              ";
   boolean includeNIN = true;      // include North Inlet in the options list
   String siteOptions = LTERSite.composeHTMLOptions(indent, includeNIN, null);
@@ -24,7 +22,10 @@
 
 <head>
 	<!-- common <head> tag elements -->
-	<%@ include file="common-head.jsp" %>
+        <jsp:include page="common-head.jsp">
+            <jsp:param name="siteName" value="<%= siteName %>" />
+        </jsp:include>
+
   <script type="text/javascript" src="./js/utilities.js"></script>
   <script type="text/javascript" src="./js/validation.js"></script>
   <script type="text/javascript" src="./js/map_functions_bing.js"></script>
@@ -69,8 +70,13 @@
 </head>
 
 <body>
-  <jsp:include page="asu-header.jsp" />
-  <jsp:include page="header.jsp" />
+    <jsp:include page="asu-header.jsp">
+        <jsp:param name="siteAsuTitle" value="<%= siteAsuTitle %>" />
+        <jsp:param name="siteAsuSubtitle" value="<%= siteAsuSubtitle %>" />
+        <jsp:param name="siteAsuTitleLink" value="<%= siteAsuTitleLink %>" />
+        <jsp:param name="siteAsuSubtitleLink" value="<%= siteAsuSubtitleLink %>" />
+    </jsp:include>
+  <jsp:include page="<%= menuInclude %>" flush="true" />
 	<div class="container main-content">
     <h3>Advanced Search</h3>
     <hr class="mb-3" />
@@ -423,7 +429,7 @@
   });
 </script>
 <div class="footer mt-5">
-  <jsp:include page="asu-big-footer.jsp" />
+  <jsp:include page="<%= bigFooterInclude %>" />
 	<jsp:include page="asu-footer.jsp" />
 </div>
 

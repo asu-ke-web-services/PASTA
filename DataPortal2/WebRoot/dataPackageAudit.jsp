@@ -28,7 +28,7 @@
 	if (auditRecordLimit != null && !auditRecordLimit.equals("")) {
 	  limitHTML = "<p><small><sup>*</sup><em>Only the first " + auditRecordLimit + " matching audit records will be displayed.</em></small></p>";
 	}
-	
+
 %>
 
 <!DOCTYPE html>
@@ -73,19 +73,19 @@
 				event.preventDefault();
 				$(this).parent().addClass("selected");
 				$(this).parent().find(":checkbox").attr("checked","checked");
-				
+
 			}
 		);
-		
+
 		$(".checklist .checkbox-deselect").click(
 			function(event) {
 				event.preventDefault();
 				$(this).parent().removeClass("selected");
 				$(this).parent().find(":checkbox").removeAttr("checked");
-				
+
 			}
 		);
-		
+
 	});
 
 </script>
@@ -112,7 +112,7 @@
 						<div class="row-fluid">
 							<div class="span12">
 								<!-- Content -->
-								<p>Review a Data Package access report<sup>*</sup> by entering information into one or more of the filters 
+								<p>Review a Data Package access report<sup>*</sup> by entering information into one or more of the filters
 								   below.
 								</p>
 								<form id="dataPackageAudit" action="./dataPackageAudit" method="post" name="dataPackageAudit">
@@ -136,7 +136,7 @@
 												<td class="spacer"></td>
 											</tr>
 										</table>
-										
+
 										<table>
 											<tr>
 												<td><label class="labelBold">Resource Type:</label></td>
@@ -153,7 +153,7 @@
 														      <input name="package" type="checkbox" value="value1" />
 														      <p>Package</p>
 														      <a class="checkbox-select" href="#">Select</a>
-														      <a class="checkbox-deselect" href="#">Cancel</a> 
+														      <a class="checkbox-deselect" href="#">Cancel</a>
 														    </li>
 														    <li>
 														      <input name="metadata" type="checkbox" value="value2" />

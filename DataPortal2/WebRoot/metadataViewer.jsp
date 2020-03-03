@@ -2,6 +2,8 @@
 	       trimDirectiveWhitespaces="true"%>
 <%@ page import="edu.lternet.pasta.portal.DataPortalServlet" %>
 
+<%@ include file="context-reader.jsp" %>
+
 <%
   final String pageTitle = "Metadata Viewer";
   final String titleText = DataPortalServlet.getTitleText(pageTitle);
@@ -19,7 +21,9 @@
 
 <head>
 	<!-- common <head> tag elements -->
-	<%@ include file="common-head.jsp" %>
+    <jsp:include page="common-head.jsp">
+        <jsp:param name="siteName" value="<%= siteName %>" />
+    </jsp:include>
 	<style>
 		pre {
 			white-space: pre-wrap;
@@ -30,8 +34,14 @@
 
 <body>
 
-<jsp:include page="asu-header.jsp" />
-<jsp:include page="header.jsp" />
+<!-- incude main ASU Header-->
+<jsp:include page="asu-header.jsp">
+    <jsp:param name="siteAsuTitle" value="<%= siteAsuTitle %>" />
+    <jsp:param name="siteAsuSubtitle" value="<%= siteAsuSubtitle %>" />
+    <jsp:param name="siteAsuTitleLink" value="<%= siteAsuTitleLink %>" />
+    <jsp:param name="siteAsuSubtitleLink" value="<%= siteAsuSubtitleLink %>" />
+</jsp:include>
+<jsp:include page="<%= menuInclude %>" flush="true" />
 
 <div class="container main-content">
 	<div class="row">
@@ -44,11 +54,9 @@
 </div>
 
 <div class="footer pt-5">
-	<jsp:include page="asu-big-footer.jsp" />
+	<jsp:include page="<%= bigFooterInclude %>" />
 	<jsp:include page="asu-footer.jsp" />
 </div>
-
-
 </div>
 
 <%@ include file="bootstrap-javascript.jsp" %>
