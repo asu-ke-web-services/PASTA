@@ -97,6 +97,11 @@ Menu
     background-color: #000;
 }
 
+/* override the black background on hover for the tabs on one page :( */
+#metadata-tabs .nav-item:hover {
+    background-color: white;
+}
+
 .navbar-dark .navbar-nav .nav-link {
     color: white;
 }
@@ -114,6 +119,10 @@ Menu
     color: #ffb310;
 }
 
+.active {
+    background-color: black;
+    color: #ffb310;
+}
 /*******************
 Sub-Menu
 *******************/

@@ -66,14 +66,16 @@
 						element shown below as a sub-element within its
 						<strong>&lt;methods&gt;</strong> element.</p>
 
-						<ul class="nav nav-tabs" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" href="#htmlTab" data-toggle="tab" aria-controls="Provenance Metadata HTML" aria-selected="true">Provenance Metadata HTML</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#xmlTab" data-toggle="tab" aria-controls="Provenance Metadata XML" aria-selected="false">Provenance Metadata XML</a>
-							</li>
-						</ul>
+                        <div id="metadata-tabs">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#htmlTab" data-toggle="tab" aria-controls="Provenance Metadata HTML" aria-selected="true">Provenance Metadata HTML</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#xmlTab" data-toggle="tab" aria-controls="Provenance Metadata XML" aria-selected="false">Provenance Metadata XML</a>
+                                </li>
+                            </ul>
+                        </div>
 
 						<div class="tab-content" style="border: 1px solid #eee; border-top: 0; padding: 1em;">
 							<div id="htmlTab" class="tab-pane active">
