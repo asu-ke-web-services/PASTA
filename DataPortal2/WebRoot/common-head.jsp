@@ -45,8 +45,6 @@
 <link type="text/css" rel="stylesheet" media="all" href="css/gios.css" />
 
 <script type="text/javascript" src="//www.asu.edu/asuthemes/4.7/js/asu_header.min.js?v0.3"></script>
-<script type="text/javascript" src="//www.asu.edu/asuthemes/4.7/js/asu_header.min.js?v0.3"></script>
-
 <!--[if IE 9]>
 <style type="text/css">
     #asu_universal_nav ul ul{filter:none;box-shadow:0 6px 6px 0 #999}#asu_universal_nav>ul>li.parent:hover>a{filter:none;box-shadow:6px 0 6px -6px #999,-6px 0 6px -6px #999}
@@ -58,7 +56,7 @@
     ASUHeader.site_menu = {
         "json": '[\
             { "title": "Home", "path": "home.jsp"},\
-            { "title": "Advanced Search", "path": "advancedSearch.jsp"},\
+            { "title": "Advanced Search", "path": "advancedSearch.jsp"}\
         ]'
     };
 </script>
