@@ -126,29 +126,6 @@
         </div>
       </div>
 
-      <hr />
-      <div class="row">
-          <div class="col">
-              <div class="collapse" id="search-details">
-                  <div class="card mb-5 bg-light">
-                    <h5 class="card-header">Search URL</h5>
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col">
-                          <p>You can use the URL shown below to run this search again:</p>
-                          <div class="input-group">
-                            <input id="queryURL" type="text" value="<%=queryURL%>" class="form-control" placeholder="query-URL" aria-label="query-URL" aria-describedby="basic-addon1">
-                            <div class="input-group-append">
-                              <a href="#" data-clipboard-target="#queryURL" class="btn btn-secondary">Copy URL</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-          </div>
-        </div>
       <div class="row">
         <div class="col">
           <%=searchResult%>
