@@ -1,7 +1,6 @@
     <div class="row p-5">
         <div class="col-xs-12 col-md-7" style="font-weight: 300; font-size: 18px;">
             <h1>About The ${param.siteName} Data Portal</h1>
-            <p>You have found the special GIOS!! include!</p>
             <p>The ${param.siteName} Data Portal is the main resource for the discovery and download of datasets published by ${param.siteName} scientists and scholars. With the ${param.siteName} Data Portal you can:</p>
             <ul>
                 <li>Quickly search for datasets based on keywords or author names</li>
