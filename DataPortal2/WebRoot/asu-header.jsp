@@ -40,7 +40,7 @@
                         <span class="sr-only" id="asuNavLabel">
                             Navigation for Entire University
                         </span>
-                        <div id="asu_universal_nav">
+                        <div id="asu_universal_nav" style="border: 1px dotted red; margin: .2em;">
                             <ul>
                                 <li class="parent"><a href="//www.asu.edu/" target="_top">ASU Home</a>
                                     <ul>
@@ -141,7 +141,8 @@
         </script>
         <div class="container site-title-container">
             <div class="site-title d-none d-lg-inline" id="asu_school_name">
-                <a href="${param.siteAsuTitleLink}">${param.siteAsuTitle}</a> | <a href="${param.siteAsuSubtitleLink}" id="blog-name-site-title">${param.siteAsuSubtitle}</a>
+                <a href="${param.siteAsuTitleLink}">${param.siteAsuTitle}</a>
+                <% if (request.getParameter("siteAsuSubtitle") != "") { %> | <a class="subsite-title" href="${param.siteAsuSubtitleLink}" id="blog-name-site-title">${param.siteAsuSubtitle}</a> <% } %>
             </div>
         </div>
         <div style="clear:both;"></div>
