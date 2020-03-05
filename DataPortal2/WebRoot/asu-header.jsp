@@ -40,7 +40,7 @@
                         <span class="sr-only" id="asuNavLabel">
                             Navigation for Entire University
                         </span>
-                        <div id="asu_universal_nav" style="border: 1px dotted red; margin: .2em;">
+                        <div id="asu_universal_nav">
                             <ul>
                                 <li class="parent"><a href="//www.asu.edu/" target="_top">ASU Home</a>
                                     <ul>
