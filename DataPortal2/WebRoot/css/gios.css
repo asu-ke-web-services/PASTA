@@ -123,6 +123,10 @@ Menu
     background-color: black;
     color: #ffb310;
 }
+
+.active > a {
+    color: #ffb310 !important;
+}
 /*******************
 Sub-Menu
 *******************/
