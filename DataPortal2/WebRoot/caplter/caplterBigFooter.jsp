@@ -17,7 +17,7 @@
                     Fax: (480) 965-8087<br>
                 </span>
                 <p>
-                    <a class="contact-link" href="https://sustainability.asu.edu/contact/" id="contact-us-link-in-footer"></a>
+                    <a class="contact-link" href="https://sustainability.asu.edu/caplter/contact/" id="contact-us-link-in-footer"></a>
                 </p>
                 <ul class="social-media">
                     <li>
