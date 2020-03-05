@@ -28,7 +28,7 @@
 	<div class="row mb-5">
 		<div class="col">
 			<h1><%= siteName %> Data Portal</h1>
-			<p>The <%= siteName %> Data Portal is the main user interface for upload and discovery of GIOS data products. It is a modified version of <a href="https://portal.edirepository.org/nis/home.jsp" target="_blank">the EDI Data Portal</a>. The <%= siteName %> Data Portal is powered by the same <a href="#" data-toggle="tooltip" class="bs-tooltip-top" title="Provenance Aware Synthesis Tracking Architecture">PASTA</a> technology as the EDI Portal, and searches the same EDI database, but is restricted to datasets that originate from <%= siteName %>.</p>
+			<p>The <%= siteName %> Data Portal is the main user interface for the discovery of <%= siteName %> data products. It is a modified version of <a href="https://portal.edirepository.org/nis/home.jsp" target="_blank">the EDI Data Portal</a>. The <%= siteName %> Data Portal is powered by the same <a href="#" data-toggle="tooltip" class="bs-tooltip-top" title="Provenance Aware Synthesis Tracking Architecture">PASTA</a> technology as the EDI Portal, and searches the same EDI database, but is restricted to datasets that originate from <%= siteName %>.</p>
 		</div>
 	</div>
 </div>

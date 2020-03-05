@@ -89,7 +89,7 @@ public class DataPortalServlet extends HttpServlet {
    */
   public static String getTitleText(String pageTitle) {
 	  return String.format(
-			  "GIOS Data Portal - %s",
+			  "Data Portal - %s",
 			  pageTitle);
   }
 

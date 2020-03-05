@@ -31,7 +31,7 @@
 		<div class="col">
 			<!-- Content -->
 			<h1>Contact Us</h1>
-			<p>The <%= siteName %> Data Portal is maintained by the <a href="https://sustainability.asu.edu/support-services/web-development/" target="_blank">KE Web Services</a> team. You can contact us via email at <a href="mailto:giosweb@asu.edu">giosweb@asu.edu</a>.</p>
+            <p>The <%= siteName %> Data Portal is maintained by the KE Web Services team. Requests and bug reports should be sent to <a href="mailto:rtshelp@asu.edu">rtshelp@asu.edu</a>.</p>
 		</div>
 	</div>
 </div>
