@@ -5,6 +5,7 @@ ASU Header
 *******************/
 
 #asu_hdr {
+    margin-top: -10px;
     max-width: 1170px;
 }
 
@@ -32,8 +33,8 @@ ASU Header
 }
 
 .site-title {
+    font-weight: 500;
     font-size: 24px;
-    font-weight: bold;
     font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
     letter-spacing: -.5px;
 }
@@ -77,6 +78,7 @@ Menu
 
 .navbar {
     height: 57px;
+    margin-top: 10px;
     padding: 0;
 }
 
