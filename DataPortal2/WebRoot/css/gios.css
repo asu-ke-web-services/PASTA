@@ -121,7 +121,7 @@ Menu
     color: #ffb310;
 }
 
-.active {
+.nav-item .active {
     background-color: black;
     color: #ffb310;
 }
